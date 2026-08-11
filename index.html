@@ -3,16 +3,385 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Fleet Management Portal</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top right, rgba(37, 99, 235, 0.12), transparent 35%),
+                linear-gradient(135deg, #f8fafc, #eef2f7);
+            color: #1e293b;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            padding: 0 7%;
+            box-shadow: 0 2px 12px rgba(15, 23, 42, 0.05);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 21px;
+            font-weight: 700;
+            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.25);
+        }
+
+        .brand-text h1 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .brand-text span {
+            display: block;
+            font-size: 11px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .main {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 70px 25px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 13px;
+            border-radius: 30px;
+            background: #dbeafe;
+            color: #1d4ed8;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .hero h2 {
+            font-size: 34px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin: auto;
+            color: #64748b;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           CARDS
+        ========================= */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .card {
+            position: relative;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 28px;
+            text-decoration: none;
+            color: inherit;
+            overflow: hidden;
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+        .card::after {
+            content: "";
+            position: absolute;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: rgba(37, 99, 235, 0.05);
+            right: -45px;
+            bottom: -55px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #bfdbfe;
+            box-shadow: 0 14px 35px rgba(15, 23, 42, 0.10);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+        }
+
+        .idle-icon {
+            background: #fff7ed;
+            color: #ea580c;
+        }
+
+        .report-icon {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+        .arrow {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: 17px;
+            transition: 0.25s ease;
+        }
+
+        .card:hover .arrow {
+            background: #2563eb;
+            color: #ffffff;
+            transform: translateX(3px);
+        }
+
+        .card h3 {
+            font-size: 19px;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.6;
+            max-width: 330px;
+        }
+
+        .card-footer {
+            margin-top: 22px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #2563eb;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+            text-align: center;
+            margin-top: 65px;
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .header {
+                padding: 0 20px;
+            }
+
+            .main {
+                padding: 45px 18px;
+            }
+
+            .hero h2 {
+                font-size: 27px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+        }
+    </style>
 </head>
+
 <body>
-    <ul>
-        <li>
-            <a href="./idle fleet.html">Idle Vehicle</a>
-        </li>
-        <li>
-            <a href="./selected-vehicle-report_bulk.html">Vehicle Reports</a>
-        </li>
-    </ul>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                F
+            </div>
+
+            <div class="brand-text">
+                <h1>Fleet Management</h1>
+                <span>Vehicle Monitoring & Reporting Portal</span>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <section class="hero">
+
+            <div class="hero-badge">
+                FLEET OPERATIONS
+            </div>
+
+            <h2>Vehicle Management Portal</h2>
+
+            <p>
+                Access vehicle monitoring, idle vehicle information
+                and detailed fleet reports from one centralized dashboard.
+            </p>
+
+        </section>
+
+
+        <!-- OPTIONS -->
+
+        <div class="cards">
+
+            <!-- IDLE VEHICLES -->
+
+            <a
+                href="./idle fleet.html"
+                target="_blank"
+                class="card"
+            >
+
+                <div class="card-top">
+
+                    <div class="card-icon idle-icon">
+                        ⏱
+                    </div>
+
+                    <div class="arrow">
+                        →
+                    </div>
+
+                </div>
+
+                <h3>
+                    Idle Vehicles
+                </h3>
+
+                <p>
+                    View vehicles that are currently idle and
+                    monitor their operational status.
+                </p>
+
+                <div class="card-footer">
+                    View Idle Vehicles →
+                </div>
+
+            </a>
+
+
+            <!-- VEHICLE REPORTS -->
+
+            <a
+                href="./selected-vehicle-report_bulk.html"
+                target="_blank"
+                class="card"
+            >
+
+                <div class="card-top">
+
+                    <div class="card-icon report-icon">
+                        ▣
+                    </div>
+
+                    <div class="arrow">
+                        →
+                    </div>
+
+                </div>
+
+                <h3>
+                    Vehicle Reports
+                </h3>
+
+                <p>
+                    Search vehicles, view detailed information
+                    and export selected vehicle records.
+                </p>
+
+                <div class="card-footer">
+                    Open Vehicle Reports →
+                </div>
+
+            </a>
+
+        </div>
+
+
+        <div class="footer">
+            Fleet Management Portal &nbsp;•&nbsp; Vehicle Operations
+        </div>
+
+    </main>
+
 </body>
 </html>

@@ -1,154 +1,1044 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Selected Vehicle Report</title>
 
+
     <style>
-        * { box-sizing: border-box; }
+
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
 
         body {
-            margin: 0;
-            padding: 24px;
-            font-family: Arial, sans-serif;
-            background: #f5f7fa;
-            color: #222;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(37, 99, 235, 0.08),
+                    transparent 35%
+                ),
+                #f4f7fb;
+
+            color: #1e293b;
+
+            min-height: 100vh;
+
         }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .top-header {
+
+            height: 72px;
+
+            background: #ffffff;
+
+            border-bottom:
+                1px solid #e2e8f0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 32px;
+
+            box-shadow:
+                0 2px 10px
+                rgba(15, 23, 42, 0.05);
+
+        }
+
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+        }
+
+
+        .brand-icon {
+
+            width: 43px;
+            height: 43px;
+
+            border-radius: 11px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #1d4ed8
+                );
+
+            color: white;
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+            box-shadow:
+                0 5px 14px
+                rgba(37, 99, 235, 0.25);
+
+        }
+
+
+        .brand-text h1 {
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            color: #0f172a;
+
+        }
+
+
+        .brand-text span {
+
+            display: block;
+
+            margin-top: 2px;
+
+            font-size: 11px;
+
+            color: #64748b;
+
+        }
+
+
+        .header-badge {
+
+            padding: 7px 13px;
+
+            border-radius: 20px;
+
+            background: #eff6ff;
+
+            color: #1d4ed8;
+
+            border: 1px solid #dbeafe;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
 
         .container {
-            max-width: 1600px;
+
+            max-width: 1700px;
+
             margin: auto;
+
+            padding: 28px 30px 45px;
+
         }
 
-        .header {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,.08);
-            margin-bottom: 18px;
+
+        /* =====================================================
+           PAGE TITLE
+        ===================================================== */
+
+        .page-heading {
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            margin-bottom: 22px;
+
         }
 
-        h2 { margin: 0 0 16px; }
+
+        .page-heading h2 {
+
+            font-size: 27px;
+
+            color: #0f172a;
+
+            margin-bottom: 6px;
+
+        }
+
+
+        .page-heading p {
+
+            font-size: 13px;
+
+            color: #64748b;
+
+        }
+
+
+        /* =====================================================
+           SEARCH PANEL
+        ===================================================== */
+
+        .search-card {
+
+            background: #ffffff;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 14px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 4px 15px
+                rgba(15, 23, 42, 0.05);
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .search-header {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .search-icon {
+
+            width: 36px;
+            height: 36px;
+
+            border-radius: 9px;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 17px;
+
+        }
+
+
+        .search-header h3 {
+
+            font-size: 15px;
+
+            color: #0f172a;
+
+        }
+
+
+        .search-header p {
+
+            font-size: 11px;
+
+            color: #64748b;
+
+            margin-top: 2px;
+
+        }
+
 
         textarea {
+
             width: 100%;
-            min-height: 150px;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 15px;
+
+            min-height: 135px;
+
+            padding: 14px 15px;
+
+            border:
+                1px solid #cbd5e1;
+
+            border-radius: 9px;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
             resize: vertical;
-            font-family: Arial, sans-serif;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            color: #334155;
+
+            background: #f8fafc;
+
+            outline: none;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+
         }
 
-        .button-row {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 12px;
+
+        textarea:focus {
+
+            background: #ffffff;
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(37, 99, 235, 0.10);
+
         }
 
-        button {
-            border: 0;
-            border-radius: 6px;
-            padding: 11px 16px;
-            cursor: pointer;
-            font-size: 14px;
+
+        textarea::placeholder {
+
+            color: #94a3b8;
+
         }
 
-        .find-btn { background: #1769aa; color: white; }
-        .export-btn { background: #18864b; color: white; }
-        .clear-btn { background: #666; color: white; }
-
-        button:hover { opacity: .9; }
 
         .hint {
+
             margin-top: 8px;
-            color: #777;
-            font-size: 12px;
-            line-height: 1.5;
+
+            color: #64748b;
+
+            font-size: 11px;
+
+            line-height: 1.6;
+
         }
+
+
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
+
+        .button-row {
+
+            display: flex;
+
+            gap: 9px;
+
+            flex-wrap: wrap;
+
+            margin-top: 16px;
+
+        }
+
+
+        button {
+
+            border: none;
+
+            border-radius: 8px;
+
+            padding: 10px 16px;
+
+            cursor: pointer;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+
+        }
+
+
+        button:hover {
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        .find-btn {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #1d4ed8
+                );
+
+            color: white;
+
+            box-shadow:
+                0 4px 12px
+                rgba(37, 99, 235, 0.20);
+
+        }
+
+
+        .find-btn:hover {
+
+            box-shadow:
+                0 7px 16px
+                rgba(37, 99, 235, 0.25);
+
+        }
+
+
+        .export-btn {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #15803d,
+                    #16a34a
+                );
+
+            color: white;
+
+            box-shadow:
+                0 4px 12px
+                rgba(22, 163, 74, 0.18);
+
+        }
+
+
+        .clear-btn {
+
+            background: #f1f5f9;
+
+            color: #475569;
+
+            border:
+                1px solid #e2e8f0;
+
+        }
+
+
+        .clear-btn:hover {
+
+            background: #e2e8f0;
+
+        }
+
+
+        /* =====================================================
+           MESSAGES
+        ===================================================== */
 
         .message {
+
             margin-top: 12px;
-            font-size: 14px;
+
+            font-size: 12px;
+
             line-height: 1.5;
+
+            min-height: 18px;
+
         }
 
-        .message.error { color: #c62828; }
-        .message.success { color: #18864b; }
 
-        .summary {
-            margin: 18px 0 10px;
-            font-weight: bold;
+        .message.error {
+
+            color: #dc2626;
+
         }
 
-        .summary span {
-            margin-right: 18px;
+
+        .message.success {
+
+            color: #15803d;
+
         }
 
-        .table-wrapper {
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,.08);
-            overflow: auto;
-        }
-
-        table {
-            width: 100%;
-            min-width: 1200px;
-            border-collapse: collapse;
-        }
-
-        th {
-            background: #333;
-            color: white;
-            position: sticky;
-            top: 0;
-            z-index: 1;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 9px 10px;
-            text-align: left;
-            white-space: nowrap;
-        }
-
-        tr:nth-child(even) { background: #f7f7f7; }
-
-        .remove-btn {
-            background: #dc3545;
-            color: white;
-            padding: 6px 9px;
-        }
-
-        .empty {
-            padding: 30px;
-            text-align: center;
-            color: #777;
-        }
 
         .not-found {
-            margin-top: 10px;
-            padding: 10px;
-            background: #fff3cd;
-            border: 1px solid #ffe69c;
-            border-radius: 6px;
-            color: #664d03;
+
+            margin-top: 12px;
+
+            padding: 12px 14px;
+
+            background: #fff7ed;
+
+            border:
+                1px solid #fed7aa;
+
+            border-radius: 8px;
+
+            color: #9a3412;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+
             display: none;
+
         }
+
+
+        /* =====================================================
+           SUMMARY
+        ===================================================== */
+
+        .summary-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 14px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .summary-card {
+
+            background: #ffffff;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 11px;
+
+            padding: 16px 18px;
+
+            box-shadow:
+                0 3px 10px
+                rgba(15, 23, 42, 0.04);
+
+        }
+
+
+        .summary-label {
+
+            font-size: 11px;
+
+            color: #64748b;
+
+            margin-bottom: 6px;
+
+        }
+
+
+        .summary-value {
+
+            font-size: 23px;
+
+            font-weight: 700;
+
+            color: #0f172a;
+
+        }
+
+
+        .summary-card.found
+        .summary-value {
+
+            color: #2563eb;
+
+        }
+
+
+        .summary-card.notfound
+        .summary-value {
+
+            color: #ea580c;
+
+        }
+
+
+        .summary-card.duplicate
+        .summary-value {
+
+            color: #7c3aed;
+
+        }
+
+
+        /* =====================================================
+           TABLE CARD
+        ===================================================== */
+
+        .table-card {
+
+            background: #ffffff;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 13px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 4px 15px
+                rgba(15, 23, 42, 0.05);
+
+        }
+
+
+        .table-title {
+
+            padding:
+                15px 18px;
+
+            border-bottom:
+                1px solid #e2e8f0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+        }
+
+
+        .table-title h3 {
+
+            font-size: 14px;
+
+            color: #0f172a;
+
+        }
+
+
+        .table-title span {
+
+            font-size: 11px;
+
+            color: #64748b;
+
+        }
+
+
+        .table-wrapper {
+
+            width: 100%;
+
+            overflow: auto;
+
+            max-height:
+                calc(100vh - 420px);
+
+        }
+
+
+        table {
+
+            width: 100%;
+
+            min-width: 1500px;
+
+            border-collapse:
+                separate;
+
+            border-spacing: 0;
+
+            font-size: 12px;
+
+        }
+
+
+        thead th {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 5;
+
+            background: #0f172a;
+
+            color: #ffffff;
+
+            padding:
+                11px 10px;
+
+            text-align: left;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            white-space: nowrap;
+
+            border-right:
+                1px solid
+                rgba(255,255,255,0.08);
+
+        }
+
+
+        tbody td {
+
+            padding:
+                9px 10px;
+
+            border-bottom:
+                1px solid #e2e8f0;
+
+            color: #334155;
+
+            white-space: nowrap;
+
+        }
+
+
+        tbody tr:nth-child(even) {
+
+            background: #f8fafc;
+
+        }
+
+
+        tbody tr:hover {
+
+            background: #eff6ff;
+
+        }
+
+
+        tbody tr:last-child td {
+
+            border-bottom: none;
+
+        }
+
+
+        /* =====================================================
+           REMOVE BUTTON
+        ===================================================== */
+
+        .remove-btn {
+
+            background: #fef2f2;
+
+            color: #dc2626;
+
+            border:
+                1px solid #fecaca;
+
+            padding:
+                6px 10px;
+
+            font-size: 11px;
+
+            border-radius: 6px;
+
+        }
+
+
+        .remove-btn:hover {
+
+            background: #fee2e2;
+
+        }
+
+
+        /* =====================================================
+           EMPTY STATE
+        ===================================================== */
+
+        .empty {
+
+            padding: 55px 20px;
+
+            text-align: center;
+
+            color: #94a3b8;
+
+        }
+
+
+        .empty-icon {
+
+            width: 48px;
+            height: 48px;
+
+            margin:
+                0 auto 12px;
+
+            border-radius: 12px;
+
+            background: #f1f5f9;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 20px;
+
+        }
+
+
+        .empty strong {
+
+            display: block;
+
+            color: #475569;
+
+            font-size: 13px;
+
+            margin-bottom: 4px;
+
+        }
+
+
+        .empty span {
+
+            font-size: 11px;
+
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .footer {
+
+            text-align: center;
+
+            color: #94a3b8;
+
+            font-size: 11px;
+
+            margin-top: 24px;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+            .top-header {
+
+                padding: 0 18px;
+
+            }
+
+
+            .header-badge {
+
+                display: none;
+
+            }
+
+
+            .container {
+
+                padding:
+                    20px 15px 35px;
+
+            }
+
+
+            .page-heading {
+
+                display: block;
+
+            }
+
+
+            .page-heading h2 {
+
+                font-size: 23px;
+
+            }
+
+
+            .summary-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .button-row {
+
+                flex-direction: column;
+
+            }
+
+
+            .button-row button {
+
+                width: 100%;
+
+            }
+
+
+            .search-card {
+
+                padding: 17px;
+
+            }
+
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="top-header">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            F
+        </div>
+
+        <div class="brand-text">
+
+            <h1>
+                Fleet Management
+            </h1>
+
+            <span>
+                Vehicle Monitoring & Reporting Portal
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="header-badge">
+        VEHICLE REPORTS
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
 <div class="container">
 
-    <div class="header">
 
-        <h2>Selected Vehicle Report</h2>
+    <!-- PAGE HEADING -->
+
+    <div class="page-heading">
+
+        <div>
+
+            <h2>
+                Selected Vehicle Report
+            </h2>
+
+            <p>
+                Search multiple vehicles and generate
+                a detailed fleet report.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         SEARCH CARD
+    ====================================================== -->
+
+    <div class="search-card">
+
+
+        <div class="search-header">
+
+            <div class="search-icon">
+                ⌕
+            </div>
+
+            <div>
+
+                <h3>
+                    Select Vehicles
+                </h3>
+
+                <p>
+                    Enter one or multiple vehicle numbers
+                </p>
+
+            </div>
+
+        </div>
+
 
         <textarea
             id="vehicleInput"
@@ -163,86 +1053,256 @@ HR 46 G 3226
 You can also paste comma-separated vehicle numbers."
         ></textarea>
 
+
         <div class="hint">
-            You can paste vehicle numbers from Excel, WhatsApp, Notepad, etc.
-            One per line, comma-separated, or mixed. Spaces and hyphens are automatically handled.
+
+            Supports vehicle numbers from Excel,
+            WhatsApp, Notepad, etc.
+            One per line, comma-separated, or mixed.
+            Spaces and hyphens are automatically handled.
+
         </div>
 
+
         <div class="button-row">
-            <button class="find-btn" onclick="findVehicles()">
-                Find Vehicles
+
+            <button
+                class="find-btn"
+                onclick="findVehicles()"
+            >
+                Search Vehicles
             </button>
 
-            <button class="export-btn" onclick="exportToExcel()">
+
+            <button
+                class="export-btn"
+                onclick="exportToExcel()"
+            >
                 Export to Excel
             </button>
 
-            <button class="clear-btn" onclick="clearVehicles()">
+
+            <button
+                class="clear-btn"
+                onclick="clearVehicles()"
+            >
                 Clear All
             </button>
+
         </div>
 
-        <div id="message" class="message"></div>
 
-        <div id="notFound" class="not-found"></div>
+        <div
+            id="message"
+            class="message"
+        ></div>
+
+
+        <div
+            id="notFound"
+            class="not-found"
+        ></div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         SUMMARY
+    ====================================================== -->
+
+    <div class="summary-grid">
+
+
+        <div class="summary-card found">
+
+            <div class="summary-label">
+                Vehicles Found
+            </div>
+
+            <div
+                class="summary-value"
+                id="vehicleCount"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="summary-card notfound">
+
+            <div class="summary-label">
+                Not Found
+            </div>
+
+            <div
+                class="summary-value"
+                id="notFoundCount"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="summary-card duplicate">
+
+            <div class="summary-label">
+                Duplicate Entries
+            </div>
+
+            <div
+                class="summary-value"
+                id="duplicateCount"
+            >
+                0
+            </div>
+
+        </div>
+
 
     </div>
 
-    <div class="summary">
-        <span>Found: <strong id="vehicleCount">0</strong></span>
-        <span>Not Found: <strong id="notFoundCount">0</strong></span>
-        <span>Duplicates: <strong id="duplicateCount">0</strong></span>
+
+
+    <!-- =====================================================
+         TABLE
+    ====================================================== -->
+
+    <div class="table-card">
+
+
+        <div class="table-title">
+
+            <h3>
+                Vehicle Details
+            </h3>
+
+            <span id="tableStatus">
+                No vehicles selected
+            </span>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table id="vehicleTable">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Vehicle</th>
+
+                        <th>Status</th>
+
+                        <th>Driver</th>
+
+                        <th>Vehicle Type</th>
+
+                        <th>Speed</th>
+
+                        <th>Time</th>
+
+                        <th>Place</th>
+
+                        <th>Ward</th>
+
+                        <th>Route</th>
+
+                        <th>Latitude</th>
+
+                        <th>Longitude</th>
+
+                        <th>GPS</th>
+
+                        <th>Vehicle Battery</th>
+
+                        <th>GPS Battery</th>
+
+                        <th>Ignition</th>
+
+                        <th>Cleaned Points</th>
+
+                        <th>Total Points</th>
+
+                        <th>Cleaning %</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="vehicleTableBody">
+
+                    <tr>
+
+                        <td
+                            colspan="19"
+                            class="empty"
+                        >
+
+                            <div class="empty-icon">
+                                ▣
+                            </div>
+
+                            <strong>
+                                No vehicles selected
+                            </strong>
+
+                            <span>
+                                Enter vehicle numbers above
+                                to generate the report.
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
     </div>
 
-    <div class="table-wrapper">
 
-        <table id="vehicleTable">
 
-            <thead>
-                <tr>
-                    <th>Vehicle</th>
-                    <th>Status</th>
-                    <th>Driver</th>
-                   
-                    <th>Vehicle Type</th>
-                    <th>Speed</th>
-                    <th>Time</th>
-                    <th>Place</th>
-                    <th>Ward</th>
-                    <th>Route</th>
-                    <th>Latitude</th>
-                    <th>Longitude</th>
-                    <th>GPS</th>
-                    <th>Vehicle Battery</th>
-                    <th>GPS Battery</th>
-                    <th>Ignition</th>
-                    <th>Cleaned Points</th>
-                    <th>Total Points</th>
-                    <th>Cleaning %</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
+    <div class="footer">
 
-            <tbody id="vehicleTableBody">
-                <tr>
-                    <td colspan="21" class="empty">
-                        No vehicles selected.
-                    </td>
-                </tr>
-            </tbody>
-
-        </table>
+        Fleet Management Portal
+        &nbsp;•&nbsp;
+        Vehicle Operations
 
     </div>
+
 
 </div>
 
-<!-- Your existing fleet data file must be in the same folder -->
+
+
+<!-- =========================================================
+     FLEET DATA
+========================================================= -->
+
 <script src="fleet-data.js"></script>
+
 
 <script>
 
     let selectedVehicles = [];
+
+
+    /* =====================================================
+       NORMALIZE VEHICLE NUMBER
+    ===================================================== */
 
     function normalizeVehicleNo(value) {
 
@@ -253,249 +1313,497 @@ You can also paste comma-separated vehicle numbers."
 
     }
 
+
+    /* =====================================================
+       SAFE VALUE
+    ===================================================== */
+
     function safe(value) {
 
-        if (value === null || value === undefined) {
+        if (
+            value === null ||
+            value === undefined
+        ) {
+
             return "";
+
         }
 
         return String(value);
 
     }
 
-    function showMessage(text, type = "") {
 
-        const message = document.getElementById("message");
+    /* =====================================================
+       MESSAGE
+    ===================================================== */
 
-        message.textContent = text;
-        message.className = "message " + type;
+    function showMessage(
+        text,
+        type = ""
+    ) {
+
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+
+        message.textContent =
+            text;
+
+
+        message.className =
+            "message " + type;
 
     }
 
-    /*
-     * Converts pasted text into individual vehicle numbers.
-     *
-     * Supports:
-     * HR 46 G 2948
-     * HR 46 G-2948
-     * HR46G2948
-     *
-     * And separators such as:
-     * newline
-     * comma
-     * semicolon
-     * tab
-     */
+
+    /* =====================================================
+       GET VEHICLE NUMBERS
+    ===================================================== */
+
     function getVehicleNumbersFromInput() {
 
         const input =
-            document.getElementById("vehicleInput").value;
+            document.getElementById(
+                "vehicleInput"
+            ).value;
+
 
         return input
             .split(/[\n,;\t]+/)
-            .map(value => value.trim())
+            .map(
+                value =>
+                    value.trim()
+            )
             .filter(Boolean);
 
     }
+
+
+    /* =====================================================
+       FIND VEHICLES
+    ===================================================== */
 
     function findVehicles() {
 
         const requestedNumbers =
             getVehicleNumbersFromInput();
 
-        if (requestedNumbers.length === 0) {
+
+        if (
+            requestedNumbers.length === 0
+        ) {
 
             showMessage(
-                "Please paste at least one vehicle number.",
+                "Please enter at least one vehicle number.",
                 "error"
             );
 
             return;
+
         }
+
 
         selectedVehicles = [];
 
-        const foundKeys = new Set();
+
+        const foundKeys =
+            new Set();
+
+
         const notFound = [];
+
+
         let duplicates = 0;
 
-        requestedNumbers.forEach(requestedNo => {
 
-            const normalized =
-                normalizeVehicleNo(requestedNo);
+        requestedNumbers.forEach(
+            requestedNo => {
 
-            // Ignore duplicate input
-            if (foundKeys.has(normalized)) {
+                const normalized =
+                    normalizeVehicleNo(
+                        requestedNo
+                    );
 
-                duplicates++;
 
-                return;
+                if (
+                    foundKeys.has(
+                        normalized
+                    )
+                ) {
+
+                    duplicates++;
+
+                    return;
+
+                }
+
+
+                const vehicle =
+                    window.fleetData.find(
+                        v =>
+                            normalizeVehicleNo(
+                                v.vehicleno
+                            ) === normalized
+                    );
+
+
+                if (vehicle) {
+
+                    selectedVehicles.push(
+                        vehicle
+                    );
+
+                    foundKeys.add(
+                        normalized
+                    );
+
+                }
+                else {
+
+                    notFound.push(
+                        requestedNo
+                    );
+
+                }
+
             }
+        );
 
-            const vehicle =
-                window.fleetData.find(v =>
-                    normalizeVehicleNo(v.vehicleno) === normalized
-                );
-
-            if (vehicle) {
-
-                selectedVehicles.push(vehicle);
-
-                foundKeys.add(normalized);
-
-            } else {
-
-                notFound.push(requestedNo);
-
-            }
-
-        });
 
         renderVehicles();
 
-        document.getElementById("vehicleCount").textContent =
+
+        document.getElementById(
+            "vehicleCount"
+        ).textContent =
             selectedVehicles.length;
 
-        document.getElementById("notFoundCount").textContent =
+
+        document.getElementById(
+            "notFoundCount"
+        ).textContent =
             notFound.length;
 
-        document.getElementById("duplicateCount").textContent =
+
+        document.getElementById(
+            "duplicateCount"
+        ).textContent =
             duplicates;
 
+
         const notFoundBox =
-            document.getElementById("notFound");
+            document.getElementById(
+                "notFound"
+            );
 
-        if (notFound.length > 0) {
 
-            notFoundBox.style.display = "block";
+        if (
+            notFound.length > 0
+        ) {
+
+            notFoundBox.style.display =
+                "block";
+
 
             notFoundBox.innerHTML =
                 "<strong>Vehicles not found:</strong><br>" +
-                notFound.map(v => safe(v)).join("<br>");
-
-        } else {
-
-            notFoundBox.style.display = "none";
-            notFoundBox.innerHTML = "";
+                notFound
+                    .map(v => safe(v))
+                    .join("<br>");
 
         }
+        else {
+
+            notFoundBox.style.display =
+                "none";
+
+            notFoundBox.innerHTML =
+                "";
+
+        }
+
 
         showMessage(
             `${selectedVehicles.length} vehicle(s) found successfully.`,
             "success"
         );
 
+
+        updateTableStatus();
+
     }
+
+
+    /* =====================================================
+       REMOVE VEHICLE
+    ===================================================== */
 
     function removeVehicle(index) {
 
-        selectedVehicles.splice(index, 1);
+        selectedVehicles.splice(
+            index,
+            1
+        );
+
 
         renderVehicles();
 
-        document.getElementById("vehicleCount").textContent =
+
+        document.getElementById(
+            "vehicleCount"
+        ).textContent =
             selectedVehicles.length;
 
+
+        updateTableStatus();
+
     }
+
+
+    /* =====================================================
+       CLEAR
+    ===================================================== */
 
     function clearVehicles() {
 
         selectedVehicles = [];
 
-        document.getElementById("vehicleInput").value = "";
 
-        document.getElementById("vehicleCount").textContent = "0";
-        document.getElementById("notFoundCount").textContent = "0";
-        document.getElementById("duplicateCount").textContent = "0";
+        document.getElementById(
+            "vehicleInput"
+        ).value = "";
 
-        document.getElementById("notFound").style.display = "none";
-        document.getElementById("notFound").innerHTML = "";
+
+        document.getElementById(
+            "vehicleCount"
+        ).textContent = "0";
+
+
+        document.getElementById(
+            "notFoundCount"
+        ).textContent = "0";
+
+
+        document.getElementById(
+            "duplicateCount"
+        ).textContent = "0";
+
+
+        document.getElementById(
+            "notFound"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "notFound"
+        ).innerHTML =
+            "";
+
 
         showMessage("");
 
+
         renderVehicles();
 
+
+        updateTableStatus();
+
     }
+
+
+    /* =====================================================
+       RENDER VEHICLES
+    ===================================================== */
 
     function renderVehicles() {
 
         const tbody =
-            document.getElementById("vehicleTableBody");
+            document.getElementById(
+                "vehicleTableBody"
+            );
 
-        if (selectedVehicles.length === 0) {
+
+        if (
+            selectedVehicles.length === 0
+        ) {
 
             tbody.innerHTML = `
+
                 <tr>
-                    <td colspan="21" class="empty">
-                        No vehicles selected.
+
+                    <td
+                        colspan="19"
+                        class="empty"
+                    >
+
+                        <div class="empty-icon">
+                            ▣
+                        </div>
+
+                        <strong>
+                            No vehicles selected
+                        </strong>
+
+                        <span>
+                            Enter vehicle numbers above
+                            to generate the report.
+                        </span>
+
                     </td>
+
                 </tr>
+
             `;
 
             return;
+
         }
 
+
         tbody.innerHTML =
-            selectedVehicles.map((vehicle, index) => `
+            selectedVehicles
+                .map(
+                    (vehicle, index) => `
 
-                <tr>
+                    <tr>
 
-                    <td>${safe(vehicle.vehicleno)}</td>
+                        <td>
+                            ${safe(vehicle.vehicleno)}
+                        </td>
 
-                    
+                        <td>
+                            ${safe(vehicle.status)}
+                        </td>
 
-                    <td>${safe(vehicle.status)}</td>
+                        <td>
+                            ${safe(vehicle.drivername)}
+                        </td>
 
-                    <td>${safe(vehicle.drivername)}</td>
+                        <td>
+                            ${safe(vehicle.vehicletype)}
+                        </td>
 
+                        <td>
+                            ${safe(vehicle.speed)}
+                        </td>
 
-                    <td>${safe(vehicle.vehicletype)}</td>
+                        <td>
+                            ${safe(vehicle.timerecorded)}
+                        </td>
 
-                    <td>${safe(vehicle.speed)}</td>
+                        <td>
+                            ${safe(vehicle.place)}
+                        </td>
 
-                    <td>${safe(vehicle.timerecorded)}</td>
+                        <td>
+                            ${safe(vehicle.wardname)}
+                        </td>
 
-                    <td>${safe(vehicle.place)}</td>
+                        <td>
+                            ${safe(vehicle.routename)}
+                        </td>
 
-                    <td>${safe(vehicle.wardname)}</td>
+                        <td>
+                            ${safe(vehicle.latitude)}
+                        </td>
 
-                    <td>${safe(vehicle.routename)}</td>
+                        <td>
+                            ${safe(vehicle.longitude)}
+                        </td>
 
-                    <td>${safe(vehicle.latitude)}</td>
+                        <td>
+                            ${safe(vehicle.gps)}
+                        </td>
 
-                    <td>${safe(vehicle.longitude)}</td>
+                        <td>
+                            ${safe(vehicle.vehiclebattery)}
+                        </td>
 
-                    <td>${safe(vehicle.gps)}</td>
+                        <td>
+                            ${safe(vehicle.gpsbattery)}
+                        </td>
 
-                    <td>${safe(vehicle.vehiclebattery)}</td>
+                        <td>
+                            ${safe(vehicle.ignition)}
+                        </td>
 
-                    <td>${safe(vehicle.gpsbattery)}</td>
+                        <td>
+                            ${safe(vehicle.totalcleanedpoints)}
+                        </td>
 
-                    <td>${safe(vehicle.ignition)}</td>
+                        <td>
+                            ${safe(vehicle.totalpoints)}
+                        </td>
 
-                    <td>${safe(vehicle.totalcleanedpoints)}</td>
+                        <td>
+                            ${safe(vehicle.routecleaned_p)}
+                        </td>
 
-                    <td>${safe(vehicle.totalpoints)}</td>
+                        <td>
 
-                    <td>${safe(vehicle.routecleaned_p)}</td>
+                            <button
+                                class="remove-btn"
+                                onclick="removeVehicle(${index})"
+                            >
+                                Remove
+                            </button>
 
-                    <td>
-                        <button
-                            class="remove-btn"
-                            onclick="removeVehicle(${index})">
-                            Remove
-                        </button>
-                    </td>
+                        </td>
 
-                </tr>
+                    </tr>
 
-            `).join("");
+                `
+                )
+                .join("");
 
     }
 
+
+    /* =====================================================
+       TABLE STATUS
+    ===================================================== */
+
+    function updateTableStatus() {
+
+        const status =
+            document.getElementById(
+                "tableStatus"
+            );
+
+
+        const count =
+            selectedVehicles.length;
+
+
+        if (count === 0) {
+
+            status.textContent =
+                "No vehicles selected";
+
+        }
+        else {
+
+            status.textContent =
+                `${count} vehicle${count === 1 ? "" : "s"} selected`;
+
+        }
+
+    }
+
+
+    /* =====================================================
+       EXPORT
+    ===================================================== */
+
     function exportToExcel() {
 
-        if (selectedVehicles.length === 0) {
+        if (
+            selectedVehicles.length === 0
+        ) {
 
             showMessage(
                 "Please find at least one vehicle before exporting.",
@@ -503,9 +1811,12 @@ You can also paste comma-separated vehicle numbers."
             );
 
             return;
+
         }
 
+
         const headers = [
+
             "Vehicle",
             "Status",
             "Driver",
@@ -524,86 +1835,153 @@ You can also paste comma-separated vehicle numbers."
             "Cleaned Points",
             "Total Points",
             "Cleaning %"
+
         ];
 
-        const rows = selectedVehicles.map(vehicle => [
 
-            vehicle.vehicleno,
-          
-            vehicle.status,
-            vehicle.drivername,
-            vehicle.vehicletype,
-            vehicle.speed,
-            vehicle.timerecorded,
-            vehicle.place,
-            vehicle.wardname,
-            vehicle.routename,
-            vehicle.latitude,
-            vehicle.longitude,
-            vehicle.gps,
-            vehicle.vehiclebattery,
-            vehicle.gpsbattery,
-            vehicle.ignition,
-            vehicle.totalcleanedpoints,
-            vehicle.totalpoints,
-            vehicle.routecleaned_p
+        const rows =
+            selectedVehicles.map(
+                vehicle => [
 
-        ]);
+                    vehicle.vehicleno,
+                    vehicle.status,
+                    vehicle.drivername,
+                    vehicle.vehicletype,
+                    vehicle.speed,
+                    vehicle.timerecorded,
+                    vehicle.place,
+                    vehicle.wardname,
+                    vehicle.routename,
+                    vehicle.latitude,
+                    vehicle.longitude,
+                    vehicle.gps,
+                    vehicle.vehiclebattery,
+                    vehicle.gpsbattery,
+                    vehicle.ignition,
+                    vehicle.totalcleanedpoints,
+                    vehicle.totalpoints,
+                    vehicle.routecleaned_p
+
+                ]
+            );
+
 
         const csv = [
+
             headers,
+
             ...rows
+
         ]
-        .map(row =>
-            row.map(value =>
-                `"${safe(value).replace(/"/g, '""')}"`
-            ).join(",")
+        .map(
+            row =>
+                row
+                    .map(
+                        value =>
+                            `"${safe(value).replace(
+                                /"/g,
+                                '""'
+                            )}"`
+                    )
+                    .join(",")
         )
         .join("\r\n");
 
-        const blob = new Blob(
-            ["\uFEFF" + csv],
-            {
-                type: "text/csv;charset=utf-8;"
-            }
-        );
 
-        const url = URL.createObjectURL(blob);
+        const blob =
+            new Blob(
+                [
+                    "\uFEFF" + csv
+                ],
+                {
+                    type:
+                        "text/csv;charset=utf-8;"
+                }
+            );
 
-        const link = document.createElement("a");
 
-        link.href = url;
+        const url =
+            URL.createObjectURL(
+                blob
+            );
+
+
+        const link =
+            document.createElement(
+                "a"
+            );
+
+
+        link.href =
+            url;
+
 
         link.download =
             "Selected_Vehicle_Details.csv";
 
-        document.body.appendChild(link);
+
+        document.body.appendChild(
+            link
+        );
+
 
         link.click();
 
-        document.body.removeChild(link);
 
-        URL.revokeObjectURL(url);
+        document.body.removeChild(
+            link
+        );
+
+
+        URL.revokeObjectURL(
+            url
+        );
+
+
+        showMessage(
+            "Vehicle report exported successfully.",
+            "success"
+        );
 
     }
 
-    // Ctrl + Enter = Find Vehicles
-    document.getElementById("vehicleInput")
-        .addEventListener("keydown", function(event) {
 
-            if (event.ctrlKey && event.key === "Enter") {
+    /* =====================================================
+       CTRL + ENTER
+    ===================================================== */
 
-                event.preventDefault();
+    document
+        .getElementById("vehicleInput")
+        .addEventListener(
+            "keydown",
+            function(event) {
 
-                findVehicles();
+                if (
+                    event.ctrlKey &&
+                    event.key === "Enter"
+                ) {
+
+                    event.preventDefault();
+
+                    findVehicles();
+
+                }
 
             }
+        );
 
-        });
+
+    /* =====================================================
+       INITIALIZE
+    ===================================================== */
 
     renderVehicles();
 
+    updateTableStatus();
+
 </script>
 
+
 </body>
+
 </html>

@@ -5,7 +5,7 @@ function displayResults() {
 
     output.innerHTML = `
 
-        <h3>
+        <h3 style="padding:1rem">
             Vehicles Idle More Than 20 Minutes:
             ${window.idleOver20.length}
         </h3>

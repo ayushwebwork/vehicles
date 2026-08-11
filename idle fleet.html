@@ -720,6 +720,7 @@
                 <h2>
                     Fleet Idle Report
                 </h2>
+                <h5 id="current_timestamp" style="color: #ea580c;"></h5>
 
                 <p>
                     Monitor vehicles that are currently idle
@@ -995,7 +996,7 @@
 
             document.getElementById(
                 "tableInfo"
-            ).textContent =
+            ).textContent = 
                 count +
                 " - " +
                 (
@@ -1003,6 +1004,11 @@
                         ? ""
                         : ""
                 );
+
+
+            document.getElementById(
+                "current_timestamp"
+            ).textContent =`${window.fleetMeta.generatedAt}`;
 
         }
 

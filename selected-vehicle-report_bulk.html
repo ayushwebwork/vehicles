@@ -1000,7 +1000,7 @@
             <h2>
                 Selected Vehicle Report
             </h2>
-
+<h5 id="current_timestamp" style="color: #ea580c;"></h5>
             <p>
                 Search multiple vehicles and generate
                 a detailed fleet report.
@@ -1791,6 +1791,10 @@ You can also paste comma-separated vehicle numbers."
                 `${count} vehicle${count === 1 ? "" : "s"} selected`;
 
         }
+
+        document.getElementById(
+                "current_timestamp"
+            ).textContent =`${window.fleetMeta.generatedAt}`;
 
     }
 

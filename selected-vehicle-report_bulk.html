@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selected Vehicle Report</title>
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 24px;
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            color: #222;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: auto;
+        }
+
+        .header {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.08);
+            margin-bottom: 18px;
+        }
+
+        h2 { margin: 0 0 16px; }
+
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+            resize: vertical;
+            font-family: Arial, sans-serif;
+        }
+
+        .button-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        button {
+            border: 0;
+            border-radius: 6px;
+            padding: 11px 16px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .find-btn { background: #1769aa; color: white; }
+        .export-btn { background: #18864b; color: white; }
+        .clear-btn { background: #666; color: white; }
+
+        button:hover { opacity: .9; }
+
+        .hint {
+            margin-top: 8px;
+            color: #777;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .message {
+            margin-top: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .message.error { color: #c62828; }
+        .message.success { color: #18864b; }
+
+        .summary {
+            margin: 18px 0 10px;
+            font-weight: bold;
+        }
+
+        .summary span {
+            margin-right: 18px;
+        }
+
+        .table-wrapper {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.08);
+            overflow: auto;
+        }
+
+        table {
+            width: 100%;
+            min-width: 1200px;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #333;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 9px 10px;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        tr:nth-child(even) { background: #f7f7f7; }
+
+        .remove-btn {
+            background: #dc3545;
+            color: white;
+            padding: 6px 9px;
+        }
+
+        .empty {
+            padding: 30px;
+            text-align: center;
+            color: #777;
+        }
+
+        .not-found {
+            margin-top: 10px;
+            padding: 10px;
+            background: #fff3cd;
+            border: 1px solid #ffe69c;
+            border-radius: 6px;
+            color: #664d03;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h2>Selected Vehicle Report</h2>
+
+        <textarea
+            id="vehicleInput"
+            placeholder="Paste vehicle numbers here, one per line.
+
+Example:
+HR 46 G 2948
+HR 46 G 2284
+HR 46 G 0529
+HR 46 G 3226
+
+You can also paste comma-separated vehicle numbers."
+        ></textarea>
+
+        <div class="hint">
+            You can paste vehicle numbers from Excel, WhatsApp, Notepad, etc.
+            One per line, comma-separated, or mixed. Spaces and hyphens are automatically handled.
+        </div>
+
+        <div class="button-row">
+            <button class="find-btn" onclick="findVehicles()">
+                Find Vehicles
+            </button>
+
+            <button class="export-btn" onclick="exportToExcel()">
+                Export to Excel
+            </button>
+
+            <button class="clear-btn" onclick="clearVehicles()">
+                Clear All
+            </button>
+        </div>
+
+        <div id="message" class="message"></div>
+
+        <div id="notFound" class="not-found"></div>
+
+    </div>
+
+    <div class="summary">
+        <span>Found: <strong id="vehicleCount">0</strong></span>
+        <span>Not Found: <strong id="notFoundCount">0</strong></span>
+        <span>Duplicates: <strong id="duplicateCount">0</strong></span>
+    </div>
+
+    <div class="table-wrapper">
+
+        <table id="vehicleTable">
+
+            <thead>
+                <tr>
+                    <th>Vehicle</th>
+                    <th>Status</th>
+                    <th>Driver</th>
+                   
+                    <th>Vehicle Type</th>
+                    <th>Speed</th>
+                    <th>Time</th>
+                    <th>Place</th>
+                    <th>Ward</th>
+                    <th>Route</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>GPS</th>
+                    <th>Vehicle Battery</th>
+                    <th>GPS Battery</th>
+                    <th>Ignition</th>
+                    <th>Cleaned Points</th>
+                    <th>Total Points</th>
+                    <th>Cleaning %</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="vehicleTableBody">
+                <tr>
+                    <td colspan="21" class="empty">
+                        No vehicles selected.
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- Your existing fleet data file must be in the same folder -->
+<script src="fleet-data.js"></script>
+
+<script>
+
+    let selectedVehicles = [];
+
+    function normalizeVehicleNo(value) {
+
+        return String(value || "")
+            .toUpperCase()
+            .replace(/[-\s]/g, "")
+            .trim();
+
+    }
+
+    function safe(value) {
+
+        if (value === null || value === undefined) {
+            return "";
+        }
+
+        return String(value);
+
+    }
+
+    function showMessage(text, type = "") {
+
+        const message = document.getElementById("message");
+
+        message.textContent = text;
+        message.className = "message " + type;
+
+    }
+
+    /*
+     * Converts pasted text into individual vehicle numbers.
+     *
+     * Supports:
+     * HR 46 G 2948
+     * HR 46 G-2948
+     * HR46G2948
+     *
+     * And separators such as:
+     * newline
+     * comma
+     * semicolon
+     * tab
+     */
+    function getVehicleNumbersFromInput() {
+
+        const input =
+            document.getElementById("vehicleInput").value;
+
+        return input
+            .split(/[\n,;\t]+/)
+            .map(value => value.trim())
+            .filter(Boolean);
+
+    }
+
+    function findVehicles() {
+
+        const requestedNumbers =
+            getVehicleNumbersFromInput();
+
+        if (requestedNumbers.length === 0) {
+
+            showMessage(
+                "Please paste at least one vehicle number.",
+                "error"
+            );
+
+            return;
+        }
+
+        selectedVehicles = [];
+
+        const foundKeys = new Set();
+        const notFound = [];
+        let duplicates = 0;
+
+        requestedNumbers.forEach(requestedNo => {
+
+            const normalized =
+                normalizeVehicleNo(requestedNo);
+
+            // Ignore duplicate input
+            if (foundKeys.has(normalized)) {
+
+                duplicates++;
+
+                return;
+            }
+
+            const vehicle =
+                window.fleetData.find(v =>
+                    normalizeVehicleNo(v.vehicleno) === normalized
+                );
+
+            if (vehicle) {
+
+                selectedVehicles.push(vehicle);
+
+                foundKeys.add(normalized);
+
+            } else {
+
+                notFound.push(requestedNo);
+
+            }
+
+        });
+
+        renderVehicles();
+
+        document.getElementById("vehicleCount").textContent =
+            selectedVehicles.length;
+
+        document.getElementById("notFoundCount").textContent =
+            notFound.length;
+
+        document.getElementById("duplicateCount").textContent =
+            duplicates;
+
+        const notFoundBox =
+            document.getElementById("notFound");
+
+        if (notFound.length > 0) {
+
+            notFoundBox.style.display = "block";
+
+            notFoundBox.innerHTML =
+                "<strong>Vehicles not found:</strong><br>" +
+                notFound.map(v => safe(v)).join("<br>");
+
+        } else {
+
+            notFoundBox.style.display = "none";
+            notFoundBox.innerHTML = "";
+
+        }
+
+        showMessage(
+            `${selectedVehicles.length} vehicle(s) found successfully.`,
+            "success"
+        );
+
+    }
+
+    function removeVehicle(index) {
+
+        selectedVehicles.splice(index, 1);
+
+        renderVehicles();
+
+        document.getElementById("vehicleCount").textContent =
+            selectedVehicles.length;
+
+    }
+
+    function clearVehicles() {
+
+        selectedVehicles = [];
+
+        document.getElementById("vehicleInput").value = "";
+
+        document.getElementById("vehicleCount").textContent = "0";
+        document.getElementById("notFoundCount").textContent = "0";
+        document.getElementById("duplicateCount").textContent = "0";
+
+        document.getElementById("notFound").style.display = "none";
+        document.getElementById("notFound").innerHTML = "";
+
+        showMessage("");
+
+        renderVehicles();
+
+    }
+
+    function renderVehicles() {
+
+        const tbody =
+            document.getElementById("vehicleTableBody");
+
+        if (selectedVehicles.length === 0) {
+
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="21" class="empty">
+                        No vehicles selected.
+                    </td>
+                </tr>
+            `;
+
+            return;
+        }
+
+        tbody.innerHTML =
+            selectedVehicles.map((vehicle, index) => `
+
+                <tr>
+
+                    <td>${safe(vehicle.vehicleno)}</td>
+
+                    
+
+                    <td>${safe(vehicle.status)}</td>
+
+                    <td>${safe(vehicle.drivername)}</td>
+
+
+                    <td>${safe(vehicle.vehicletype)}</td>
+
+                    <td>${safe(vehicle.speed)}</td>
+
+                    <td>${safe(vehicle.timerecorded)}</td>
+
+                    <td>${safe(vehicle.place)}</td>
+
+                    <td>${safe(vehicle.wardname)}</td>
+
+                    <td>${safe(vehicle.routename)}</td>
+
+                    <td>${safe(vehicle.latitude)}</td>
+
+                    <td>${safe(vehicle.longitude)}</td>
+
+                    <td>${safe(vehicle.gps)}</td>
+
+                    <td>${safe(vehicle.vehiclebattery)}</td>
+
+                    <td>${safe(vehicle.gpsbattery)}</td>
+
+                    <td>${safe(vehicle.ignition)}</td>
+
+                    <td>${safe(vehicle.totalcleanedpoints)}</td>
+
+                    <td>${safe(vehicle.totalpoints)}</td>
+
+                    <td>${safe(vehicle.routecleaned_p)}</td>
+
+                    <td>
+                        <button
+                            class="remove-btn"
+                            onclick="removeVehicle(${index})">
+                            Remove
+                        </button>
+                    </td>
+
+                </tr>
+
+            `).join("");
+
+    }
+
+    function exportToExcel() {
+
+        if (selectedVehicles.length === 0) {
+
+            showMessage(
+                "Please find at least one vehicle before exporting.",
+                "error"
+            );
+
+            return;
+        }
+
+        const headers = [
+            "Vehicle",
+            "Status",
+            "Driver",
+            "Vehicle Type",
+            "Speed",
+            "Time",
+            "Place",
+            "Ward",
+            "Route",
+            "Latitude",
+            "Longitude",
+            "GPS",
+            "Vehicle Battery",
+            "GPS Battery",
+            "Ignition",
+            "Cleaned Points",
+            "Total Points",
+            "Cleaning %"
+        ];
+
+        const rows = selectedVehicles.map(vehicle => [
+
+            vehicle.vehicleno,
+          
+            vehicle.status,
+            vehicle.drivername,
+            vehicle.vehicletype,
+            vehicle.speed,
+            vehicle.timerecorded,
+            vehicle.place,
+            vehicle.wardname,
+            vehicle.routename,
+            vehicle.latitude,
+            vehicle.longitude,
+            vehicle.gps,
+            vehicle.vehiclebattery,
+            vehicle.gpsbattery,
+            vehicle.ignition,
+            vehicle.totalcleanedpoints,
+            vehicle.totalpoints,
+            vehicle.routecleaned_p
+
+        ]);
+
+        const csv = [
+            headers,
+            ...rows
+        ]
+        .map(row =>
+            row.map(value =>
+                `"${safe(value).replace(/"/g, '""')}"`
+            ).join(",")
+        )
+        .join("\r\n");
+
+        const blob = new Blob(
+            ["\uFEFF" + csv],
+            {
+                type: "text/csv;charset=utf-8;"
+            }
+        );
+
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+
+        link.href = url;
+
+        link.download =
+            "Selected_Vehicle_Details.csv";
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        document.body.removeChild(link);
+
+        URL.revokeObjectURL(url);
+
+    }
+
+    // Ctrl + Enter = Find Vehicles
+    document.getElementById("vehicleInput")
+        .addEventListener("keydown", function(event) {
+
+            if (event.ctrlKey && event.key === "Enter") {
+
+                event.preventDefault();
+
+                findVehicles();
+
+            }
+
+        });
+
+    renderVehicles();
+
+</script>
+
+</body>
+</html>

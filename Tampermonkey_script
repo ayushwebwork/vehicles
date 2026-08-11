@@ -1,0 +1,693 @@
+// ==UserScript==
+// @name         Rohtak Fleet Data Exporter
+// @namespace    https://swmrohtak.laayn.in/
+// @version      4.0
+// @description  Capture ReceiveFleetData and export fleet-data.js
+// @match        https://swmrohtak.laayn.in/*
+// @match        https://swmrohtak-api.laayn.in/*
+// @run-at       document-start
+// @grant        none
+// ==/UserScript==
+
+(function () {
+    "use strict";
+
+    console.log("==========================================");
+    console.log("[Fleet Exporter] Starting");
+    console.log("==========================================");
+
+    let latestFleetData = null;
+    const monitoredSockets = new WeakSet();
+
+    /*
+    ============================================================
+    ORIGINAL WEBSOCKET
+    ============================================================
+    */
+
+    const OriginalWebSocket = window.WebSocket;
+
+
+    /*
+    ============================================================
+    WEBSOCKET INTERCEPTOR
+    ============================================================
+    */
+
+    window.WebSocket = function (...args) {
+
+        const ws = new OriginalWebSocket(...args);
+
+        monitorSocket(ws);
+
+        return ws;
+    };
+
+
+    /*
+    Preserve WebSocket prototype
+    */
+
+    window.WebSocket.prototype =
+        OriginalWebSocket.prototype;
+
+
+    /*
+    Preserve WebSocket constants
+    */
+
+    Object.defineProperty(
+        window.WebSocket,
+        "CONNECTING",
+        {
+            value: OriginalWebSocket.CONNECTING
+        }
+    );
+
+    Object.defineProperty(
+        window.WebSocket,
+        "OPEN",
+        {
+            value: OriginalWebSocket.OPEN
+        }
+    );
+
+    Object.defineProperty(
+        window.WebSocket,
+        "CLOSING",
+        {
+            value: OriginalWebSocket.CLOSING
+        }
+    );
+
+    Object.defineProperty(
+        window.WebSocket,
+        "CLOSED",
+        {
+            value: OriginalWebSocket.CLOSED
+        }
+    );
+
+
+    /*
+    ============================================================
+    MONITOR WEBSOCKET
+    ============================================================
+    */
+
+    function monitorSocket(ws) {
+
+        if (!ws) {
+            return;
+        }
+
+
+        if (monitoredSockets.has(ws)) {
+            return;
+        }
+
+
+        monitoredSockets.add(ws);
+
+
+        console.log(
+            "[Fleet Exporter] WebSocket detected:",
+            ws.url
+        );
+
+
+        ws.addEventListener(
+            "message",
+            function (event) {
+
+                processWebSocketMessage(
+                    event.data
+                );
+
+            }
+        );
+
+
+        ws.addEventListener(
+            "close",
+            function () {
+
+                console.log(
+                    "[Fleet Exporter] WebSocket closed:",
+                    ws.url
+                );
+
+            }
+        );
+
+
+        ws.addEventListener(
+            "error",
+            function (event) {
+
+                console.warn(
+                    "[Fleet Exporter] WebSocket error:",
+                    event
+                );
+
+            }
+        );
+
+    }
+
+
+    /*
+    ============================================================
+    PROCESS WEBSOCKET MESSAGE
+    ============================================================
+    */
+
+    function processWebSocketMessage(rawData) {
+
+        if (!rawData) {
+            return;
+        }
+
+
+        /*
+        SignalR messages normally end with
+        the record separator character \x1e.
+        */
+
+        const messages =
+            String(rawData)
+                .split("\x1e")
+                .filter(Boolean);
+
+
+        for (
+            const message of messages
+        ) {
+
+            let data;
+
+
+            try {
+
+                data =
+                    JSON.parse(message);
+
+            }
+            catch (error) {
+
+                /*
+                Ignore messages that aren't JSON.
+                */
+
+                continue;
+
+            }
+
+
+            /*
+            ====================================================
+            ReceiveFleetData
+            ====================================================
+            */
+
+            if (
+                data &&
+                data.type === 1 &&
+                data.target === "ReceiveFleetData"
+            ) {
+
+                console.log(
+                    "[Fleet Exporter] ReceiveFleetData received"
+                );
+
+
+                extractFleetData(
+                    data
+                );
+
+            }
+
+        }
+
+    }
+
+
+    /*
+    ============================================================
+    EXTRACT FLEET DATA
+    ============================================================
+    */
+
+    function extractFleetData(message) {
+
+        try {
+
+            if (
+                !message.arguments ||
+                message.arguments.length === 0
+            ) {
+
+                console.warn(
+                    "[Fleet Exporter] ReceiveFleetData has no arguments"
+                );
+
+                return;
+
+            }
+
+
+            let fleet =
+                message.arguments[0];
+
+
+            /*
+            Sometimes the fleet array is sent
+            as a JSON string.
+            */
+
+            if (
+                typeof fleet === "string"
+            ) {
+
+                fleet =
+                    JSON.parse(fleet);
+
+            }
+
+
+            /*
+            Verify that we received an array.
+            */
+
+            if (
+                !Array.isArray(fleet)
+            ) {
+
+                console.warn(
+                    "[Fleet Exporter] Fleet data is not an array:",
+                    fleet
+                );
+
+                return;
+
+            }
+
+
+            /*
+            Store latest fleet.
+            */
+
+            latestFleetData =
+                fleet;
+
+
+            /*
+            Expose globally.
+            */
+
+            window.fleetData =
+                fleet;
+
+
+            console.log(
+                "=========================================="
+            );
+
+            console.log(
+                "[Fleet Exporter] Fleet data captured"
+            );
+
+            console.log(
+                "[Fleet Exporter] Vehicle count:",
+                fleet.length
+            );
+
+            console.log(
+                "=========================================="
+            );
+
+
+            /*
+            Show data in console.
+            */
+
+            console.table(
+                fleet
+            );
+
+
+            /*
+            Create/update export button.
+            */
+
+            createExportButton();
+
+        }
+        catch (error) {
+
+            console.error(
+                "[Fleet Exporter] Error extracting fleet:",
+                error
+            );
+
+        }
+
+    }
+
+
+    /*
+    ============================================================
+    CREATE EXPORT BUTTON
+    ============================================================
+    */
+
+    function createExportButton() {
+
+        /*
+        If button already exists, just update
+        its text.
+        */
+
+        let button =
+            document.getElementById(
+                "fleet-export-button"
+            );
+
+
+        if (!button) {
+
+            /*
+            Body may not exist yet because
+            userscript runs at document-start.
+            */
+
+            if (!document.body) {
+
+                setTimeout(
+                    createExportButton,
+                    500
+                );
+
+                return;
+
+            }
+
+
+            button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.id =
+                "fleet-export-button";
+
+
+            button.onclick =
+                downloadFleetData;
+
+
+            button.style.cssText = `
+                position: fixed;
+
+                top: 15px;
+                right: 20px;
+
+                z-index: 2147483647;
+
+                background: #198754;
+                color: #ffffff;
+
+                border: none;
+
+                border-radius: 7px;
+
+                padding: 12px 18px;
+
+                font-family: Arial, sans-serif;
+
+                font-size: 14px;
+
+                font-weight: bold;
+
+                cursor: pointer;
+
+                box-shadow:
+                    0 4px 15px rgba(0,0,0,0.30);
+
+                transition:
+                    background 0.2s ease;
+            `;
+
+
+            button.onmouseenter =
+                function () {
+
+                    button.style.background =
+                        "#146c43";
+
+                };
+
+
+            button.onmouseleave =
+                function () {
+
+                    button.style.background =
+                        "#198754";
+
+                };
+
+
+            document.body.appendChild(
+                button
+            );
+
+        }
+
+
+        button.textContent =
+            "Export Fleet Data (" +
+            latestFleetData.length +
+            ")";
+
+    }
+
+
+    /*
+    ============================================================
+    DOWNLOAD FLEET DATA
+    ============================================================
+    */
+
+    function downloadFleetData() {
+
+        /*
+        Use the latest captured data.
+        */
+
+        const fleet =
+            window.fleetData ||
+            latestFleetData;
+
+
+        if (
+            !fleet ||
+            !Array.isArray(fleet)
+        ) {
+
+            alert(
+                "Fleet data has not been received yet."
+            );
+
+            return;
+
+        }
+
+
+        /*
+        Generate fleet-data.js
+        */
+
+        const content =
+`// Auto-generated fleet data
+// Generated: ${new Date().toISOString()}
+// Vehicle count: ${fleet.length}
+
+window.fleetData = ${JSON.stringify(
+            fleet,
+            null,
+            2
+        )};
+`;
+
+
+        /*
+        Create Blob.
+        */
+
+        const blob =
+            new Blob(
+                [content],
+                {
+                    type:
+                        "application/javascript;charset=utf-8"
+                }
+            );
+
+
+        /*
+        Create temporary URL.
+        */
+
+        const url =
+            URL.createObjectURL(
+                blob
+            );
+
+
+        /*
+        Create download link.
+        */
+
+        const link =
+            document.createElement(
+                "a"
+            );
+
+
+        link.href =
+            url;
+
+
+        link.download =
+            "fleet-data.js";
+
+
+        link.style.display =
+            "none";
+
+
+        document.body.appendChild(
+            link
+        );
+
+
+        /*
+        Trigger download.
+        */
+
+        link.click();
+
+
+        /*
+        Remove link.
+        */
+
+        link.remove();
+
+
+        /*
+        Release Blob URL.
+        */
+
+        setTimeout(
+            function () {
+
+                URL.revokeObjectURL(
+                    url
+                );
+
+            },
+            3000
+        );
+
+
+        /*
+        Show notification.
+        */
+
+        showNotification(
+            "fleet-data.js downloaded (" +
+            fleet.length +
+            " vehicles)"
+        );
+
+
+        console.log(
+            "[Fleet Exporter] fleet-data.js downloaded"
+        );
+
+    }
+
+
+    /*
+    ============================================================
+    NOTIFICATION
+    ============================================================
+    */
+
+    function showNotification(
+        message
+    ) {
+
+        if (!document.body) {
+
+            return;
+
+        }
+
+
+        const notification =
+            document.createElement(
+                "div"
+            );
+
+
+        notification.textContent =
+            message;
+
+
+        notification.style.cssText = `
+            position: fixed;
+
+            right: 20px;
+            bottom: 20px;
+
+            z-index: 2147483647;
+
+            background: #198754;
+            color: #ffffff;
+
+            padding: 14px 20px;
+
+            border-radius: 8px;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 14px;
+
+            font-weight: 500;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.30);
+        `;
+
+
+        document.body.appendChild(
+            notification
+        );
+
+
+        setTimeout(
+            function () {
+
+                notification.remove();
+
+            },
+            5000
+        );
+
+    }
+
+
+})();

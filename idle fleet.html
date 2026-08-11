@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Fleet Idle Report</title>
+
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 10px;
+        }
+
+        button {
+            padding: 5px 10px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th {
+            background: #333;
+            color: white;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 3px;
+        }
+
+        tr:nth-child(even) {
+            background: #dfdfdf;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+<div style="display: flex; align-items: center;gap: 1rem;margin-bottom: 1rem;">
+
+
+    <h2>Fleet Idle Report</h2>
+
+    <button onclick="exportToExcel()" style="margin: 0;">
+        Export to Excel
+    </button>
+</div>
+    <div id="outputdata"></div>
+
+
+    <!-- 1. DATA -->
+    <script src="fleet-data.js"></script>
+
+    <!-- 2. FILTER -->
+    <script src="filter.js"></script>
+
+    <!-- 3. DISPLAY -->
+    <script src="display.js"></script>
+
+    <!-- 4. EXPORT -->
+    <script src="export.js"></script>
+
+
+    <!-- Run display after everything is loaded -->
+    <script>
+        displayResults();
+    </script>
+
+</body>
+
+</html>

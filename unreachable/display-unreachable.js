@@ -20,6 +20,10 @@ function displayUnreachableResults() {
         getUnreachableVehicles(fleetData);
 
 
+        document.getElementById(
+                "current_timestamp"
+            ).textContent =`${window.fleetMeta.generatedAt}`;
+            
     /*
      * ==========================================
      * WARD-WISE KPI

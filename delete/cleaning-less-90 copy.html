@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Vehicle Cleaning Report</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            font-size: 24px;
+        }
+
+        .header p {
+            color: #64748b;
+            margin-top: 5px;
+            font-size: 13px;
+        }
+
+        button {
+            border: 0;
+            background: #2563eb;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 7px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .summary {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 16px 22px;
+            min-width: 190px;
+            box-shadow: 0 2px 8px rgba(15,23,42,.05);
+        }
+
+        .card.red {
+            border-left: 4px solid #dc2626;
+        }
+
+        .label {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+
+        .value {
+            font-size: 25px;
+            font-weight: 700;
+        }
+
+        .table-wrapper {
+            background: white;
+            border-radius: 10px;
+            overflow: auto;
+            border: 1px solid #e2e8f0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 2600px;
+        }
+
+        th {
+            background: #172033;
+            color: white;
+            padding: 10px;
+            font-size: 11px;
+            text-align: left;
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+        }
+
+        td {
+            padding: 9px 10px;
+            border-bottom: 1px solid #edf0f4;
+            font-size: 11px;
+            white-space: nowrap;
+        }
+
+        tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        .cleaning {
+            background: #fef2f2;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-weight: 700;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #64748b;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <div class="header">
+
+        <div>
+
+            <h2>
+                Vehicle Cleaning Report
+            </h2>
+
+            <p>
+                Vehicles with Cleaning % below 90% · Sorted by Ward
+            </p>
+
+        </div>
+
+
+        <button onclick="exportCleaningCSV()">
+            Export CSV
+        </button>
+
+    </div>
+
+
+    <div id="outputdata"></div>
+
+
+</div>
+
+
+<script src="fleet-data.js"></script>
+
+
+<script>
+
+
+/* =====================================================
+   GET VEHICLES WITH CLEANING % BELOW 90
+   ===================================================== */
+
+function getLowCleaningVehicles() {
+
+    if (
+        typeof fleetData === "undefined" ||
+        !Array.isArray(fleetData)
+    ) {
+        return [];
+    }
+
+
+    const vehicles = fleetData.filter(
+        vehicle => {
+
+            const cleaning =
+                Number(
+                    vehicle.routecleaned_p
+                );
+
+
+            return (
+                !isNaN(cleaning) &&
+                cleaning < 90
+            );
+
+        }
+    );
+
+
+    /* SORT BY WARD */
+
+    vehicles.sort(
+        (a, b) => {
+
+            const wardA =
+                parseInt(
+                    String(
+                        a.wardname || ""
+                    )
+                    .match(/\d+/)?.[0]
+                    || "999999",
+                    10
+                );
+
+
+            const wardB =
+                parseInt(
+                    String(
+                        b.wardname || ""
+                    )
+                    .match(/\d+/)?.[0]
+                    || "999999",
+                    10
+                );
+
+
+            if (
+                wardA !== wardB
+            ) {
+
+                return wardA - wardB;
+
+            }
+
+
+            return String(
+                a.vehicleno || ""
+            ).localeCompare(
+                String(
+                    b.vehicleno || ""
+                ),
+                undefined,
+                {
+                    numeric: true,
+                    sensitivity: "base"
+                }
+            );
+
+        }
+    );
+
+
+    return vehicles;
+
+}
+
+
+/* =====================================================
+   DISPLAY
+   ===================================================== */
+
+function displayResults() {
+
+    const output =
+        document.getElementById(
+            "outputdata"
+        );
+
+
+    const vehicles =
+        getLowCleaningVehicles();
+
+
+    const totalVehicles =
+        Array.isArray(
+            window.fleetData
+        )
+            ? window.fleetData.length
+            : 0;
+
+
+    let html = `
+
+        <div class="summary">
+
+
+            <div class="card">
+
+                <div class="label">
+                    Total Vehicles
+                </div>
+
+                <div class="value">
+                    ${totalVehicles}
+                </div>
+
+            </div>
+
+
+            <div class="card red">
+
+                <div class="label">
+                    Cleaning Below 90%
+                </div>
+
+                <div class="value">
+                    ${vehicles.length}
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>S.No.</th>
+
+                        <th>Vehicle ID</th>
+
+                        <th>Vehicle No.</th>
+
+                        <th>Time Recorded</th>
+
+                        <th>System Time</th>
+
+                        <th>Place</th>
+
+                        <th>Status</th>
+
+                        <th>Vehicle Status</th>
+
+                        <th>VStatus</th>
+
+                        <th>Speed</th>
+
+                        <th>GSM</th>
+
+                        <th>GPS</th>
+
+                        <th>Vehicle Battery</th>
+
+                        <th>GPS Battery</th>
+
+                        <th>Driver Name</th>
+
+                        <th>Driver Mobile</th>
+
+                        <th>Vehicle Type</th>
+
+                        <th>Latitude</th>
+
+                        <th>Longitude</th>
+
+                        <th>Angle</th>
+
+                        <th>Ignition</th>
+
+                        <th>Route Name</th>
+
+                        <th>Total Points</th>
+
+                        <th>Total Cleaned Points</th>
+
+                        <th>Total Not Cleaned Points</th>
+
+                        <th>Cleaning %</th>
+
+                        <th>Zone Name</th>
+
+                        <th>Ward Name</th>
+
+                        <th>Vendor Name</th>
+
+                        <th>Vendor Type</th>
+
+                        <th>Route UUID</th>
+
+                        <th>Company UUID</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+    `;
+
+
+    if (
+        vehicles.length === 0
+    ) {
+
+        html += `
+
+            <tr>
+
+                <td
+                    colspan="32"
+                    class="no-data"
+                >
+
+                    No vehicles found
+                    with Cleaning % below 90%.
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+    else {
+
+        vehicles.forEach(
+            (vehicle, index) => {
+
+                html += `
+
+                    <tr>
+
+                        <td>
+                            ${index + 1}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.vehicleid
+                            )}
+                        </td>
+
+                        <td>
+                            <strong>
+                                ${safe(
+                                    vehicle.vehicleno
+                                )}
+                            </strong>
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.timerecorded
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.timerecorded_sys
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.place
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.status
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.vehiclestatus
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.vstatus
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.speed
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.gsm
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.gps
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.vehiclebattery
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.gpsbattery
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.drivername
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.drivermobile
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.vehicletype
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.latitude
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.longitude
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.angle
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.ignition
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.routename
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.totalpoints
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.totalcleanedpoints
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.totalnotcleanedpoints
+                            )}
+                        </td>
+
+                        <td>
+
+                            <span class="cleaning">
+
+                                ${safe(
+                                    vehicle.routecleaned_p
+                                )}%
+
+                            </span>
+
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.zonename
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.wardname
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.vendorname
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.vendortype
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.sysrouteuuid
+                            )}
+                        </td>
+
+                        <td>
+                            ${safe(
+                                vehicle.syscompanyuuid
+                            )}
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+        );
+
+    }
+
+
+    html += `
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    `;
+
+
+    output.innerHTML =
+        html;
+
+}
+
+
+/* =====================================================
+   CSV EXPORT — ALL VEHICLE DATA
+   ===================================================== */
+
+function exportCleaningCSV() {
+
+    const vehicles =
+        getLowCleaningVehicles();
+
+
+    if (
+        vehicles.length === 0
+    ) {
+
+        alert(
+            "No vehicles found with Cleaning % below 90%."
+        );
+
+        return;
+
+    }
+
+
+    const headers = [
+
+        "S.No.",
+        "Vehicle ID",
+        "Vehicle No.",
+        "Time Recorded",
+        "System Time",
+        "Place",
+        "Status",
+        "Vehicle Status",
+        "VStatus",
+        "Speed",
+        "GSM",
+        "GPS",
+        "Vehicle Battery",
+        "GPS Battery",
+        "Driver Name",
+        "Driver Mobile",
+        "Vehicle Type",
+        "Latitude",
+        "Longitude",
+        "Angle",
+        "Ignition",
+        "Route Name",
+        "Total Points",
+        "Total Cleaned Points",
+        "Total Not Cleaned Points",
+        "Cleaning %",
+        "Zone Name",
+        "Ward Name",
+        "Vendor Name",
+        "Vendor Type",
+        "Route UUID",
+        "Company UUID"
+
+    ];
+
+
+    const rows =
+        vehicles.map(
+            (vehicle, index) => [
+
+                index + 1,
+
+                vehicle.vehicleid,
+
+                vehicle.vehicleno,
+
+                vehicle.timerecorded,
+
+                vehicle.timerecorded_sys,
+
+                vehicle.place,
+
+                vehicle.status,
+
+                vehicle.vehiclestatus,
+
+                vehicle.vstatus,
+
+                vehicle.speed,
+
+                vehicle.gsm,
+
+                vehicle.gps,
+
+                vehicle.vehiclebattery,
+
+                vehicle.gpsbattery,
+
+                vehicle.drivername,
+
+                vehicle.drivermobile,
+
+                vehicle.vehicletype,
+
+                vehicle.latitude,
+
+                vehicle.longitude,
+
+                vehicle.angle,
+
+                vehicle.ignition,
+
+                vehicle.routename,
+
+                vehicle.totalpoints,
+
+                vehicle.totalcleanedpoints,
+
+                vehicle.totalnotcleanedpoints,
+
+                vehicle.routecleaned_p,
+
+                vehicle.zonename,
+
+                vehicle.wardname,
+
+                vehicle.vendorname,
+
+                vehicle.vendortype,
+
+                vehicle.sysrouteuuid,
+
+                vehicle.syscompanyuuid
+
+            ]
+        );
+
+
+    function escapeCSV(value) {
+
+        const text =
+            String(
+                value ?? ""
+            );
+
+
+        if (
+            text.includes(",") ||
+            text.includes('"') ||
+            text.includes("\n") ||
+            text.includes("\r")
+        ) {
+
+            return (
+                '"' +
+                text.replace(
+                    /"/g,
+                    '""'
+                ) +
+                '"'
+            );
+
+        }
+
+
+        return text;
+
+    }
+
+
+    const csv = [
+
+        headers,
+
+        ...rows
+
+    ]
+
+    .map(
+        row =>
+            row
+                .map(escapeCSV)
+                .join(",")
+    )
+
+    .join("\r\n");
+
+
+    const blob =
+        new Blob(
+
+            [
+                "\uFEFF" + csv
+            ],
+
+            {
+                type:
+                    "text/csv;charset=utf-8;"
+            }
+
+        );
+
+
+    const url =
+        URL.createObjectURL(
+            blob
+        );
+
+
+    const link =
+        document.createElement(
+            "a"
+        );
+
+
+    link.href = url;
+
+
+    link.download =
+        "Vehicles_Cleaning_Below_90_Percent.csv";
+
+
+    document.body.appendChild(
+        link
+    );
+
+
+    link.click();
+
+
+    document.body.removeChild(
+        link
+    );
+
+
+    URL.revokeObjectURL(
+        url
+    );
+
+}
+
+
+/* =====================================================
+   SAFE HTML
+   ===================================================== */
+
+function safe(value) {
+
+    return String(
+        value ?? "-"
+    )
+
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+
+    .replace(
+        /</g,
+        "&lt;"
+    )
+
+    .replace(
+        />/g,
+        "&gt;"
+    )
+
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* RUN */
+
+displayResults();
+
+</script>
+
+
+</body>
+
+</html>

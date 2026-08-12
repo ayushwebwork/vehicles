@@ -161,7 +161,7 @@
             <h2>
                 Vehicle Cleaning Report
             </h2>
-
+<h5 id="current_timestamp" style="color: #ea580c;"></h5>
             <p>
                 Vehicles with Cleaning % below 90% · Sorted by Ward
             </p>
@@ -194,6 +194,11 @@
 
 function getLowCleaningVehicles() {
 
+    document.getElementById(
+                "current_timestamp"
+            ).textContent =`${window.fleetMeta.generatedAt}`;
+
+            
     if (
         typeof fleetData === "undefined" ||
         !Array.isArray(fleetData)

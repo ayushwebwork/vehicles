@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Complete Fleet Vehicle Report</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1900px;
+            margin: auto;
+        }
+
+        /* HEADER */
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        /* CONTROLS */
+
+        .controls {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 18px;
+            box-shadow:
+                0 2px 8px rgba(15, 23, 42, .05);
+        }
+
+        input,
+        select {
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 7px;
+
+            padding: 10px 12px;
+
+            font-size: 13px;
+
+            outline: none;
+
+            background: white;
+        }
+
+        input {
+            min-width: 280px;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #2563eb;
+        }
+
+        button {
+
+            border: none;
+
+            border-radius: 7px;
+
+            padding: 10px 16px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .export-btn {
+
+            background: #2563eb;
+
+            color: white;
+        }
+
+        .export-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .reset-btn {
+
+            background: #e2e8f0;
+
+            color: #172033;
+        }
+
+        /* KPI */
+
+        .summary {
+
+            display: flex;
+
+            gap: 15px;
+
+            margin-bottom: 18px;
+
+            flex-wrap: wrap;
+        }
+
+        .card {
+
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 10px;
+
+            padding: 15px 20px;
+
+            min-width: 170px;
+
+            box-shadow:
+                0 2px 8px
+                rgba(15, 23, 42, .05);
+        }
+
+        .label {
+
+            font-size: 11px;
+
+            color: #64748b;
+
+            margin-bottom: 5px;
+        }
+
+        .value {
+
+            font-size: 24px;
+
+            font-weight: 700;
+        }
+
+        /* TABLE */
+
+        .table-wrapper {
+
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 10px;
+
+            overflow: auto;
+
+            max-height: calc(100vh - 250px);
+
+            box-shadow:
+                0 2px 8px
+                rgba(15, 23, 42, .05);
+        }
+
+        table {
+
+            border-collapse: collapse;
+
+            width: max-content;
+
+            min-width: 100%;
+
+        }
+
+        th {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 5;
+
+            background: #172033;
+
+            color: white;
+
+            padding: 10px 12px;
+
+            font-size: 11px;
+
+            text-align: left;
+
+            white-space: nowrap;
+
+        }
+
+        td {
+
+            padding: 9px 12px;
+
+            border-bottom:
+                1px solid #edf0f4;
+
+            font-size: 11px;
+
+            white-space: nowrap;
+
+            max-width: 400px;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+        }
+
+        tbody tr:hover {
+
+            background: #f8fafc;
+
+        }
+
+        .vehicle {
+
+            font-weight: 700;
+
+        }
+
+        .ward {
+
+            font-weight: 600;
+
+        }
+
+        .percentage {
+
+            font-weight: 700;
+
+        }
+
+        .no-data {
+
+            text-align: center;
+
+            padding: 50px;
+
+            color: #64748b;
+
+        }
+
+        .loading {
+
+            padding: 50px;
+
+            text-align: center;
+
+            color: #64748b;
+
+        }
+
+        @media(max-width: 700px) {
+
+            body {
+                padding: 10px;
+            }
+
+            .header {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+            }
+
+            input {
+                min-width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div>
+
+            <h1>
+                Complete Fleet Vehicle Report
+            </h1>
+
+            <p>
+                All vehicles · Complete vehicle details
+            </p>
+
+        </div>
+
+
+        <button
+            class="export-btn"
+            onclick="exportCSV()"
+        >
+            Export CSV
+        </button>
+
+    </div>
+
+
+    <!-- CONTROLS -->
+
+    <div class="controls">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search vehicle, driver, ward, route, status..."
+            oninput="renderTable()"
+        >
+
+
+        <select
+            id="wardFilter"
+            onchange="renderTable()"
+        >
+
+            <option value="">
+                All Wards
+            </option>
+
+        </select>
+
+
+        <button
+            class="reset-btn"
+            onclick="resetFilters()"
+        >
+            Reset
+        </button>
+
+    </div>
+
+
+    <!-- SUMMARY -->
+
+    <div
+        class="summary"
+        id="summary"
+    ></div>
+
+
+    <!-- TABLE -->
+
+    <div
+        class="table-wrapper"
+        id="tableWrapper"
+    >
+
+        <div class="loading">
+            Loading vehicle data...
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- DATA -->
+
+<script src="fleet-data.js"></script>
+
+
+<script>
+
+
+/* =====================================================
+   GLOBAL DATA
+   ===================================================== */
+
+let allVehicles = [];
+
+
+/* =====================================================
+   INITIALIZE
+   ===================================================== */
+
+function initialize() {
+
+    if (
+        typeof window.fleetData === "undefined" ||
+        !Array.isArray(window.fleetData)
+    ) {
+
+        document.getElementById(
+            "tableWrapper"
+        ).innerHTML = `
+
+            <div class="no-data">
+
+                fleet-data.js not found
+                or fleetData is not available.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    allVehicles =
+        [...window.fleetData];
+
+
+    /*
+     * Sort:
+     * Ward → Vehicle Number
+     */
+
+    allVehicles.sort(
+        sortVehicles
+    );
+
+
+    populateWardFilter();
+
+    renderSummary();
+
+    renderTable();
+
+}
+
+
+/* =====================================================
+   SORT VEHICLES
+   ===================================================== */
+
+function sortVehicles(a, b) {
+
+    const wardA =
+        parseInt(
+            String(
+                a.wardname || ""
+            )
+            .match(/\d+/)?.[0]
+            || "999999",
+            10
+        );
+
+
+    const wardB =
+        parseInt(
+            String(
+                b.wardname || ""
+            )
+            .match(/\d+/)?.[0]
+            || "999999",
+            10
+        );
+
+
+    if (
+        wardA !== wardB
+    ) {
+
+        return wardA - wardB;
+
+    }
+
+
+    return String(
+        a.vehicleno || ""
+    ).localeCompare(
+        String(
+            b.vehicleno || ""
+        ),
+        undefined,
+        {
+            numeric: true,
+            sensitivity: "base"
+        }
+    );
+
+}
+
+
+/* =====================================================
+   WARD FILTER
+   ===================================================== */
+
+function populateWardFilter() {
+
+    const select =
+        document.getElementById(
+            "wardFilter"
+        );
+
+
+    const wards =
+        [
+            ...new Set(
+                allVehicles
+                    .map(
+                        v =>
+                            v.wardname
+                    )
+                    .filter(Boolean)
+            )
+        ]
+        .sort(
+            (a, b) =>
+                extractWardNumber(a) -
+                extractWardNumber(b)
+        );
+
+
+    wards.forEach(
+        ward => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value = ward;
+
+            option.textContent = ward;
+
+            select.appendChild(
+                option
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   WARD NUMBER
+   ===================================================== */
+
+function extractWardNumber(ward) {
+
+    const match =
+        String(
+            ward || ""
+        ).match(/\d+/);
+
+
+    return match
+        ? parseInt(
+            match[0],
+            10
+        )
+        : 999999;
+
+}
+
+
+/* =====================================================
+   SUMMARY
+   ===================================================== */
+
+function renderSummary() {
+
+    const summary =
+        document.getElementById(
+            "summary"
+        );
+
+
+    const total =
+        allVehicles.length;
+
+
+    const wards =
+        new Set(
+            allVehicles
+                .map(
+                    v =>
+                        v.wardname
+                )
+                .filter(Boolean)
+        ).size;
+
+
+    const unreachable =
+        allVehicles.filter(
+            v =>
+                String(
+                    v.vstatus ||
+                    v.vehiclestatus ||
+                    ""
+                )
+                .toLowerCase()
+                .includes(
+                    "unreachable"
+                )
+        ).length;
+
+
+    const idle =
+        allVehicles.filter(
+            v =>
+                String(
+                    v.vstatus ||
+                    v.vehiclestatus ||
+                    v.status ||
+                    ""
+                )
+                .toLowerCase()
+                .startsWith(
+                    "idle"
+                )
+        ).length;
+
+
+    summary.innerHTML = `
+
+        <div class="card">
+
+            <div class="label">
+                Total Vehicles
+            </div>
+
+            <div class="value">
+                ${total}
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="label">
+                Wards
+            </div>
+
+            <div class="value">
+                ${wards}
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="label">
+                Unreachable
+            </div>
+
+            <div class="value">
+                ${unreachable}
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="label">
+                Idle
+            </div>
+
+            <div class="value">
+                ${idle}
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   GET ALL FIELD NAMES
+   ===================================================== */
+
+function getAllFields(data) {
+
+    const fields = new Set();
+
+
+    data.forEach(
+        vehicle => {
+
+            Object.keys(
+                vehicle
+            ).forEach(
+                field =>
+                    fields.add(field)
+            );
+
+        }
+    );
+
+
+    return [...fields];
+
+}
+
+
+/* =====================================================
+   DISPLAY TABLE
+   ===================================================== */
+
+function renderTable() {
+
+    const search =
+        document.getElementById(
+            "searchInput"
+        )
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const ward =
+        document.getElementById(
+            "wardFilter"
+        ).value;
+
+
+    let vehicles =
+        allVehicles.filter(
+            vehicle => {
+
+                /*
+                 * Ward filter
+                 */
+
+                if (
+                    ward &&
+                    vehicle.wardname !== ward
+                ) {
+
+                    return false;
+
+                }
+
+
+                /*
+                 * Global search
+                 */
+
+                if (search) {
+
+                    const text =
+                        Object.values(
+                            vehicle
+                        )
+                        .map(
+                            value =>
+                                String(
+                                    value ?? ""
+                                )
+                        )
+                        .join(" ")
+                        .toLowerCase();
+
+
+                    if (
+                        !text.includes(
+                            search
+                        )
+                    ) {
+
+                        return false;
+
+                    }
+
+                }
+
+
+                return true;
+
+            }
+        );
+
+
+    /*
+     * Get every field from the
+     * filtered vehicles.
+     */
+
+    const fields =
+        getAllFields(
+            vehicles.length
+                ? vehicles
+                : allVehicles
+        );
+
+
+    /*
+     * Make sure important fields
+     * appear first.
+     */
+
+    const preferredFields = [
+
+        "vehicleid",
+        "vehicleno",
+        "timerecorded",
+        "timerecorded_sys",
+        "place",
+        "status",
+        "vstatus",
+        "speed",
+        "gsm",
+        "gps",
+        "vehiclebattery",
+        "gpsbattery",
+        "drivername",
+        "drivermobile",
+        "vehicletype",
+        "latitude",
+        "longitude",
+        "angle",
+        "ignition",
+        "vehiclestatus",
+        "syscompanyuuid",
+        "sysrouteuuid",
+        "routename",
+        "totalpoints",
+        "totalcleanedpoints",
+        "totalnotcleanedpoints",
+        "routecleaned_p",
+        "zonename",
+        "wardname",
+        "vendorname",
+        "vendortype"
+
+    ];
+
+
+    const orderedFields = [
+
+        ...preferredFields.filter(
+            field =>
+                fields.includes(field)
+        ),
+
+        ...fields.filter(
+            field =>
+                !preferredFields.includes(
+                    field
+                )
+        )
+
+    ];
+
+
+    let html = `
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        S.No.
+                    </th>
+
+                    ${orderedFields
+                        .map(
+                            field => `
+                                <th>
+                                    ${escapeHTML(
+                                        field
+                                    )}
+                                </th>
+                            `
+                        )
+                        .join("")
+                    }
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+    `;
+
+
+    if (
+        vehicles.length === 0
+    ) {
+
+        html += `
+
+            <tr>
+
+                <td
+                    colspan="${orderedFields.length + 1}"
+                    class="no-data"
+                >
+
+                    No vehicles found.
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+    else {
+
+        vehicles.forEach(
+            (vehicle, index) => {
+
+                html += `
+
+                    <tr>
+
+                        <td>
+                            ${index + 1}
+                        </td>
+
+                        ${orderedFields
+                            .map(
+                                field => {
+
+                                    let value =
+                                        vehicle[
+                                            field
+                                        ];
+
+
+                                    /*
+                                     * Special
+                                     * formatting
+                                     */
+
+                                    if (
+                                        field ===
+                                        "routecleaned_p"
+                                    ) {
+
+                                        value =
+                                            value !==
+                                            null &&
+                                            value !==
+                                            undefined
+                                                ? value +
+                                                  "%"
+                                                : "";
+
+                                    }
+
+
+                                    let className =
+                                        "";
+
+
+                                    if (
+                                        field ===
+                                        "vehicleno"
+                                    ) {
+
+                                        className =
+                                            "vehicle";
+
+                                    }
+
+
+                                    if (
+                                        field ===
+                                        "wardname"
+                                    ) {
+
+                                        className =
+                                            "ward";
+
+                                    }
+
+
+                                    return `
+
+                                        <td
+                                            class="${className}"
+                                            title="${escapeHTML(
+                                                value
+                                            )}"
+                                        >
+
+                                            ${escapeHTML(
+                                                value
+                                            )}
+
+                                        </td>
+
+                                    `;
+
+                                }
+                            )
+                            .join("")
+                        }
+
+                    </tr>
+
+                `;
+
+            }
+        );
+
+    }
+
+
+    html += `
+
+            </tbody>
+
+        </table>
+
+    `;
+
+
+    document.getElementById(
+        "tableWrapper"
+    ).innerHTML = html;
+
+}
+
+
+/* =====================================================
+   RESET
+   ===================================================== */
+
+function resetFilters() {
+
+    document.getElementById(
+        "searchInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "wardFilter"
+    ).value = "";
+
+
+    renderTable();
+
+}
+
+
+/* =====================================================
+   CSV EXPORT
+   ===================================================== */
+
+function exportCSV() {
+
+    let vehicles =
+        getFilteredVehicles();
+
+
+    if (
+        vehicles.length === 0
+    ) {
+
+        alert(
+            "No vehicles available for export."
+        );
+
+        return;
+
+    }
+
+
+    const fields =
+        getAllFields(
+            allVehicles
+        );
+
+
+    const preferredFields = [
+
+        "vehicleid",
+        "vehicleno",
+        "timerecorded",
+        "timerecorded_sys",
+        "place",
+        "status",
+        "vstatus",
+        "speed",
+        "gsm",
+        "gps",
+        "vehiclebattery",
+        "gpsbattery",
+        "drivername",
+        "drivermobile",
+        "vehicletype",
+        "latitude",
+        "longitude",
+        "angle",
+        "ignition",
+        "vehiclestatus",
+        "syscompanyuuid",
+        "sysrouteuuid",
+        "routename",
+        "totalpoints",
+        "totalcleanedpoints",
+        "totalnotcleanedpoints",
+        "routecleaned_p",
+        "zonename",
+        "wardname",
+        "vendorname",
+        "vendortype"
+
+    ];
+
+
+    const orderedFields = [
+
+        ...preferredFields.filter(
+            field =>
+                fields.includes(field)
+        ),
+
+        ...fields.filter(
+            field =>
+                !preferredFields.includes(
+                    field
+                )
+        )
+
+    ];
+
+
+    const headers = [
+        "S.No.",
+        ...orderedFields
+    ];
+
+
+    const rows =
+        vehicles.map(
+            (vehicle, index) => [
+
+                index + 1,
+
+                ...orderedFields.map(
+                    field =>
+                        vehicle[field] ??
+                        ""
+                )
+
+            ]
+        );
+
+
+    function escapeCSV(value) {
+
+        const text =
+            String(
+                value ?? ""
+            );
+
+
+        return (
+            text.includes(",") ||
+            text.includes('"') ||
+            text.includes("\n") ||
+            text.includes("\r")
+        )
+            ? `"${text.replace(
+                /"/g,
+                '""'
+            )}"`
+            : text;
+
+    }
+
+
+    const csv = [
+
+        headers,
+
+        ...rows
+
+    ]
+
+    .map(
+        row =>
+            row
+                .map(
+                    escapeCSV
+                )
+                .join(",")
+    )
+
+    .join("\r\n");
+
+
+    const blob =
+        new Blob(
+            [
+                "\uFEFF" +
+                csv
+            ],
+            {
+                type:
+                    "text/csv;charset=utf-8;"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(
+            blob
+        );
+
+
+    const link =
+        document.createElement(
+            "a"
+        );
+
+
+    link.href = url;
+
+
+    const now =
+        new Date();
+
+
+    const timestamp =
+        now
+            .toISOString()
+            .slice(0, 19)
+            .replace(
+                /[:T]/g,
+                "-"
+            );
+
+
+    link.download =
+        `Complete_Fleet_Report_${timestamp}.csv`;
+
+
+    document.body.appendChild(
+        link
+    );
+
+
+    link.click();
+
+
+    link.remove();
+
+
+    URL.revokeObjectURL(
+        url
+    );
+
+}
+
+
+/* =====================================================
+   GET FILTERED VEHICLES
+   ===================================================== */
+
+function getFilteredVehicles() {
+
+    const search =
+        document.getElementById(
+            "searchInput"
+        )
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const ward =
+        document.getElementById(
+            "wardFilter"
+        ).value;
+
+
+    return allVehicles.filter(
+        vehicle => {
+
+            if (
+                ward &&
+                vehicle.wardname !== ward
+            ) {
+
+                return false;
+
+            }
+
+
+            if (search) {
+
+                const text =
+                    Object.values(
+                        vehicle
+                    )
+                    .map(
+                        value =>
+                            String(
+                                value ?? ""
+                            )
+                    )
+                    .join(" ")
+                    .toLowerCase();
+
+
+                if (
+                    !text.includes(
+                        search
+                    )
+                ) {
+
+                    return false;
+
+                }
+
+            }
+
+
+            return true;
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+   ===================================================== */
+
+function escapeHTML(value) {
+
+    return String(
+        value ?? ""
+    )
+
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+
+    .replace(
+        /</g,
+        "&lt;"
+    )
+
+    .replace(
+        />/g,
+        "&gt;"
+    )
+
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* =====================================================
+   START
+   ===================================================== */
+
+initialize();
+
+</script>
+
+
+</body>
+
+</html>

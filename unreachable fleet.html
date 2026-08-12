@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Unreachable Vehicle Report</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+
+            font-family:
+                Inter,
+                Arial,
+                sans-serif;
+
+            background: #f4f7fb;
+
+            color: #172033;
+
+            padding: 24px;
+        }
+
+        .container {
+
+            max-width: 1600px;
+
+            margin: auto;
+        }
+
+        /* HEADER */
+
+        .report-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 22px;
+        }
+
+        .report-header h2 {
+
+            margin: 0;
+
+            font-size: 24px;
+
+            font-weight: 700;
+        }
+
+        .report-header p {
+
+            margin-top: 5px;
+
+            color: #64748b;
+
+            font-size: 13px;
+        }
+
+        /* BUTTON */
+
+        .export-btn {
+
+            border: 0;
+
+            background: #2563eb;
+
+            color: white;
+
+            padding: 10px 18px;
+
+            border-radius: 7px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .export-btn:hover {
+
+            background: #1d4ed8;
+        }
+
+        /* SUMMARY */
+
+        .report-summary {
+
+            display: flex;
+
+            gap: 15px;
+
+            margin-bottom: 20px;
+        }
+
+        .summary-card {
+
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 10px;
+
+            padding: 16px 22px;
+
+            min-width: 180px;
+
+            box-shadow:
+                0 2px 8px
+                rgba(15, 23, 42, .05);
+        }
+
+        .summary-card.unreachable {
+
+            border-left:
+                4px solid #dc2626;
+        }
+
+        .summary-label {
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            margin-bottom: 5px;
+        }
+
+        .summary-value {
+
+            font-size: 25px;
+
+            font-weight: 700;
+        }
+
+        /* TABLE */
+
+        .table-wrapper {
+
+            background: white;
+
+            border-radius: 10px;
+
+            overflow: auto;
+
+            border: 1px solid #e2e8f0;
+
+            box-shadow:
+                0 2px 8px
+                rgba(15, 23, 42, .05);
+        }
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 1100px;
+        }
+
+        th {
+
+            background: #172033;
+
+            color: white;
+
+            padding: 11px 12px;
+
+            text-align: left;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            position: sticky;
+
+            top: 0;
+        }
+
+        td {
+
+            padding: 10px 12px;
+
+            border-bottom:
+                1px solid #edf0f4;
+
+            font-size: 12px;
+        }
+
+        tbody tr:hover {
+
+            background: #f8fafc;
+        }
+
+        .vehicle-no {
+
+            font-weight: 700;
+        }
+
+        /* UNREACHABLE BADGE */
+
+        .unreachable-badge {
+
+            display: inline-block;
+
+            background: #fef2f2;
+
+            color: #b91c1c;
+
+            border: 1px solid #fecaca;
+
+            padding: 4px 8px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+        }
+
+        .no-data {
+
+            text-align: center;
+
+            padding: 40px;
+
+            color: #64748b;
+        }
+
+        @media(max-width: 700px) {
+
+            body {
+                padding: 12px;
+            }
+
+            .report-header {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 12px;
+            }
+
+            .report-summary {
+
+                flex-wrap: wrap;
+            }
+
+        }
+/* ==========================================
+   WARD KPI SECTION
+   ========================================== */
+
+.kpi-section {
+
+    margin-bottom: 22px;
+
+}
+
+
+.section-title {
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    margin-bottom: 12px;
+
+    color: #172033;
+
+}
+
+
+.ward-kpi-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(210px, 1fr)
+        );
+
+    gap: 12px;
+
+}
+
+
+.ward-kpi-card {
+
+    background: white;
+
+    border: 1px solid #e2e8f0;
+
+    border-left:
+        4px solid #22c55e;
+
+    border-radius: 9px;
+
+    padding: 14px;
+
+    box-shadow:
+        0 2px 8px
+        rgba(15, 23, 42, .05);
+
+}
+
+
+.ward-kpi-card.warning {
+
+    border-left-color: #f59e0b;
+
+}
+
+
+.ward-kpi-card.critical {
+
+    border-left-color: #dc2626;
+
+}
+
+
+.ward-kpi-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 14px;
+
+}
+
+
+.ward-name {
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+}
+
+
+.ward-percent {
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #64748b;
+
+}
+
+
+.ward-kpi-values {
+
+    display: flex;
+
+    gap: 30px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.kpi-number {
+
+    display: block;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+}
+
+
+.kpi-label {
+
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 10px;
+
+    color: #64748b;
+
+}
+
+
+.progress-bar {
+
+    height: 5px;
+
+    background: #edf0f4;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+}
+
+
+.progress-fill {
+
+    height: 100%;
+
+    background: #22c55e;
+
+    border-radius: 10px;
+
+}
+
+
+.warning .progress-fill {
+
+    background: #f59e0b;
+
+}
+
+
+.critical .progress-fill {
+
+    background: #dc2626;
+
+}
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <!-- HEADER -->
+
+    <div class="report-header">
+
+        <div>
+
+            <h2>
+                Unreachable Vehicle Report
+            </h2>
+
+            <p>
+                Unreachable vehicles sorted by ward
+            </p>
+
+        </div>
+
+
+        <button
+            class="export-btn"
+            onclick="exportUnreachableToCSV()"
+        >
+            Export to Excel
+        </button>
+
+    </div>
+
+
+    <!-- DATA -->
+
+    <div id="outputdata"></div>
+
+
+</div>
+
+
+<!-- DATA -->
+
+<script src="./fleet-data.js"></script>
+
+<script src="./unreachable/filter-unreachable.js"></script>
+
+<script src="./unreachable/display-unreachable.js"></script>
+
+<script src="./unreachable/export-unreachable.js"></script>
+
+
+<script>
+
+    displayUnreachableResults();
+
+</script>
+
+
+</body>
+
+</html>

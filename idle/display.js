@@ -68,6 +68,7 @@ function displayResults() {
                 <tr>
 
                     <th>Vehicle</th>
+                    <th>Route Cleaned</th>
 
                     <th>Idle Time</th>
 
@@ -80,6 +81,7 @@ function displayResults() {
                     <th>Speed</th>
 
                     <th>Time</th>
+                    
 
                 </tr>
 
@@ -95,6 +97,11 @@ function displayResults() {
                         <td style="white-space:nowrap;">
 
                             ${vehicle.vehicleno || ""}
+
+                        </td>
+                        <td style="white-space:nowrap;">
+
+                            ${vehicle.routecleaned_p == null ? "" : (vehicle.routecleaned_p)+"%"}
 
                         </td>
 
@@ -143,6 +150,8 @@ function displayResults() {
                             ${vehicle.timerecorded || ""}
 
                         </td>
+
+                        
 
                     </tr>
 

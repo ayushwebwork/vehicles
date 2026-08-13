@@ -50,7 +50,7 @@ function exportToExcel() {
 
     const headers = [
         "Vehicle",
-        "Vehicle ID",
+        "Route Cleaned",
         "Idle Time",
         "Driver",
         "Ward",
@@ -64,7 +64,7 @@ function exportToExcel() {
 
         vehicle.vehicleno || "",
 
-        vehicle.vehicleid || "",
+        vehicle.routecleaned_p== null ? ""  : vehicle.routecleaned_p,
 
         String(vehicle.status || "")
             .replace(

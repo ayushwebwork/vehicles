@@ -64,7 +64,7 @@ function exportToExcel() {
 
         vehicle.vehicleno || "",
 
-        vehicle.routecleaned_p== null ? ""  : vehicle.routecleaned_p,
+        vehicle.routecleaned_p== null ? ""  : vehicle.routecleaned_p+"%",
 
         String(vehicle.status || "")
             .replace(

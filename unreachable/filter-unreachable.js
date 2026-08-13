@@ -16,9 +16,14 @@ function getUnreachableVehicles(data) {
             .trim()
             .toLowerCase();
 
+const totalPoints =
+                Number(vehicle.totalpoints);
 
-            return status.startsWith(
-                "unreachable"
+
+             return (
+                status.startsWith("unreachable") &&
+                !isNaN(totalPoints) &&
+                totalPoints > 0
             );
 
         });

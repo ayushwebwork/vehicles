@@ -1,235 +1,435 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Fleet Management Portal</title>
 
+
     <style>
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+
         body {
-            font-family: "Segoe UI", Arial, sans-serif;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
             min-height: 100vh;
+
             background:
-                radial-gradient(circle at top right, rgba(37, 99, 235, 0.12), transparent 35%),
-                linear-gradient(135deg, #f8fafc, #eef2f7);
+                radial-gradient(
+                    circle at top right,
+                    rgba(37, 99, 235, 0.10),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f8fafc,
+                    #eef2f7
+                );
+
             color: #1e293b;
+
         }
+
 
         /* =========================
            HEADER
         ========================= */
 
         .header {
-            background: #ffffff;
-            border-bottom: 1px solid #e2e8f0;
+
             height: 72px;
+
+            background: #ffffff;
+
+            border-bottom:
+                1px solid #e2e8f0;
+
             display: flex;
+
             align-items: center;
+
             padding: 0 7%;
-            box-shadow: 0 2px 12px rgba(15, 23, 42, 0.05);
+
+            box-shadow:
+                0 2px 12px
+                rgba(15, 23, 42, 0.05);
+
         }
+
 
         .brand {
+
             display: flex;
+
             align-items: center;
+
             gap: 12px;
+
         }
+
 
         .brand-icon {
+
             width: 42px;
             height: 42px;
+
             border-radius: 10px;
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #1d4ed8
+                );
+
             display: flex;
+
             align-items: center;
             justify-content: center;
-            color: #ffffff;
-            font-size: 21px;
+
+            color: white;
+
+            font-size: 20px;
+
             font-weight: 700;
-            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.25);
+
+            box-shadow:
+                0 6px 15px
+                rgba(37, 99, 235, 0.25);
+
         }
+
 
         .brand-text h1 {
+
             font-size: 17px;
-            font-weight: 700;
+
             color: #0f172a;
+
         }
 
+
         .brand-text span {
+
             display: block;
+
             font-size: 11px;
+
             color: #64748b;
+
             margin-top: 2px;
+
         }
+
 
         /* =========================
            MAIN
         ========================= */
 
         .main {
-            max-width: 1150px;
-            margin: 0 auto;
-            padding: 25px 25px;
-        }
 
-        .hero {
-            text-align: center;
-            margin-bottom: 45px;
-        }
+            max-width: 1000px;
 
-        .hero-badge {
-            display: inline-block;
-            padding: 6px 13px;
-            border-radius: 30px;
-            background: #dbeafe;
-            color: #1d4ed8;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .hero h2 {
-            font-size: 34px;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 12px;
-        }
-
-        .hero p {
-            max-width: 600px;
             margin: auto;
-            color: #64748b;
-            font-size: 15px;
-            line-height: 1.7;
+
+            padding: 55px 25px;
+
         }
+
 
         /* =========================
-           CARDS
+           HERO
         ========================= */
 
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 22px;
-            max-width: 850px;
-            margin: 0 auto;
+        .hero {
+
+            text-align: center;
+
+            margin-bottom: 38px;
+
         }
 
-        .card {
-            position: relative;
+
+        .hero-badge {
+
+            display: inline-block;
+
+            padding: 6px 13px;
+
+            border-radius: 30px;
+
+            background: #dbeafe;
+
+            color: #1d4ed8;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .hero h2 {
+
+            font-size: 34px;
+
+            font-weight: 700;
+
+            color: #0f172a;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .hero p {
+
+            max-width: 620px;
+
+            margin: auto;
+
+            color: #64748b;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* =========================
+           REPORT LIST
+        ========================= */
+
+        .report-list {
+
             background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 28px;
-            text-decoration: none;
-            color: inherit;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 12px;
+
             overflow: hidden;
-            transition:
-                transform 0.25s ease,
-                box-shadow 0.25s ease,
-                border-color 0.25s ease;
+
+            box-shadow:
+                0 5px 20px
+                rgba(15, 23, 42, 0.06);
+
         }
 
-        .card::after {
-            content: "";
-            position: absolute;
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            background: rgba(37, 99, 235, 0.05);
-            right: -45px;
-            bottom: -55px;
-        }
 
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: #bfdbfe;
-            box-shadow: 0 14px 35px rgba(15, 23, 42, 0.10);
-        }
+        .report-item {
 
-        .card-top {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 25px;
-        }
 
-        .card-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 13px;
-            display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 23px;
+
+            gap: 18px;
+
+            padding: 18px 22px;
+
+            text-decoration: none;
+
+            color: inherit;
+
+            border-bottom:
+                1px solid #edf1f5;
+
+            transition:
+                background 0.2s ease,
+                padding-left 0.2s ease;
+
         }
 
-        .idle-icon {
-            background: #fff7ed;
-            color: #ea580c;
+
+        .report-item:last-child {
+
+            border-bottom: none;
+
         }
+
+
+        .report-item:hover {
+
+            background: #f8fafc;
+
+            padding-left: 28px;
+
+        }
+
+
+        /* ICON */
 
         .report-icon {
-            background: #eff6ff;
-            color: #2563eb;
-        }
 
-        .arrow {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: #f8fafc;
+            width: 46px;
+
+            height: 46px;
+
+            min-width: 46px;
+
+            border-radius: 10px;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
-            color: #64748b;
-            font-size: 17px;
-            transition: 0.25s ease;
-        }
 
-        .card:hover .arrow {
-            background: #2563eb;
-            color: #ffffff;
-            transform: translateX(3px);
-        }
+            font-size: 21px;
 
-        .card h3 {
-            font-size: 19px;
-            color: #0f172a;
-            margin-bottom: 8px;
-        }
+            background: #eff6ff;
 
-        .card p {
-            color: #64748b;
-            font-size: 13px;
-            line-height: 1.6;
-            max-width: 330px;
-        }
-
-        .card-footer {
-            margin-top: 22px;
-            font-size: 12px;
-            font-weight: 600;
             color: #2563eb;
+
         }
+
+
+        .idle-icon {
+
+            background: #fff7ed;
+
+            color: #ea580c;
+
+        }
+
+
+        .unreachable-icon {
+
+            background: #fef2f2;
+
+            color: #dc2626;
+
+        }
+
+
+        .cleaning-icon {
+
+            background: #f0fdf4;
+
+            color: #16a34a;
+
+        }
+
+
+        .all-icon {
+
+            background: #f5f3ff;
+
+            color: #7c3aed;
+
+        }
+
+
+        /* CONTENT */
+
+        .report-content {
+
+            flex: 1;
+
+            min-width: 0;
+
+        }
+
+
+        .report-content h3 {
+
+            font-size: 16px;
+
+            color: #0f172a;
+
+            margin-bottom: 4px;
+
+        }
+
+
+        .report-content p {
+
+            font-size: 12px;
+
+            color: #64748b;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* ARROW */
+
+        .report-arrow {
+
+            width: 34px;
+
+            height: 34px;
+
+            min-width: 34px;
+
+            border-radius: 50%;
+
+            background: #f8fafc;
+
+            color: #64748b;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 17px;
+
+            transition: 0.2s ease;
+
+        }
+
+
+        .report-item:hover .report-arrow {
+
+            background: #2563eb;
+
+            color: white;
+
+            transform: translateX(3px);
+
+        }
+
 
         /* =========================
            FOOTER
         ========================= */
 
         .footer {
+
             text-align: center;
-            margin-top: 65px;
+
+            margin-top: 35px;
+
             color: #94a3b8;
+
             font-size: 12px;
+
         }
+
 
         /* =========================
            MOBILE
@@ -238,126 +438,182 @@
         @media (max-width: 700px) {
 
             .header {
+
                 padding: 0 20px;
+
             }
+
 
             .main {
-                padding: 45px 18px;
+
+                padding:
+                    40px 16px;
+
             }
+
 
             .hero h2 {
+
                 font-size: 27px;
+
             }
 
-            .cards {
-                grid-template-columns: 1fr;
+
+            .report-item {
+
+                padding:
+                    15px;
+
+            }
+
+
+            .report-item:hover {
+
+                padding-left: 18px;
+
+            }
+
+
+            .report-icon {
+
+                width: 40px;
+
+                height: 40px;
+
+                min-width: 40px;
+
+                font-size: 18px;
+
+            }
+
+
+            .report-content h3 {
+
+                font-size: 15px;
+
             }
 
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- HEADER -->
 
-    <!-- <header class="header">
+<!-- =========================
+     HEADER
+========================= -->
 
-        <div class="brand">
+<header class="header">
 
-            <div class="brand-icon">
-                F
-            </div>
+    <div class="brand">
 
-            <div class="brand-text">
-                <h1>Fleet Management</h1>
-                <span>Vehicle Monitoring & Reporting Portal</span>
-            </div>
+        <div class="brand-icon">
+            F
+        </div>
+
+        <div class="brand-text">
+
+            <h1>
+                Fleet Management
+            </h1>
+
+            <span>
+                Vehicle Monitoring & Reporting Portal
+            </span>
 
         </div>
 
-    </header> -->
+    </div>
+
+</header>
 
 
-    <!-- MAIN -->
+<!-- =========================
+     MAIN
+========================= -->
 
-    <main class="main">
+<main class="main">
 
-        <section class="hero">
 
-            <div class="hero-badge">
-                FLEET OPERATIONS
+    <section class="hero">
+
+        <div class="hero-badge">
+            FLEET OPERATIONS
+        </div>
+
+
+        <h2>
+            Vehicle Management Portal
+        </h2>
+
+
+        <p>
+            Access vehicle monitoring, operational status
+            and detailed fleet reports from one centralized dashboard.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         REPORT LIST
+    ========================= -->
+
+    <div class="report-list">
+
+
+        <!-- IDLE VEHICLES -->
+
+        <a
+            href="./idle fleet.html"
+            target="_blank"
+            class="report-item"
+        >
+
+            <div class="report-icon idle-icon">
+                ⏱
             </div>
 
-            <h2>Vehicle Management Portal</h2>
 
-            <p>
-                Access vehicle monitoring, idle vehicle information
-                and detailed fleet reports from one centralized dashboard.
-            </p>
-
-        </section>
-
-
-        <!-- OPTIONS -->
-
-        <div class="cards">
-
-            <!-- IDLE VEHICLES -->
-
-            <a
-                href="./idle fleet.html"
-                target="_blank"
-                class="card"
-            >
-
-                <div class="card-top">
-
-                    <div class="card-icon idle-icon">
-                        ⏱
-                    </div>
-
-                    <div class="arrow">
-                        →
-                    </div>
-
-                </div>
+            <div class="report-content">
 
                 <h3>
                     Idle Vehicles
                 </h3>
 
                 <p>
-                    View vehicles that are currently idle and
-                    monitor their operational status.
+                    View vehicles that are currently idle
+                    and monitor their operational status.
                 </p>
 
-                <div class="card-footer">
-                    View Idle Vehicles →
-                </div>
-
-            </a>
+            </div>
 
 
-            <!-- VEHICLE REPORTS -->
+            <div class="report-arrow">
+                →
+            </div>
 
-            <a
-                href="./selected-vehicle-report_bulk.html"
-                target="_blank"
-                class="card"
-            >
+        </a>
 
-                <div class="card-top">
 
-                    <div class="card-icon report-icon">
-                        ▣
-                    </div>
+        <!-- VEHICLE REPORTS -->
 
-                    <div class="arrow">
-                        →
-                    </div>
+        <a
+            href="./selected-vehicle-report_bulk.html"
+            target="_blank"
+            class="report-item"
+        >
 
-                </div>
+            <div class="report-icon">
+                ▣
+            </div>
+
+
+            <div class="report-content">
 
                 <h3>
                     Vehicle Reports
@@ -368,117 +624,133 @@
                     and export selected vehicle records.
                 </p>
 
-                <div class="card-footer">
-                    Open Vehicle Reports →
-                </div>
+            </div>
 
-            </a>
 
-             <a
-                href="./unreachable fleet.html"
-                target="_blank"
-                class="card"
-            >
+            <div class="report-arrow">
+                →
+            </div>
 
-                <div class="card-top">
+        </a>
 
-                    <div class="card-icon report-icon">
-                        ▣
-                    </div>
 
-                    <div class="arrow">
-                        →
-                    </div>
+        <!-- UNREACHABLE -->
 
-                </div>
+        <a
+            href="./unreachable fleet.html"
+            target="_blank"
+            class="report-item"
+        >
+
+            <div class="report-icon unreachable-icon">
+                ⚠
+            </div>
+
+
+            <div class="report-content">
 
                 <h3>
-                    Vehicle Unreachable
+                    Unreachable Vehicles
                 </h3>
 
                 <p>
-                    Search Unreachable vehicles, view Unreachable detailed information
-                    and export selected Unreachable vehicle records.
+                    View unreachable vehicles, monitor their
+                    latest status and export vehicle records.
                 </p>
 
-                <div class="card-footer">
-                    Open Unreachable Vehicle Reports →
-                </div>
+            </div>
 
-            </a>
 
-            <a
-                href="./cleaning-less-90.html"
-                target="_blank"
-                class="card"
-            >
+            <div class="report-arrow">
+                →
+            </div>
 
-                <div class="card-top">
+        </a>
 
-                    <div class="card-icon report-icon">
-                        ▣
-                    </div>
 
-                    <div class="arrow">
-                        →
-                    </div>
+        <!-- CLEANING -->
 
-                </div>
+        <a
+            href="./cleaning-less-90.html"
+            target="_blank"
+            class="report-item"
+        >
+
+            <div class="report-icon cleaning-icon">
+                ✓
+            </div>
+
+
+            <div class="report-content">
 
                 <h3>
-                    Cleaning Report < 90%
+                    Cleaning Report &lt; 90%
                 </h3>
 
                 <p>
-                    Get vehicles cleaning report, view cleaning detailed information
-                    and export selected vehicle's cleaning records.
+                    View vehicles with cleaning performance
+                    below 90% and export detailed records.
                 </p>
 
-                <div class="card-footer">
-                    Open Vehicle Cleaning Reports →
-                </div>
+            </div>
 
-            </a>
 
-            <a
-                href="./all-vehicles.html"
-                target="_blank"
-                class="card"
-            >
+            <div class="report-arrow">
+                →
+            </div>
 
-                <div class="card-top">
+        </a>
 
-                    <div class="card-icon report-icon">
-                        ▣
-                    </div>
 
-                    <div class="arrow">
-                        →
-                    </div>
+        <!-- ALL VEHICLES -->
 
-                </div>
+        <a
+            href="./all-vehicles.html"
+            target="_blank"
+            class="report-item"
+        >
+
+            <div class="report-icon all-icon">
+                ▤
+            </div>
+
+
+            <div class="report-content">
 
                 <h3>
-                    ALL Vehicles 
+                    All Vehicles
                 </h3>
 
                 <p>
-                    Get all vehicles , view all detailed information
-                    and view all vehicle's records.
+                    View complete fleet information,
+                    vehicle details and all available records.
                 </p>
 
-                <div class="card-footer">
-                    Open all Vehicle Reports →
-                </div>
-
-            </a>
-
-        </div>
+            </div>
 
 
-        
+            <div class="report-arrow">
+                →
+            </div>
 
-    </main>
+        </a>
+
+
+    </div>
+
+
+    <div class="footer">
+
+        Fleet Management Portal
+        &nbsp;•&nbsp;
+        Vehicle Monitoring & Reporting
+
+    </div>
+
+
+</main>
+
 
 </body>
-</html> 
+
+</html>

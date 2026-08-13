@@ -4,9 +4,23 @@ function displayResults() {
         document.getElementById("outputdata");
 
 
-    // Sort by Ward, then Vehicle Number
-    const sortedVehicles =
-        [...window.idleOver20].sort((a, b) => {
+    // Filter vehicles having Total Points > 0
+// Then sort by Ward, then Vehicle Number
+
+const sortedVehicles =
+    [...window.idleOver20]
+        .filter(vehicle => {
+
+            const totalPoints =
+                Number(vehicle.totalpoints);
+
+            return (
+                !isNaN(totalPoints) &&
+                totalPoints > 0
+            );
+
+        })
+        .sort((a, b) => {
 
             // Extract ward number
             const wardA =

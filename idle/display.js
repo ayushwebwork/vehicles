@@ -120,9 +120,9 @@ const sortedVehicles =
 
                         </td>
                         <td>
-${safe(
+${
                                 vehicle.vehicletype
-                            )}
+                            }
                         </td>
 
 

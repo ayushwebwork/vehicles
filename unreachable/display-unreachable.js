@@ -327,6 +327,7 @@ function displayUnreachableResults() {
                         <th>Ward</th>
 
                         <th>Vehicle No.</th>
+                        <th>Vehicle Type</th>
 
                         <th>Vehicle ID</th>
 
@@ -393,6 +394,11 @@ function displayUnreachableResults() {
                             ${escapeHTML(
                                 vehicle.vehicleno ||
                                 "-"
+                            )}
+                        </td>
+                        <td>
+                        ${safe(
+                                vehicle.vehicletype
                             )}
                         </td>
 

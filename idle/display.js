@@ -83,6 +83,7 @@ const sortedVehicles =
 
                     <th>Vehicle</th>
                     <th>Route Cleaned</th>
+                    <th>Vehicle Type</th>
 
                     <th>Idle Time</th>
 
@@ -117,6 +118,11 @@ const sortedVehicles =
 
                             ${vehicle.routecleaned_p == null ? "" : (vehicle.routecleaned_p)+"%"}
 
+                        </td>
+                        <td>
+${safe(
+                                vehicle.vehicletype
+                            )}
                         </td>
 
 

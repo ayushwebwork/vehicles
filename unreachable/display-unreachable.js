@@ -397,9 +397,9 @@ function displayUnreachableResults() {
                             )}
                         </td>
                         <td>
-                        ${safe(
+                        ${
                                 vehicle.vehicletype
-                            )}
+                            }
                         </td>
 
                         <td>

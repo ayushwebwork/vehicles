@@ -82,8 +82,10 @@ const sortedVehicles =
                 <tr>
 
                     <th>Vehicle</th>
-                    <th>Route Cleaned</th>
                     <th>Vehicle Type</th>
+                    <th>Vehicle Key No.</th>
+                    <th>Route Cleaned</th>
+                    
 
                     <th>Idle Time</th>
 
@@ -111,12 +113,7 @@ const sortedVehicles =
 
                         <td style="white-space:nowrap;">
 
-                            ${vehicle.vehicleno || ""}
-
-                        </td>
-                        <td style="white-space:nowrap;">
-
-                            ${vehicle.routecleaned_p == null ? "" : (vehicle.routecleaned_p)+"%"}
+                            ${vehicle.vehicleno ? normalizeVehicleNumber(vehicle.vehicleno) : ""}
 
                         </td>
                         <td>
@@ -124,6 +121,15 @@ ${
                                 vehicle.vehicletype
                             }
                         </td>
+                        <td>
+                            ${getKeyNo(vehicle.vehicleno)}
+                        </td>
+                        <td style="white-space:nowrap;">
+
+                            ${vehicle.routecleaned_p == null ? "" : (vehicle.routecleaned_p)+"%"}
+
+                        </td>
+                        
 
 
                         <td style="white-space:nowrap;">

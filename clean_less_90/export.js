@@ -65,7 +65,7 @@ function exportCleaningCSV() {
                 index + 1,
                 vehicle.wardname,                
 vehicle.routecleaned_p,
-                vehicle.vehicleno,
+                normalizeVehicleNumber(vehicle.vehicleno),
                 getKeyNo(vehicle.vehicleno),
                 vehicle.vehicletype,
                 vehicle.vstatus,

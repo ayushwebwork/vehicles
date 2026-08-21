@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vehicle Daily Distance Report</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 25px;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.12);
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .info {
+            background: #e8f1ff;
+            border-left: 4px solid #0069d9;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .date-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .date-box strong {
+            color: #0069d9;
+        }
+
+        .url-box {
+            background: #f1f1f1;
+            padding: 12px;
+            border-radius: 5px;
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .button-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 11px 20px;
+            border: 0;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+            color: white;
+        }
+
+        .load-btn {
+            background: #0069d9;
+        }
+
+        .load-btn:hover {
+            background: #0056b3;
+        }
+
+        .csv-btn {
+            background: #198754;
+        }
+
+        .csv-btn:hover {
+            background: #157347;
+        }
+
+        button:disabled {
+            background: #999;
+            cursor: not-allowed;
+        }
+
+        #status {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .loading {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 15px;
+            max-height: 700px;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 9px 10px;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        th {
+            background: #343a40;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f8f8;
+        }
+
+        tr:hover {
+            background: #e9f2ff;
+        }
+
+        .distance-cell {
+            font-weight: bold;
+            color: #198754;
+        }
+
+        .section {
+            margin-top: 30px;
+        }
+
+        .count {
+            color: #0069d9;
+        }
+
+        pre {
+            background: #1e1e1e;
+            color: #f1f1f1;
+            padding: 15px;
+            overflow: auto;
+            border-radius: 5px;
+            max-height: 600px;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .token-info {
+            margin-top: 10px;
+            color: #666;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Vehicle Daily Distance Report</h1>
+
+    <div class="info">
+        <strong>Automatic token:</strong>
+        The page first tries to get the authorization token
+        from <code>localStorage["login"]</code>.
+        If that fails or the token is rejected, you will be
+        prompted to enter a token manually.
+    </div>
+
+    <div class="date-box">
+
+        <div>
+            <strong>Current Date:</strong>
+            <span id="currentDate">Loading...</span>
+        </div>
+
+        <div>
+            <strong>Current Time:</strong>
+            <span id="currentTime">Loading...</span>
+        </div>
+
+        <div>
+            <strong>Report Start:</strong>
+            <span id="reportStart">Loading...</span>
+        </div>
+
+        <div>
+            <strong>Report End:</strong>
+            <span id="reportEnd">Loading...</span>
+        </div>
+
+    </div>
+
+    <div class="url-box">
+
+        <strong>API URL:</strong>
+        <span id="apiUrl">Building...</span>
+
+    </div>
+
+    <div class="button-row">
+
+        <button
+            class="load-btn"
+            onclick="loadUsingToken()"
+        >
+            Reload Report
+        </button>
+
+        <button
+            id="csvButton"
+            class="csv-btn"
+            onclick="downloadCSV()"
+            disabled
+        >
+            Download CSV
+        </button>
+
+    </div>
+
+    <div class="token-info">
+        Token source:
+        <strong id="tokenSource">Not loaded</strong>
+    </div>
+
+    <div id="status"></div>
+
+    <div id="reportContainer"></div>
+
+    <div class="section">
+
+        <h3>Raw API Response</h3>
+
+        <pre id="rawResponse">No response yet.</pre>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/*
+|--------------------------------------------------------------------------
+| CONFIGURATION
+|--------------------------------------------------------------------------
+*/
+
+const API_BASE =
+    "https://swmrohtak-api.laayn.in";
+
+const VEHICLE_GROUP_ID =
+    "903c35c5-7d7f-485f-a1de-fc1ce6258624";
+
+const REPORT_TYPE =
+    "0";
+
+const VEHICLE_ID =
+    "21";
+
+
+/*
+|--------------------------------------------------------------------------
+| Store current report rows
+|--------------------------------------------------------------------------
+*/
+
+let reportRows = [];
+
+let reportColumns = [];
+
+
+/*
+|--------------------------------------------------------------------------
+| Format API date
+|
+| Example:
+|
+| 21-Aug-2026
+|--------------------------------------------------------------------------
+*/
+
+function formatApiDate(date) {
+
+    const months = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+    ];
+
+    const day =
+        String(date.getDate()).padStart(2, "0");
+
+    const month =
+        months[date.getMonth()];
+
+    const year =
+        date.getFullYear();
+
+    return `${day}-${month}-${year}`;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Display date
+|--------------------------------------------------------------------------
+*/
+
+function formatDisplayDate(date) {
+
+    return date.toLocaleDateString(
+        "en-IN",
+        {
+            day: "2-digit",
+            month: "long",
+            year: "numeric"
+        }
+    );
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Display time
+|--------------------------------------------------------------------------
+*/
+
+function formatDisplayTime(date) {
+
+    return date.toLocaleTimeString(
+        "en-IN",
+        {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        }
+    );
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Build today's API URL
+|--------------------------------------------------------------------------
+*/
+
+function buildApiUrl() {
+
+    const now =
+        new Date();
+
+    const dateString =
+        formatApiDate(now);
+
+    const startDate =
+        `${dateString} 00:00`;
+
+    const endDate =
+        `${dateString} 23:59`;
+
+
+    const url =
+        `${API_BASE}/api/report/GetVehicle_DailyDistanceReport/` +
+        `${REPORT_TYPE}/` +
+        `${encodeURIComponent(startDate)}/` +
+        `${encodeURIComponent(endDate)}/` +
+        `${VEHICLE_GROUP_ID}`;
+
+
+    return {
+        url,
+        dateString,
+        startDate,
+        endDate,
+        now
+    };
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Update date/time
+|--------------------------------------------------------------------------
+*/
+
+function updateDateTime() {
+
+    const api =
+        buildApiUrl();
+
+
+    document.getElementById(
+        "currentDate"
+    ).textContent =
+        formatDisplayDate(api.now);
+
+
+    document.getElementById(
+        "currentTime"
+    ).textContent =
+        formatDisplayTime(api.now);
+
+
+    document.getElementById(
+        "reportStart"
+    ).textContent =
+        api.startDate;
+
+
+    document.getElementById(
+        "reportEnd"
+    ).textContent =
+        api.endDate;
+
+
+    document.getElementById(
+        "apiUrl"
+    ).textContent =
+        api.url;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Get token from localStorage["login"]
+|--------------------------------------------------------------------------
+|
+| Possible formats:
+|
+| 1. login = "eyJhbGci..."
+|
+| 2. login = "Bearer eyJhbGci..."
+|
+| 3. login = JSON object containing token
+|
+|--------------------------------------------------------------------------
+*/
+
+function getTokenFromLocalStorage() {
+
+    try {
+
+        const login =
+            localStorage.getItem("login");
+
+
+        if (!login) {
+
+            return null;
+        }
+
+
+        let value =
+            login.trim();
+
+
+        /*
+        --------------------------------------------------------------
+        Direct token
+        --------------------------------------------------------------
+        */
+
+        if (
+            value &&
+            !value.startsWith("{") &&
+            !value.startsWith("[")
+        ) {
+
+            return cleanToken(value);
+        }
+
+
+        /*
+        --------------------------------------------------------------
+        Try JSON
+        --------------------------------------------------------------
+        */
+
+        try {
+
+            const obj =
+                JSON.parse(value);
+
+
+            /*
+            Check common property names.
+            */
+
+            const possibleToken =
+                obj.token ??
+                obj.Token ??
+                obj.accessToken ??
+                obj.access_token ??
+                obj.jwt ??
+                obj.JWT ??
+                obj.authorization ??
+                obj.Authorization;
+
+
+            if (
+                typeof possibleToken === "string" &&
+                possibleToken.trim()
+            ) {
+
+                return cleanToken(
+                    possibleToken
+                );
+            }
+
+
+            /*
+            Sometimes login may contain nested data.
+            */
+
+            if (
+                obj.data &&
+                typeof obj.data === "object"
+            ) {
+
+                const nestedToken =
+                    obj.data.token ??
+                    obj.data.Token ??
+                    obj.data.accessToken ??
+                    obj.data.access_token;
+
+
+                if (
+                    typeof nestedToken === "string" &&
+                    nestedToken.trim()
+                ) {
+
+                    return cleanToken(
+                        nestedToken
+                    );
+                }
+            }
+
+        }
+        catch (jsonError) {
+
+            /*
+            Not JSON.
+            Treat entire value as token.
+            */
+
+            return cleanToken(value);
+        }
+
+
+    }
+    catch (error) {
+
+        console.error(
+            "localStorage error:",
+            error
+        );
+    }
+
+
+    return null;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Remove Bearer prefix
+|--------------------------------------------------------------------------
+*/
+
+function cleanToken(token) {
+
+    if (!token) {
+
+        return null;
+    }
+
+
+    token =
+        String(token).trim();
+
+
+    if (
+        token
+            .toLowerCase()
+            .startsWith("bearer ")
+    ) {
+
+        token =
+            token.substring(7).trim();
+    }
+
+
+    return token || null;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Get token
+|
+| First:
+| localStorage["login"]
+|
+| If missing:
+| prompt()
+|--------------------------------------------------------------------------
+*/
+
+function getToken() {
+
+    const storedToken =
+        getTokenFromLocalStorage();
+
+
+    if (storedToken) {
+
+        document.getElementById(
+            "tokenSource"
+        ).textContent =
+            "localStorage (login)";
+
+
+        return storedToken;
+    }
+
+
+    /*
+    No localStorage token.
+    Ask user.
+    */
+
+    return askForToken();
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Ask user for token
+|--------------------------------------------------------------------------
+*/
+
+function askForToken() {
+
+    const input =
+        prompt(
+            "Authorization token was not found in localStorage.\n\n" +
+            "Enter your token:"
+        );
+
+
+    if (
+        input === null ||
+        !input.trim()
+    ) {
+
+        return null;
+    }
+
+
+    const token =
+        cleanToken(input);
+
+
+    if (token) {
+
+        document.getElementById(
+            "tokenSource"
+        ).textContent =
+            "Manual token";
+
+
+        return token;
+    }
+
+
+    return null;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Load report
+|--------------------------------------------------------------------------
+*/
+
+async function loadUsingToken() {
+
+    const token =
+        getToken();
+
+
+    if (!token) {
+
+        setStatus(
+            "No authorization token available.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    await getReport(token);
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Get report
+|--------------------------------------------------------------------------
+*/
+
+async function getReport(token) {
+
+    const status =
+        document.getElementById("status");
+
+    const rawResponse =
+        document.getElementById("rawResponse");
+
+    const reportContainer =
+        document.getElementById("reportContainer");
+
+
+    status.className =
+        "loading";
+
+    status.textContent =
+        "Loading daily distance report...";
+
+
+    rawResponse.textContent =
+        "Waiting for API response...";
+
+
+    reportContainer.innerHTML =
+        "";
+
+
+    document.getElementById(
+        "csvButton"
+    ).disabled = true;
+
+
+    const api =
+        buildApiUrl();
+
+
+    document.getElementById(
+        "apiUrl"
+    ).textContent =
+        api.url;
+
+
+    try {
+
+        const response =
+            await fetch(
+                api.url,
+                {
+                    method: "GET",
+
+                    headers: {
+
+                        "Accept":
+                            "application/json, text/plain, */*",
+
+                        "Authorization":
+                            "Bearer " + token
+                    }
+                }
+            );
+
+
+        console.log(
+            "HTTP Status:",
+            response.status
+        );
+
+
+        const responseText =
+            await response.text();
+
+
+        /*
+        --------------------------------------------------------------
+        Token failed
+        --------------------------------------------------------------
+        */
+
+        if (
+            response.status === 401
+        ) {
+
+            /*
+            If localStorage token failed,
+            ask for a fresh token.
+            */
+
+            const storedToken =
+                getTokenFromLocalStorage();
+
+
+            if (
+                storedToken &&
+                storedToken === token
+            ) {
+
+                setStatus(
+                    "The token from localStorage['login'] was rejected.\n\n" +
+                    "Please enter a new authorization token.",
+                    "error"
+                );
+
+
+                const newToken =
+                    askForToken();
+
+
+                if (newToken) {
+
+                    return getReport(
+                        newToken
+                    );
+                }
+
+
+                return;
+            }
+
+
+            throw new Error(
+                "401 Unauthorized.\n\n" +
+                "The supplied token was rejected."
+            );
+        }
+
+
+        if (
+            response.status === 403
+        ) {
+
+            throw new Error(
+                "403 Forbidden.\n\n" +
+                "The server refused access."
+            );
+        }
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "HTTP " +
+                response.status +
+                "\n\n" +
+                responseText
+            );
+        }
+
+
+        /*
+        --------------------------------------------------------------
+        Parse JSON
+        --------------------------------------------------------------
+        */
+
+        let data;
+
+
+        try {
+
+            data =
+                JSON.parse(
+                    responseText
+                );
+
+        }
+        catch (error) {
+
+            throw new Error(
+                "API returned a response, " +
+                "but it was not valid JSON.\n\n" +
+                responseText
+            );
+        }
+
+
+        /*
+        --------------------------------------------------------------
+        Raw response
+        --------------------------------------------------------------
+        */
+
+        rawResponse.textContent =
+            JSON.stringify(
+                data,
+                null,
+                2
+            );
+
+
+        /*
+        --------------------------------------------------------------
+        Extract rows
+        --------------------------------------------------------------
+        */
+
+        const rows =
+            extractRows(data);
+
+
+        /*
+        Save globally for CSV.
+        */
+
+        reportRows =
+            rows;
+
+
+        if (
+            rows.length === 0
+        ) {
+
+            status.className =
+                "success";
+
+            status.textContent =
+                "API request succeeded, but no report records were returned.";
+
+            reportContainer.innerHTML = `
+                <div class="info">
+                    No distance records were found for
+                    today's date.
+                </div>
+            `;
+
+            return;
+        }
+
+
+        /*
+        --------------------------------------------------------------
+        Sort by distance HIGH → LOW
+        --------------------------------------------------------------
+        */
+
+        rows.sort(
+            (a, b) =>
+                getDistance(b) -
+                getDistance(a)
+        );
+
+
+        /*
+        --------------------------------------------------------------
+        Get ALL columns
+        --------------------------------------------------------------
+        */
+
+        reportColumns =
+            getAllColumns(rows);
+
+
+        /*
+        --------------------------------------------------------------
+        Display
+        --------------------------------------------------------------
+        */
+
+        displayReport(
+            rows,
+            reportColumns
+        );
+
+
+        /*
+        Enable CSV
+        */
+
+        document.getElementById(
+            "csvButton"
+        ).disabled = false;
+
+
+        status.className =
+            "success";
+
+        status.textContent =
+            `Report loaded successfully.\n` +
+            `${rows.length} records found.\n` +
+            `Sorted by distance: highest → lowest.`;
+
+
+    }
+    catch (error) {
+
+        console.error(
+            "API Error:",
+            error
+        );
+
+
+        status.className =
+            "error";
+
+
+        if (
+            error instanceof TypeError
+        ) {
+
+            status.textContent =
+                "Network/CORS error.\n\n" +
+                "Check the browser console for details.";
+
+        }
+        else {
+
+            status.textContent =
+                "API Error:\n\n" +
+                error.message;
+        }
+
+
+        rawResponse.textContent =
+            error.stack ||
+            error.message;
+    }
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Extract array from API response
+|--------------------------------------------------------------------------
+*/
+
+function extractRows(data) {
+
+    if (
+        Array.isArray(data)
+    ) {
+
+        return data;
+    }
+
+
+    const possibleProperties = [
+        "data",
+        "Data",
+        "result",
+        "Result",
+        "items",
+        "Items",
+        "response",
+        "Response",
+        "records",
+        "Records",
+        "rows",
+        "Rows"
+    ];
+
+
+    for (
+        const property of possibleProperties
+    ) {
+
+        if (
+            data &&
+            Array.isArray(
+                data[property]
+            )
+        ) {
+
+            return data[property];
+        }
+    }
+
+
+    /*
+    Search one level deeper.
+    */
+
+    if (
+        data &&
+        typeof data === "object"
+    ) {
+
+        for (
+            const key of Object.keys(data)
+        ) {
+
+            const value =
+                data[key];
+
+
+            if (
+                Array.isArray(value)
+            ) {
+
+                return value;
+            }
+        }
+    }
+
+
+    /*
+    Single object.
+    */
+
+    if (
+        data &&
+        typeof data === "object"
+    ) {
+
+        return [data];
+    }
+
+
+    return [];
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Find distance field
+|--------------------------------------------------------------------------
+|
+| Different APIs sometimes use:
+|
+| Distance
+| distance
+| TotalDistance
+| totalDistance
+| DistanceKm
+| etc.
+|
+|--------------------------------------------------------------------------
+*/
+
+function getDistance(row) {
+
+    if (!row) {
+
+        return 0;
+    }
+
+
+    const possibleNames = [
+        "Distance",
+        "distance",
+        "TotalDistance",
+        "totalDistance",
+        "DistanceKm",
+        "distanceKm",
+        "DistanceKM",
+        "distanceKM",
+        "Total_Distance",
+        "total_distance",
+        "DailyDistance",
+        "dailyDistance"
+    ];
+
+
+    for (
+        const name of possibleNames
+    ) {
+
+        if (
+            row[name] !== undefined &&
+            row[name] !== null
+        ) {
+
+            return parseDistance(
+                row[name]
+            );
+        }
+    }
+
+
+    /*
+    If exact field isn't known,
+    search field names containing "distance".
+    */
+
+    const key =
+        Object.keys(row)
+            .find(
+                key =>
+                    key
+                        .toLowerCase()
+                        .includes("distance")
+            );
+
+
+    if (key) {
+
+        return parseDistance(
+            row[key]
+        );
+    }
+
+
+    return 0;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Parse distance safely
+|--------------------------------------------------------------------------
+*/
+
+function parseDistance(value) {
+
+    if (
+        typeof value === "number"
+    ) {
+
+        return value;
+    }
+
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+
+        return 0;
+    }
+
+
+    /*
+    Remove commas and units.
+
+    Examples:
+
+    "1,234.50"
+    "123.50 km"
+    */
+
+    const cleaned =
+        String(value)
+            .replace(/,/g, "")
+            .replace(/[^\d.-]/g, "");
+
+
+    const number =
+        parseFloat(cleaned);
+
+
+    return Number.isFinite(number)
+        ? number
+        : 0;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Get every column from every row
+|--------------------------------------------------------------------------
+*/
+
+function getAllColumns(rows) {
+
+    const set =
+        new Set();
+
+
+    rows.forEach(
+        row => {
+
+            if (
+                row &&
+                typeof row === "object"
+            ) {
+
+                Object.keys(row)
+                    .forEach(
+                        key =>
+                            set.add(key)
+                    );
+            }
+        }
+    );
+
+
+    return Array.from(set);
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Display ALL details
+|--------------------------------------------------------------------------
+*/
+
+function displayReport(
+    rows,
+    columns
+) {
+
+    const container =
+        document.getElementById(
+            "reportContainer"
+        );
+
+
+    let html = `
+
+        <div class="section">
+
+            <h3>
+                Daily Distance Report
+
+                <span class="count">
+                    (${rows.length} records)
+                </span>
+            </h3>
+
+            <div class="info">
+                Records are sorted by
+                <strong>distance: highest → lowest</strong>.
+                All fields returned by the API are displayed.
+            </div>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>#</th>
+    `;
+
+
+    columns.forEach(
+        column => {
+
+            html += `
+                <th>
+                    ${escapeHtml(column)}
+                </th>
+            `;
+        }
+    );
+
+
+    html += `
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+    `;
+
+
+    rows.forEach(
+        (row, index) => {
+
+            html += `
+                <tr>
+
+                    <td>
+                        ${index + 1}
+                    </td>
+            `;
+
+
+            columns.forEach(
+                column => {
+
+                    let value =
+                        row[column];
+
+
+                    /*
+                    Format nested objects
+                    */
+
+                    if (
+                        value !== null &&
+                        typeof value === "object"
+                    ) {
+
+                        value =
+                            JSON.stringify(
+                                value
+                            );
+                    }
+
+
+                    if (
+                        value === null ||
+                        value === undefined
+                    ) {
+
+                        value = "";
+                    }
+
+
+                    /*
+                    Highlight distance columns.
+                    */
+
+                    const isDistance =
+                        column
+                            .toLowerCase()
+                            .includes("distance");
+
+
+                    html += `
+
+                        <td
+                            class="${
+                                isDistance
+                                    ? "distance-cell"
+                                    : ""
+                            }"
+                        >
+                            ${escapeHtml(value)}
+                        </td>
+                    `;
+                }
+            );
+
+
+            html += `
+                </tr>
+            `;
+        }
+    );
+
+
+    html += `
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+    `;
+
+
+    container.innerHTML =
+        html;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| CSV escape
+|--------------------------------------------------------------------------
+*/
+
+function csvEscape(value) {
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+
+        return "";
+    }
+
+
+    /*
+    Convert objects to JSON.
+    */
+
+    if (
+        typeof value === "object"
+    ) {
+
+        value =
+            JSON.stringify(value);
+    }
+
+
+    value =
+        String(value);
+
+
+    /*
+    CSV requires quotes around values
+    containing comma, quote, or newline.
+    */
+
+    if (
+        value.includes(",") ||
+        value.includes('"') ||
+        value.includes("\n") ||
+        value.includes("\r")
+    ) {
+
+        return '"' +
+            value.replace(
+                /"/g,
+                '""'
+            ) +
+            '"';
+    }
+
+
+    return value;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Download CSV
+|--------------------------------------------------------------------------
+*/
+
+function downloadCSV() {
+
+    if (
+        !reportRows ||
+        reportRows.length === 0
+    ) {
+
+        alert(
+            "There is no report data to export."
+        );
+
+        return;
+    }
+
+
+    /*
+    Header
+    */
+
+    const lines = [];
+
+
+    lines.push(
+        reportColumns
+            .map(csvEscape)
+            .join(",")
+    );
+
+
+    /*
+    Rows
+    */
+
+    reportRows.forEach(
+        row => {
+
+            lines.push(
+                reportColumns
+                    .map(
+                        column =>
+                            csvEscape(
+                                row[column]
+                            )
+                    )
+                    .join(",")
+            );
+        }
+    );
+
+
+    /*
+    UTF-8 BOM helps Excel correctly recognize
+    UTF-8 CSV files.
+    */
+
+    const csv =
+        "\uFEFF" +
+        lines.join("\r\n");
+
+
+    const blob =
+        new Blob(
+            [csv],
+            {
+                type:
+                    "text/csv;charset=utf-8;"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const link =
+        document.createElement("a");
+
+
+    const api =
+        buildApiUrl();
+
+
+    link.href =
+        url;
+
+
+    link.download =
+        `Vehicle_DailyDistance_${api.dateString}.csv`;
+
+
+    document.body.appendChild(
+        link
+    );
+
+
+    link.click();
+
+
+    document.body.removeChild(
+        link
+    );
+
+
+    /*
+    Release object URL after starting download.
+    */
+
+    setTimeout(
+        () => {
+            URL.revokeObjectURL(url);
+        },
+        1000
+    );
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| HTML escaping
+|--------------------------------------------------------------------------
+*/
+
+function escapeHtml(value) {
+
+    return String(value)
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Status
+|--------------------------------------------------------------------------
+*/
+
+function setStatus(
+    message,
+    type
+) {
+
+    const status =
+        document.getElementById(
+            "status"
+        );
+
+
+    status.className =
+        type;
+
+
+    status.textContent =
+        message;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| PAGE LOAD
+|--------------------------------------------------------------------------
+*/
+
+window.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        /*
+        Show date/time.
+        */
+
+        updateDateTime();
+
+
+        /*
+        Update visible clock every second.
+        */
+
+        setInterval(
+            updateDateTime,
+            1000
+        );
+
+
+        /*
+        Automatically load report.
+
+        This first checks:
+
+            localStorage["login"]
+
+        and only prompts if necessary.
+        */
+
+        loadUsingToken();
+
+    }
+);
+
+</script>
+
+</body>
+</html>

@@ -405,7 +405,7 @@
 <!-- DATA -->
 
 <script src="fleet-data.js"></script>
-
+ <script src="./vehicle_key_no.js"></script>
 
 <script>
 
@@ -840,6 +840,7 @@ function renderTable() {
 
        "wardname",
         "vehicleno",
+        "vehiclekeyno",
         "routecleaned_p",
         "status",
         "drivername",
@@ -879,8 +880,15 @@ function renderTable() {
 
     const orderedFields = [
 
+"wardname",
+    "vehicleno",
+    "vehiclekeyno",
+
         ...preferredFields.filter(
             field =>
+            field !== "wardname" &&
+            field !== "vehicleno" &&
+            field !== "vehiclekeyno" &&
                 fields.includes(field)
         ),
 
@@ -958,90 +966,79 @@ function renderTable() {
                 html += `
 
                     <tr>
+                           
+
+   
+
+   
 
                         <td>
                             ${index + 1}
                         </td>
+${orderedFields
+    .map(
+        field => {
 
-                        ${orderedFields
-                            .map(
-                                field => {
+            let value = vehicle[field];
 
-                                    let value =
-                                        vehicle[
-                                            field
-                                        ];
+            /*
+             * Vehicle Number
+             */
+            if (field === "vehicleno") {
+                value =
+                    normalizeVehicleNumber(
+                        vehicle.vehicleno
+                    );
+            }
 
+            /*
+             * Vehicle Key Number
+             */
+            if (field === "vehiclekeyno") {
+                value =
+                    getKeyNo(
+                        vehicle.vehicleno
+                    );
+            }
 
-                                    /*
-                                     * Special
-                                     * formatting
-                                     */
+            /*
+             * Route cleaned percentage
+             */
+            if (field === "routecleaned_p") {
+                value =
+                    value !== null &&
+                    value !== undefined
+                        ? value + "%"
+                        : "";
+            }
 
-                                    if (
-                                        field ===
-                                        "routecleaned_p"
-                                    ) {
+            let className = "";
 
-                                        value =
-                                            value !==
-                                            null &&
-                                            value !==
-                                            undefined
-                                                ? value +
-                                                  "%"
-                                                : "";
+            if (
+                field === "vehicleno" ||
+                field === "vehiclekeyno"
+            ) {
+                className = "vehicle";
+            }
 
-                                    }
+            if (field === "wardname") {
+                className = "ward";
+            }
 
+            return `
+                <td
+                    class="${className}"
+                    title="${escapeHTML(value)}"
+                >
+                    ${escapeHTML(value)}
+                </td>
+            `;
+        }
+    )
+    .join("")
+}
 
-                                    let className =
-                                        "";
-
-
-                                    if (
-                                        field ===
-                                        "vehicleno"
-                                    ) {
-
-                                        className =
-                                            "vehicle";
-
-                                    }
-
-
-                                    if (
-                                        field ===
-                                        "wardname"
-                                    ) {
-
-                                        className =
-                                            "ward";
-
-                                    }
-
-
-                                    return `
-
-                                        <td
-                                            class="${className}"
-                                            title="${escapeHTML(
-                                                value
-                                            )}"
-                                        >
-
-                                            ${escapeHTML(
-                                                value
-                                            )}
-
-                                        </td>
-
-                                    `;
-
-                                }
-                            )
-                            .join("")
-                        }
+                          
 
                     </tr>
 
@@ -1161,9 +1158,15 @@ function exportCSV() {
 
 
     const orderedFields = [
+"wardname",
+    "vehicleno",
+    "vehiclekeyno",
 
         ...preferredFields.filter(
             field =>
+            field !== "wardname" &&
+            field !== "vehicleno" &&
+            field !== "vehiclekeyno" &&
                 fields.includes(field)
         ),
 

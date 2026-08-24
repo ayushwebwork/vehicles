@@ -1120,6 +1120,7 @@ function exportCSV() {
 
         "wardname",
         "vehicleno",
+        "vehiclekeyno",
         "routecleaned_p",
          "status",
          "drivername",
@@ -1187,20 +1188,51 @@ function exportCSV() {
 
 
     const rows =
-        vehicles.map(
-            (vehicle, index) => [
+        // vehicles.map(
+        //     (vehicle, index) => [
 
-                index + 1,
+        //         index + 1,
 
-                ...orderedFields.map(
-                    field =>
+        //         ...orderedFields.map(
+        //             field =>
+        //                 vehicle[field] ??
+        //                 ""
+        //         )
+
+        //     ]
+        // );
+
+    
+    vehicles.map(
+        (vehicle, index) => [
+
+            index + 1,
+
+            ...orderedFields.map(
+                field => {
+
+                    if (
+                        field === "vehiclekeyno"
+                    ) {
+
+                        return (
+                            getKeyNo(
+                                vehicle.vehicleno
+                            ) ?? ""
+                        );
+
+                    }
+
+                    return (
                         vehicle[field] ??
                         ""
-                )
+                    );
 
-            ]
-        );
+                }
+            )
 
+        ]
+    );
 
     function escapeCSV(value) {
 

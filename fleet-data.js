@@ -40,10 +40,17 @@ window.fleetData = [
   {
     "vehicleid": "VID1001",
     "vehicleno": "HR 46 G 0668",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:43",
     "place": null,
     "status": "Stopped since- 01:00:26",
+=======
+    "timerecorded": "28/08/2026 11:30",
+    "timerecorded_sys": "08/28/2026 11:30:43",
+    "place": null,
+    "status": "Stopped since- 00:50:26",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Stopped",
     "speed": 0,
     "gsm": "Airtel - Full",
@@ -57,7 +64,11 @@ window.fleetData = [
     "longitude": 76.5428099,
     "angle": 89,
     "ignition": 0,
+<<<<<<< HEAD
     "vehiclestatus": "Stopped since  01:00:26",
+=======
+    "vehiclestatus": "Stopped since  00:50:26",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "47475d57-48f7-44dd-a772-9e69bf154501",
     "routename": "SURYA NAGAR",
@@ -106,12 +117,21 @@ window.fleetData = [
   {
     "vehicleid": "VID1004",
     "vehicleno": "HR 46 G 6833",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:37",
     "place": null,
     "status": "Running since-N/A",
     "vstatus": "Running",
     "speed": 6,
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:58",
+    "place": null,
+    "status": "Running since-N/A",
+    "vstatus": "Running",
+    "speed": 9,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gsm": "Airtel - Good",
     "gps": 14,
     "vehiclebattery": 13,
@@ -119,9 +139,15 @@ window.fleetData = [
     "drivername": "WAZIR",
     "drivermobile": "",
     "vehicletype": "E RICKSHAW",
+<<<<<<< HEAD
     "latitude": 28.8915016,
     "longitude": 76.542965,
     "angle": 237,
+=======
+    "latitude": 28.891395,
+    "longitude": 76.5429916,
+    "angle": 198,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "ignition": 1,
     "vehiclestatus": "Running since N/A",
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
@@ -173,9 +199,15 @@ window.fleetData = [
     "vehicleid": "VID1006",
     "vehicleno": "HR46G7094",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:39",
     "place": null,
     "status": "Idle since- 21:58:47",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:09",
+    "place": null,
+    "status": "Idle since- 21:58:17",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Full",
@@ -189,7 +221,11 @@ window.fleetData = [
     "longitude": 76.54261,
     "angle": 289,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  21:58:47",
+=======
+    "vehiclestatus": "Idle since  21:58:17",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "0b707df2-5c75-46e3-9202-49fd162c6292",
     "routename": "NUTKHAT KANHA CLUB , KHATU SHYAM WALI GALI, GEETA WALI GALI, PNB ATM WALI GALI, TEEBA MOHALLA",
@@ -206,9 +242,15 @@ window.fleetData = [
     "vehicleid": "VID1007",
     "vehicleno": "HR 10 AM 3080",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:35",
     "place": null,
     "status": "Idle since- 00:15:30",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:05",
+    "place": null,
+    "status": "Idle since- 00:15:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Full",
@@ -222,7 +264,11 @@ window.fleetData = [
     "longitude": 76.5427216,
     "angle": 3,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  00:15:30",
+=======
+    "vehiclestatus": "Idle since  00:15:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": null,
     "routename": null,
@@ -305,9 +351,15 @@ window.fleetData = [
     "vehicleid": "VID1010",
     "vehicleno": "HR 46 G 5426",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:42",
     "place": null,
     "status": "Idle since- 00:01:00",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:12",
+    "place": null,
+    "status": "Idle since- 00:00:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Good",
@@ -317,11 +369,19 @@ window.fleetData = [
     "drivername": "RAJKUMAR",
     "drivermobile": "",
     "vehicletype": "E RICKSHAW",
+<<<<<<< HEAD
     "latitude": 28.8912766,
     "longitude": 76.542945,
     "angle": 277,
     "ignition": 1,
     "vehiclestatus": "Idle since  00:01:00",
+=======
+    "latitude": 28.89128,
+    "longitude": 76.542965,
+    "angle": 283,
+    "ignition": 1,
+    "vehiclestatus": "Idle since  00:00:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "cdfe06ae-a11f-4f50-ac42-b361096d51a2",
     "routename": "SATI BAI SAI DAS COLONY, SATI MATAWALI WALI, NOVELITY SOUND HOUSE WALI GALI",
@@ -337,6 +397,7 @@ window.fleetData = [
   {
     "vehicleid": "VID1011",
     "vehicleno": "HR 46 G 2031",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:44",
     "place": "Shivaji Colony Main Rd, Chawla Colony, Jagdish Colony, Rohtak, Haryana 124001, India",
@@ -345,16 +406,34 @@ window.fleetData = [
     "speed": 7,
     "gsm": "Airtel - Full",
     "gps": 5,
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:51",
+    "place": "Shivaji Colony Main Rd, Chawla Colony, Jagdish Colony, Rohtak, Haryana 124001, India",
+    "status": "Running since-00:08:02.99",
+    "vstatus": "Running",
+    "speed": 12,
+    "gsm": "Airtel - Full",
+    "gps": 10,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 14,
     "gpsbattery": 0,
     "drivername": "VIRENDER",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.88557,
     "longitude": 76.59172,
     "angle": 179,
     "ignition": 1,
     "vehiclestatus": "Running since 00:08:55.99",
+=======
+    "latitude": 28.8848499,
+    "longitude": 76.5924416,
+    "angle": 305,
+    "ignition": 1,
+    "vehiclestatus": "Running since 00:08:02.99",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "bae4465a-cc1a-44ec-8ee5-7b5326339d24",
     "routename": "SRI NAGAR COLONY, NEW CHINYOT COLONY, MEDICAL QUARTER, MAHILLA ASHRAM",
@@ -363,7 +442,7 @@ window.fleetData = [
     "totalnotcleanedpoints": 0,
     "routecleaned_p": 100,
     "zonename": null,
-    "wardname": "Ward 16",
+    "wardname": "Ward 15",
     "vendorname": "Vendor_1",
     "vendortype": "Vendor_2"
   },
@@ -371,9 +450,15 @@ window.fleetData = [
     "vehicleid": "VID1012",
     "vehicleno": "HR 46 G 2115",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:42",
     "place": null,
     "status": "Idle since- 00:18:00",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:12",
+    "place": null,
+    "status": "Idle since- 00:17:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Full",
@@ -387,7 +472,11 @@ window.fleetData = [
     "longitude": 76.54262,
     "angle": 99,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  00:18:00",
+=======
+    "vehiclestatus": "Idle since  00:17:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "d739a34a-bce8-4517-8ad2-1ded1b764cfd",
     "routename": "KACHA BERI ROAD TO ANAJ MANDI TO MAAL GODAM ROAD TO BHIWANI STAND TO RAILWAY ROAD TO APPROACH ROAD TO JHAJJAR ROAD",
@@ -437,6 +526,7 @@ window.fleetData = [
     "vehicleid": "VID1015",
     "vehicleno": "HR 46 G 1891",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:34",
     "place": null,
     "status": "Idle since- 00:11:00",
@@ -444,16 +534,33 @@ window.fleetData = [
     "speed": 0,
     "gsm": "Airtel - Good",
     "gps": 18,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:04",
+    "place": null,
+    "status": "Idle since- 00:10:30",
+    "vstatus": "Idle",
+    "speed": 0,
+    "gsm": "Airtel - Good",
+    "gps": 17,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 12,
     "gpsbattery": 0,
     "drivername": "SHIV KUMAR n",
     "drivermobile": "",
     "vehicletype": "E RICKSHAW",
+<<<<<<< HEAD
     "latitude": 28.8916949,
     "longitude": 76.5428666,
     "angle": 135,
     "ignition": 1,
     "vehiclestatus": "Idle since  00:11:00",
+=======
+    "latitude": 28.891635,
+    "longitude": 76.542945,
+    "angle": 125,
+    "ignition": 1,
+    "vehiclestatus": "Idle since  00:10:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "b96c07fb-3b2c-4717-a3ae-023e9bc051c1",
     "routename": "KHUNDI WALI GALI NARESH WALI GALI TO LALA MASTER HOUSE",
@@ -734,11 +841,19 @@ window.fleetData = [
     "vehicleid": "VID1027",
     "vehicleno": "HR 46 G-2798",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:39",
     "place": "Dariyao Nagar Rohtak Haryana",
     "status": "Running since-N/A",
     "vstatus": "Running",
     "speed": 6,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:09",
+    "place": "Dariyao Nagar Rohtak Haryana",
+    "status": "Idle since- 00:30:06",
+    "vstatus": "Idle",
+    "speed": 0,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gsm": "Airtel - Good",
     "gps": 8,
     "vehiclebattery": 13,
@@ -746,11 +861,17 @@ window.fleetData = [
     "drivername": "SANJAY",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.8869483,
     "longitude": 76.60631,
     "angle": 293,
+=======
+    "latitude": 28.8868049,
+    "longitude": 76.606495,
+    "angle": 8,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "ignition": 1,
-    "vehiclestatus": "Running since N/A",
+    "vehiclestatus": "Idle since  00:30:06",
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "7a42f9e4-0093-43c8-ad8a-bb70ada4ff55",
     "routename": "DARIYAV NAGAR, ADARSH NAGAR, ROOP VIHAR",
@@ -800,9 +921,15 @@ window.fleetData = [
     "vehicleid": "VID1029",
     "vehicleno": "HR 46 G 2268",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:43",
     "place": "NH352, Rohtak, Rohtak - 124001, Haryana, India",
     "status": "Idle since- 00:06:30",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:13",
+    "place": "NH352, Rohtak, Rohtak - 124001, Haryana, India",
+    "status": "Idle since- 00:06:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Full",
@@ -816,7 +943,11 @@ window.fleetData = [
     "longitude": 76.5924333,
     "angle": 27,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  00:06:30",
+=======
+    "vehiclestatus": "Idle since  00:06:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "6b55dfc6-459c-42f3-8a22-956c3c6ad34e",
     "routename": "EKTA COLONY",
@@ -865,6 +996,7 @@ window.fleetData = [
   {
     "vehicleid": "VID1031",
     "vehicleno": "HR46G4155",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:27",
     "place": null,
@@ -873,6 +1005,16 @@ window.fleetData = [
     "speed": 0,
     "gsm": "Airtel - Good",
     "gps": 14,
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:57",
+    "place": null,
+    "status": "Idle since- 00:06:30",
+    "vstatus": "Idle",
+    "speed": 0,
+    "gsm": "Airtel - Good",
+    "gps": 13,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 12,
     "gpsbattery": 0,
     "drivername": "ANKIT B",
@@ -882,7 +1024,11 @@ window.fleetData = [
     "longitude": 76.5429433,
     "angle": 39,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  00:07:00",
+=======
+    "vehiclestatus": "Idle since  00:06:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "9bb63912-7cc7-4fc8-8136-bb3c7d274275",
     "routename": "SORI MARKET",
@@ -932,6 +1078,7 @@ window.fleetData = [
     "vehicleid": "VID1033",
     "vehicleno": "HR 46 G0296",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:32",
     "place": null,
     "status": "Running since-N/A",
@@ -939,16 +1086,33 @@ window.fleetData = [
     "speed": 7,
     "gsm": "Airtel - Full",
     "gps": 14,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:13",
+    "place": null,
+    "status": "Idle since- 00:05:30",
+    "vstatus": "Idle",
+    "speed": 0,
+    "gsm": "Airtel - Full",
+    "gps": 13,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 12,
     "gpsbattery": 0,
     "drivername": "SANDIP e",
     "drivermobile": "",
     "vehicletype": "E RICKSHAW",
+<<<<<<< HEAD
     "latitude": 28.8911366,
     "longitude": 76.5425083,
     "angle": 66,
     "ignition": 1,
     "vehiclestatus": "Running since N/A",
+=======
+    "latitude": 28.8911899,
+    "longitude": 76.54253,
+    "angle": 68,
+    "ignition": 1,
+    "vehiclestatus": "Idle since  00:05:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "9bc9ae2e-4b6f-4829-aee8-144b02dcc5a6",
     "routename": "NEHRU COLONY , GAU SHALA ROAD, ROOP NAGAR",
@@ -998,23 +1162,39 @@ window.fleetData = [
     "vehicleid": "VID1035",
     "vehicleno": "HR 46 G 6938",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:36",
     "place": "unnamed road, Rohtak, Rohtak - 124001, Haryana, India",
     "status": "Running since-00:25:48",
     "vstatus": "Running",
     "speed": 9,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:09",
+    "place": "unnamed road, Rohtak, Rohtak - 124001, Haryana, India",
+    "status": "Running since-00:25:21",
+    "vstatus": "Running",
+    "speed": 54,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gsm": "Airtel - Good",
-    "gps": 13,
+    "gps": 12,
     "vehiclebattery": 14,
     "gpsbattery": 0,
     "drivername": "RAJESH",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.8622883,
     "longitude": 76.5997933,
     "angle": 262,
     "ignition": 1,
     "vehiclestatus": "Running since 00:25:48",
+=======
+    "latitude": 28.86272,
+    "longitude": 76.60185,
+    "angle": 256,
+    "ignition": 1,
+    "vehiclestatus": "Running since 00:25:21",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "0fded5ff-de1e-4f5a-a65f-81f72681e52f",
     "routename": "TILAK NAGAR , KAMAL COLONY, CHAUDHARY LANE",
@@ -1096,6 +1276,7 @@ window.fleetData = [
   {
     "vehicleid": "VID1038",
     "vehicleno": "HR 46 G 7015",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:32",
     "place": "Shivaji Colony Main Rd, Chawla Colony, Jagdish Colony, Rohtak, Haryana 124001, India",
@@ -1105,15 +1286,34 @@ window.fleetData = [
     "gsm": "Airtel - Full",
     "gps": 13,
     "vehiclebattery": 13,
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:55",
+    "place": "DLF Colony Rohtak",
+    "status": "Running since-00:04:39",
+    "vstatus": "Running",
+    "speed": 4,
+    "gsm": "Airtel - Good",
+    "gps": 12,
+    "vehiclebattery": 14,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gpsbattery": 0,
     "drivername": "PARVEEN",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.8881916,
     "longitude": 76.5955649,
     "angle": 227,
     "ignition": 1,
     "vehiclestatus": "Running since 00:05:16",
+=======
+    "latitude": 28.88951,
+    "longitude": 76.5970983,
+    "angle": 223,
+    "ignition": 1,
+    "vehiclestatus": "Running since 00:04:39",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "baa38e30-70db-4eef-82f5-f98967c5e6b0",
     "routename": "FRIENDS COLONY, NEW FRIENDS COLONY, TAGORE COLONY, MAJRA VILLAGE",
@@ -1163,9 +1363,15 @@ window.fleetData = [
     "vehicleid": "VID1040",
     "vehicleno": "HR 12 AZ 4226",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:32",
     "place": null,
     "status": "Idle since- 00:09:30",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:02",
+    "place": null,
+    "status": "Idle since- 00:09:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Full",
@@ -1179,7 +1385,11 @@ window.fleetData = [
     "longitude": 76.5427349,
     "angle": 303,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  00:09:30",
+=======
+    "vehiclestatus": "Idle since  00:09:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "5c52d3ca-3e95-4628-b543-f8d22cabf771",
     "routename": "JHAJJAR CHUNGI ,HISSAR ROAD,ANAZ MANDI ROAD, RUPIYA CHAWK TO JHAJJAR CHUNGI ROAD COMPLETE",
@@ -1228,24 +1438,43 @@ window.fleetData = [
   {
     "vehicleid": "VID1042",
     "vehicleno": "HR 46 G 8870",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:31",
     "place": null,
     "status": "Idle since- 00:01:00",
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:14",
+    "place": null,
+    "status": "Idle since- 00:00:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Poor",
     "gps": 17,
+<<<<<<< HEAD
     "vehiclebattery": 14,
+=======
+    "vehiclebattery": 13,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gpsbattery": 0,
     "drivername": "VIJAY PAL",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.8796033,
     "longitude": 76.5548516,
     "angle": 65,
     "ignition": 1,
     "vehiclestatus": "Idle since  00:01:00",
+=======
+    "latitude": 28.8794333,
+    "longitude": 76.5547766,
+    "angle": 99,
+    "ignition": 1,
+    "vehiclestatus": "Idle since  00:00:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "0846b45f-fb46-45e0-b962-7555f0c7ec82",
     "routename": "SHEELA BY PASS TO JAT BHAWAN, ANANAD SINGH DANGI BACK SIDE AREA",
@@ -1393,12 +1622,21 @@ window.fleetData = [
   {
     "vehicleid": "VID1047",
     "vehicleno": "HR46G5267",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:27",
     "place": null,
     "status": "Idle since- 00:00:30",
     "vstatus": "Idle",
     "speed": 0,
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:57",
+    "place": null,
+    "status": "Running since-00:44:04",
+    "vstatus": "Running",
+    "speed": 6,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gsm": "Airtel - Full",
     "gps": 14,
     "vehiclebattery": 11,
@@ -1406,11 +1644,19 @@ window.fleetData = [
     "drivername": "RITIK ",
     "drivermobile": "",
     "vehicletype": "E RICKSHAW",
+<<<<<<< HEAD
     "latitude": 28.929435,
     "longitude": 76.5954166,
     "angle": 241,
     "ignition": 1,
     "vehiclestatus": "Idle since  00:00:30",
+=======
+    "latitude": 28.9294566,
+    "longitude": 76.5954933,
+    "angle": 248,
+    "ignition": 1,
+    "vehiclestatus": "Running since 00:44:04",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "6a0e4a68-f3dd-495e-8d03-f95d2aba80e4",
     "routename": " A ONE CITY",
@@ -1493,11 +1739,19 @@ window.fleetData = [
     "vehicleid": "VID1050",
     "vehicleno": "HR 46 G 8497",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:36",
     "place": null,
     "status": "Idle since- 00:00:30",
     "vstatus": "Idle",
     "speed": 0,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:06",
+    "place": null,
+    "status": "Running since-N/A",
+    "vstatus": "Running",
+    "speed": 6,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gsm": "Airtel - Good",
     "gps": 18,
     "vehiclebattery": 12,
@@ -1505,11 +1759,19 @@ window.fleetData = [
     "drivername": "SHAKAR k",
     "drivermobile": "",
     "vehicletype": "E RICKSHAW",
+<<<<<<< HEAD
     "latitude": 28.8911966,
     "longitude": 76.5425783,
     "angle": 232,
     "ignition": 1,
     "vehiclestatus": "Idle since  00:00:30",
+=======
+    "latitude": 28.891215,
+    "longitude": 76.5426016,
+    "angle": 262,
+    "ignition": 1,
+    "vehiclestatus": "Running since N/A",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "85c1658b-0c99-4d59-9241-de861691ad34",
     "routename": "BALAK NATH,KABIR COLONY ",
@@ -1592,9 +1854,15 @@ window.fleetData = [
     "vehicleid": "VID1053",
     "vehicleno": "HR46G8306",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:30",
     "place": null,
     "status": "Idle since- 00:09:30",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:00",
+    "place": null,
+    "status": "Idle since- 00:09:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Full",
@@ -1608,7 +1876,11 @@ window.fleetData = [
     "longitude": 76.5426566,
     "angle": 63,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  00:09:30",
+=======
+    "vehiclestatus": "Idle since  00:09:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "76d05a2e-93e7-4b3d-9913-16e7a7fb78ff",
     "routename": "GHANI PURA",
@@ -1822,6 +2094,7 @@ window.fleetData = [
   {
     "vehicleid": "VID1060",
     "vehicleno": "HR 46 G5222",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:29",
     "place": "New Grain Market Rohtak",
@@ -1830,16 +2103,34 @@ window.fleetData = [
     "speed": 0,
     "gsm": "Airtel - Full",
     "gps": 13,
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:59",
+    "place": "New Grain Market Rohtak",
+    "status": "Idle since- 00:28:00",
+    "vstatus": "Idle",
+    "speed": 0,
+    "gsm": "Airtel - Full",
+    "gps": 14,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 12,
     "gpsbattery": 0,
     "drivername": "PARVEEN",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.886505,
     "longitude": 76.5718433,
     "angle": 22,
     "ignition": 1,
     "vehiclestatus": "Idle since  00:28:30",
+=======
+    "latitude": 28.886415,
+    "longitude": 76.5718299,
+    "angle": 185,
+    "ignition": 1,
+    "vehiclestatus": "Idle since  00:28:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "78f9148c-8e82-4583-b2b3-51162f269373",
     "routename": "JHAJJAR ROAD, REST HOUSE TO MAAL GODAM ",
@@ -1888,6 +2179,7 @@ window.fleetData = [
   {
     "vehicleid": "VID1062",
     "vehicleno": "HR 46 G-9991",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:38",
     "place": null,
@@ -1897,6 +2189,17 @@ window.fleetData = [
     "gsm": "Airtel - Good",
     "gps": 18,
     "vehiclebattery": 11,
+=======
+    "timerecorded": "28/08/2026 11:30",
+    "timerecorded_sys": "08/28/2026 11:30:38",
+    "place": null,
+    "status": "Stopped since- 00:00:02",
+    "vstatus": "Stopped",
+    "speed": 0,
+    "gsm": "Airtel - Good",
+    "gps": 17,
+    "vehiclebattery": 13,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gpsbattery": 0,
     "drivername": "AMARJEET",
     "drivermobile": "",
@@ -1905,7 +2208,11 @@ window.fleetData = [
     "longitude": 76.542615,
     "angle": 288,
     "ignition": 0,
+<<<<<<< HEAD
     "vehiclestatus": "Stopped since  00:10:02",
+=======
+    "vehiclestatus": "Stopped since  00:00:02",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "b117b24c-9aac-42bb-8dc0-7cb5868b7f91",
     "routename": "AMRIT COLONY",
@@ -1988,9 +2295,15 @@ window.fleetData = [
     "vehicleid": "VID1065",
     "vehicleno": "HR46G8270",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:44",
     "place": null,
     "status": "Idle since- 00:16:00",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:14",
+    "place": null,
+    "status": "Idle since- 00:15:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Good",
@@ -2004,7 +2317,11 @@ window.fleetData = [
     "longitude": 76.5428283,
     "angle": 48,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  00:16:00",
+=======
+    "vehiclestatus": "Idle since  00:15:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "fb28c60e-6032-4d73-a295-414b6b77fc8d",
     "routename": "NANU KE CHOWK  TO SHIV PIAO, PEER WALI GALI, GHAMMAL PRADHAN WALI GALI",
@@ -2021,6 +2338,7 @@ window.fleetData = [
     "vehicleid": "VID1066",
     "vehicleno": "HR 46 G-9158",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:46",
     "place": "1, Rohtak - Sonipat Rd, Model Town, Rohtak, Haryana 124001, India",
     "status": "Running since-02:04:26",
@@ -2029,15 +2347,33 @@ window.fleetData = [
     "gsm": "Airtel - Good",
     "gps": 10,
     "vehiclebattery": 14,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:08",
+    "place": "1, Rohtak - Sonipat Rd, Model Town, Rohtak, Haryana 124001, India",
+    "status": "Running since-02:03:48",
+    "vstatus": "Running",
+    "speed": 17,
+    "gsm": "Airtel - Full",
+    "gps": 9,
+    "vehiclebattery": 13,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gpsbattery": 0,
     "drivername": "VIRPAL",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.8963083,
     "longitude": 76.6117283,
     "angle": 211,
     "ignition": 1,
     "vehiclestatus": "Running since 02:04:26",
+=======
+    "latitude": 28.89638,
+    "longitude": 76.61149,
+    "angle": 70,
+    "ignition": 1,
+    "vehiclestatus": "Running since 02:03:48",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "f0920365-b356-4b23-bdee-c9905b9a1526",
     "routename": "HARKI DEVI , KABIR COLONY, SHEELA BY PASS",
@@ -2054,9 +2390,15 @@ window.fleetData = [
     "vehicleid": "VID1067",
     "vehicleno": "HR46G3328",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:34",
     "place": null,
     "status": "Idle since- 00:07:30",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:04",
+    "place": null,
+    "status": "Idle since- 00:07:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Full",
@@ -2070,7 +2412,11 @@ window.fleetData = [
     "longitude": 76.5428166,
     "angle": 242,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  00:07:30",
+=======
+    "vehiclestatus": "Idle since  00:07:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "a18d8321-2530-496e-aef2-bc7e7c60db82",
     "routename": "ARYA NAGAR,HUDA COMPLEX 1-2 GALI",
@@ -2384,6 +2730,7 @@ window.fleetData = [
     "vehicleid": "VID1078",
     "vehicleno": "HR46G2907",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:44",
     "place": "unnamed road, Rohtak, Rohtak - 124001, Haryana, India",
     "status": "Running since-N/A",
@@ -2391,14 +2738,29 @@ window.fleetData = [
     "speed": 10,
     "gsm": "Airtel - Good",
     "gps": 19,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:05",
+    "place": "unnamed road, Rohtak, Rohtak - 124001, Haryana, India",
+    "status": "Running since-N/A",
+    "vstatus": "Running",
+    "speed": 14,
+    "gsm": "Airtel - Good",
+    "gps": 18,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 13,
     "gpsbattery": 0,
     "drivername": "VICKY",
     "drivermobile": "",
     "vehicletype": "E RICKSHAW",
+<<<<<<< HEAD
     "latitude": 28.9009283,
     "longitude": 76.54187,
     "angle": 102,
+=======
+    "latitude": 28.9013416,
+    "longitude": 76.5398466,
+    "angle": 107,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "ignition": 1,
     "vehiclestatus": "Running since N/A",
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
@@ -2450,23 +2812,40 @@ window.fleetData = [
     "vehicleid": "VID1080",
     "vehicleno": "HR 46 G5898",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:40",
     "place": "Laxmi Factory Gohana Rd Rohtak",
     "status": "Idle since- 00:01:00",
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Full",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:10",
+    "place": "Laxmi Factory Gohana Rd Rohtak",
+    "status": "Idle since- 00:00:30",
+    "vstatus": "Idle",
+    "speed": 0,
+    "gsm": "Airtel - Good",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gps": 8,
     "vehiclebattery": 14,
     "gpsbattery": 4,
     "drivername": "DEEPAK",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.9132566,
     "longitude": 76.58915,
     "angle": 39,
     "ignition": 1,
     "vehiclestatus": "Idle since  00:01:00",
+=======
+    "latitude": 28.91341,
+    "longitude": 76.5891949,
+    "angle": 6,
+    "ignition": 1,
+    "vehiclestatus": "Idle since  00:00:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "e6d815a2-af3c-451c-97d5-27bd1e652cc5",
     "routename": "LAXMI NAGAR, KISAN PURA ,KAILASH COLONY",
@@ -2482,6 +2861,7 @@ window.fleetData = [
   {
     "vehicleid": "VID1081",
     "vehicleno": "HR 46 G-0160",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:21",
     "place": null,
@@ -2490,6 +2870,16 @@ window.fleetData = [
     "speed": 0,
     "gsm": "Airtel - Full",
     "gps": 17,
+=======
+    "timerecorded": "28/08/2026 11:35",
+    "timerecorded_sys": "08/28/2026 11:35:21",
+    "place": null,
+    "status": "Stopped since- 00:55:18",
+    "vstatus": "Stopped",
+    "speed": 0,
+    "gsm": "Airtel - Full",
+    "gps": 18,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 12,
     "gpsbattery": 0,
     "drivername": "AJMER",
@@ -2499,7 +2889,11 @@ window.fleetData = [
     "longitude": 76.54262,
     "angle": 327,
     "ignition": 0,
+<<<<<<< HEAD
     "vehiclestatus": "Stopped since  01:00:18",
+=======
+    "vehiclestatus": "Stopped since  00:55:18",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "e7a72313-62bc-448c-9fbf-5fc1e0be071a",
     "routename": "SANJAY COLONY, KODI ASHRAM,VAISNO MANDIR WALI GALI",
@@ -2582,11 +2976,19 @@ window.fleetData = [
     "vehicleid": "VID1084",
     "vehicleno": "HR 46 G-5482",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:26",
     "place": null,
     "status": "Running since-00:16:07",
     "vstatus": "Running",
     "speed": 6,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:19",
+    "place": null,
+    "status": "Running since-00:16:00",
+    "vstatus": "Running",
+    "speed": 8,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gsm": "Airtel - Good",
     "gps": 13,
     "vehiclebattery": 14,
@@ -2594,11 +2996,19 @@ window.fleetData = [
     "drivername": "SUNNY",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.891375,
     "longitude": 76.5427366,
     "angle": 338,
     "ignition": 1,
     "vehiclestatus": "Running since 00:16:07",
+=======
+    "latitude": 28.8914233,
+    "longitude": 76.5428583,
+    "angle": 203,
+    "ignition": 1,
+    "vehiclestatus": "Running since 00:16:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "f71d4dd3-1836-4f5b-a08d-24320c57f09b",
     "routename": "SUBASH ROAD, PALIKA  ROAD, GOHANA ADDA, BHAGAT SINGH COLONT, RAAD ROAD, NEW RAJENDRA NGR",
@@ -2780,6 +3190,7 @@ window.fleetData = [
     "vehicleid": "VID1090",
     "vehicleno": "HR 46 G-7267",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:41",
     "place": "Near Hindu College, Bhiwani-Rohtak Rd, Rohtak, Haryana 124001, India",
     "status": "Idle since- 00:01:30",
@@ -2818,6 +3229,46 @@ window.fleetData = [
     "status": "Stopped since- 00:10:17",
     "vstatus": "Stopped",
     "speed": 0,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:11",
+    "place": "Near Hindu College, Bhiwani-Rohtak Rd, Rohtak, Haryana 124001, India",
+    "status": "Idle since- 00:01:00",
+    "vstatus": "Idle",
+    "speed": 0,
+    "gsm": "Airtel - Full",
+    "gps": 14,
+    "vehiclebattery": 14,
+    "gpsbattery": 0,
+    "drivername": "DEEPAK",
+    "drivermobile": "",
+    "vehicletype": "Auto Tipper",
+    "latitude": 28.8904699,
+    "longitude": 76.55829,
+    "angle": 257,
+    "ignition": 1,
+    "vehiclestatus": "Idle since  00:01:00",
+    "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
+    "sysrouteuuid": "2090cc30-69d0-4c1c-87ed-48d1c1409575",
+    "routename": "MAHILLA ASHRAM ROAD(GALI -4 APPOLO TYRE) ARJUN NAGAR,POLICE CHOKI BACK SIDE( 2 GALI)",
+    "totalpoints": 10,
+    "totalcleanedpoints": 10,
+    "totalnotcleanedpoints": 0,
+    "routecleaned_p": 100,
+    "zonename": null,
+    "wardname": "Ward 18",
+    "vendorname": "Vendor_1",
+    "vendortype": "Vendor_2"
+  },
+  {
+    "vehicleid": "VID1091",
+    "vehicleno": "HR 46 G-8644",
+    "timerecorded": "28/08/2026 11:38",
+    "timerecorded_sys": "08/28/2026 11:38:52",
+    "place": null,
+    "status": "Stopped since- 00:10:17",
+    "vstatus": "Stopped",
+    "speed": 0,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gsm": "Airtel - Good",
     "gps": 18,
     "vehiclebattery": 13,
@@ -2911,6 +3362,7 @@ window.fleetData = [
   {
     "vehicleid": "VID1094",
     "vehicleno": "HR 46 G 7953",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:19",
     "place": "Bhiwani Rohtak Rd HR",
@@ -2919,16 +3371,34 @@ window.fleetData = [
     "speed": 0,
     "gsm": "Airtel - Good",
     "gps": 14,
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:49",
+    "place": "Bhiwani Rohtak Rd HR",
+    "status": "Running since-01:20:50",
+    "vstatus": "Running",
+    "speed": 7,
+    "gsm": "Airtel - Good",
+    "gps": 13,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 13,
     "gpsbattery": 4,
     "drivername": "SATISH",
     "drivermobile": "",
     "vehicletype": "E RICKSHAW",
+<<<<<<< HEAD
     "latitude": 28.8841433,
     "longitude": 76.5532933,
     "angle": 139,
     "ignition": 1,
     "vehiclestatus": "Idle since  00:00:30",
+=======
+    "latitude": 28.8841533,
+    "longitude": 76.553265,
+    "angle": 134,
+    "ignition": 1,
+    "vehiclestatus": "Running since 01:20:50",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "31dd4783-dbb2-429d-bf1d-e652a2db4128",
     "routename": "CHAMANPURA GALI 1-3 , PREM NAGAR TO SAINI DHARAMSHALA, CHUNNI PURE WALI GALIYA,",
@@ -2945,6 +3415,7 @@ window.fleetData = [
     "vehicleid": "VID1095",
     "vehicleno": "HR46G0718",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:42",
     "place": null,
     "status": "Running since-N/A",
@@ -2952,14 +3423,29 @@ window.fleetData = [
     "speed": 11,
     "gsm": "Airtel - Good",
     "gps": 10,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:00",
+    "place": null,
+    "status": "Running since-N/A",
+    "vstatus": "Running",
+    "speed": 7,
+    "gsm": "Airtel - Good",
+    "gps": 9,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 12,
     "gpsbattery": 0,
     "drivername": "SATENDRA ",
     "drivermobile": "",
     "vehicletype": "E RICKSHAW",
+<<<<<<< HEAD
     "latitude": 28.8910766,
     "longitude": 76.5427566,
     "angle": 345,
+=======
+    "latitude": 28.8911333,
+    "longitude": 76.5426616,
+    "angle": 158,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "ignition": 1,
     "vehiclestatus": "Running since N/A",
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
@@ -3076,10 +3562,17 @@ window.fleetData = [
   {
     "vehicleid": "VID1100",
     "vehicleno": "HR 46 G 4978",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:27",
     "place": null,
     "status": "Running since-01:56:29.99",
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:57",
+    "place": null,
+    "status": "Running since-01:55:59.99",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Running",
     "speed": 6,
     "gsm": "Airtel - Poor",
@@ -3089,11 +3582,19 @@ window.fleetData = [
     "drivername": "SUNIL A",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.87983,
     "longitude": 76.5549833,
     "angle": 15,
     "ignition": 1,
     "vehiclestatus": "Running since 01:56:29.99",
+=======
+    "latitude": 28.8794416,
+    "longitude": 76.554855,
+    "angle": 19,
+    "ignition": 1,
+    "vehiclestatus": "Running since 01:55:59.99",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "03720060-501a-4210-86a3-4245f7c533e6",
     "routename": "OLD HOUSING BOARD QTR , AZAD NAGAR",
@@ -3110,9 +3611,15 @@ window.fleetData = [
     "vehicleid": "VID1101",
     "vehicleno": "HR 46 G2854",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:42",
     "place": null,
     "status": "Idle since- 00:01:00",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:12",
+    "place": null,
+    "status": "Idle since- 00:00:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Good",
@@ -3122,11 +3629,19 @@ window.fleetData = [
     "drivername": "ARUN H",
     "drivermobile": "",
     "vehicletype": "E RICKSHAW",
+<<<<<<< HEAD
     "latitude": 28.8914366,
     "longitude": 76.5430049,
     "angle": 206,
     "ignition": 1,
     "vehiclestatus": "Idle since  00:01:00",
+=======
+    "latitude": 28.8914233,
+    "longitude": 76.542975,
+    "angle": 210,
+    "ignition": 1,
+    "vehiclestatus": "Idle since  00:00:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "68325f5c-31b0-4a53-b5c2-923470bfa458",
     "routename": "BADRI GATE, SIKARI MANDIR, ARYA SAMAJ WALI GALI, MUKESH CHAHAL WALI GALI, CHAMARO WALA BAGAD.",
@@ -3275,6 +3790,7 @@ window.fleetData = [
     "vehicleid": "VID1107",
     "vehicleno": "HR 46 G-8633",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:30",
     "place": "Rohtak Junction, Railway Colony, Rohtak, Haryana 124001, India",
     "status": "Running since-00:16:07",
@@ -3282,16 +3798,33 @@ window.fleetData = [
     "speed": 9,
     "gsm": "Airtel - Good",
     "gps": 15,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:17",
+    "place": "Vaish Technical Institute Rohtak Haryana",
+    "status": "Running since-00:15:54",
+    "vstatus": "Running",
+    "speed": 7,
+    "gsm": "Airtel - Good",
+    "gps": 12,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 14,
     "gpsbattery": 0,
     "drivername": "KARAMPAL",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.8931316,
     "longitude": 76.5725633,
     "angle": 275,
     "ignition": 1,
     "vehiclestatus": "Running since 00:16:07",
+=======
+    "latitude": 28.8929333,
+    "longitude": 76.5727533,
+    "angle": 346,
+    "ignition": 1,
+    "vehiclestatus": "Running since 00:15:54",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "044f7d62-9c9c-4138-a26d-e23125169a3f",
     "routename": "RAILIWAY QTR RAILWAY ROAD MAAL GODAM ROAD",
@@ -3308,9 +3841,15 @@ window.fleetData = [
     "vehicleid": "VID1108",
     "vehicleno": "HR 46 G-3716",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:45",
     "place": "Narayana College Hissar Road Rohtak",
     "status": "Idle since- 00:07:24",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:15",
+    "place": "Narayana College Hissar Road Rohtak",
+    "status": "Idle since- 00:06:54",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Full",
@@ -3324,7 +3863,11 @@ window.fleetData = [
     "longitude": 76.546605,
     "angle": 200,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  00:07:24",
+=======
+    "vehiclestatus": "Idle since  00:06:54",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "fea45176-d1ef-47a5-964f-24f28d819026",
     "routename": "RAM NAGAR, JAGDISH COLONY, BIJALI BOARD QTR,",
@@ -3341,11 +3884,19 @@ window.fleetData = [
     "vehicleid": "VID1109",
     "vehicleno": "HR 46 G9524",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:43",
     "place": "Plot No. 88, Sainik Colony, Hisar Rd, Rohtak, Haryana 124001, India",
     "status": "Running since-00:13:27",
     "vstatus": "Running",
     "speed": 18,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:06",
+    "place": "unnamed road, Rohtak, Rohtak - 124001, Haryana, India",
+    "status": "Running since-00:12:50",
+    "vstatus": "Running",
+    "speed": 33,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gsm": "Airtel - Full",
     "gps": 14,
     "vehiclebattery": 14,
@@ -3353,11 +3904,19 @@ window.fleetData = [
     "drivername": "BHIM SAIN",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.9014233,
     "longitude": 76.5549666,
     "angle": 219,
     "ignition": 1,
     "vehiclestatus": "Running since 00:13:27",
+=======
+    "latitude": 28.9028616,
+    "longitude": 76.5562716,
+    "angle": 222,
+    "ignition": 1,
+    "vehiclestatus": "Running since 00:12:50",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "a41e1669-1f6c-49ca-b566-0507d10185e5",
     "routename": "HANUMAN COLONY",
@@ -3366,7 +3925,11 @@ window.fleetData = [
     "totalnotcleanedpoints": 5,
     "routecleaned_p": 44,
     "zonename": null,
+<<<<<<< HEAD
     "wardname": "Ward 1",
+=======
+    "wardname": "Ward 2",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vendorname": "Vendor_1",
     "vendortype": "Vendor_2"
   },
@@ -3538,6 +4101,7 @@ window.fleetData = [
   {
     "vehicleid": "VID1115",
     "vehicleno": "HR 46 G-2924",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:40",
     "place": "Bohar Rohtak Haryana",
@@ -3546,16 +4110,32 @@ window.fleetData = [
     "speed": 6,
     "gsm": "Airtel - Full",
     "gps": 17,
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:56",
+    "place": "Bohar Rohtak Haryana",
+    "status": "Idle since- 00:02:30",
+    "vstatus": "Idle",
+    "speed": 0,
+    "gsm": "Airtel - Full",
+    "gps": 15,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 14,
     "gpsbattery": 4,
     "drivername": "MOHIT KUMAR",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.8927833,
     "longitude": 76.6541016,
     "angle": 345,
+=======
+    "latitude": 28.8923699,
+    "longitude": 76.6541599,
+    "angle": 3,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "ignition": 1,
-    "vehiclestatus": "Running since N/A",
+    "vehiclestatus": "Idle since  00:02:30",
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "eea8bf91-d8e2-4660-a795-a624fe4d82f3",
     "routename": "BOHAR VILLAGE",
@@ -3703,12 +4283,21 @@ window.fleetData = [
   {
     "vehicleid": "VID1121",
     "vehicleno": "HR 46 G 6559",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:10",
     "place": null,
     "status": "Running since-00:41:13",
     "vstatus": "Running",
     "speed": 6,
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:10",
+    "place": null,
+    "status": "Idle since- 00:01:00",
+    "vstatus": "Idle",
+    "speed": 0,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gsm": "Airtel - Good",
     "gps": 14,
     "vehiclebattery": 13,
@@ -3716,11 +4305,19 @@ window.fleetData = [
     "drivername": "GAURAV",
     "drivermobile": "",
     "vehicletype": "E RICKSHAW",
+<<<<<<< HEAD
     "latitude": 28.8795249,
     "longitude": 76.55418,
     "angle": 95,
     "ignition": 1,
     "vehiclestatus": "Running since 00:41:13",
+=======
+    "latitude": 28.8798016,
+    "longitude": 76.5530316,
+    "angle": 116,
+    "ignition": 1,
+    "vehiclestatus": "Idle since  00:01:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "465a3eae-869a-41cf-a57f-2453a5db4115",
     "routename": "VIJAY NAGAR,AZD NAGAR",
@@ -3869,11 +4466,19 @@ window.fleetData = [
     "vehicleid": "VID1129",
     "vehicleno": "HR 46 G 4619",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:44",
     "place": null,
     "status": "Idle since- 00:00:30",
     "vstatus": "Idle",
     "speed": 0,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:14",
+    "place": null,
+    "status": "Running since-N/A",
+    "vstatus": "Running",
+    "speed": 7,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gsm": "Airtel - Good",
     "gps": 14,
     "vehiclebattery": 13,
@@ -3881,11 +4486,19 @@ window.fleetData = [
     "drivername": "SANDEEP  l",
     "drivermobile": "",
     "vehicletype": "E RICKSHAW",
+<<<<<<< HEAD
     "latitude": 28.89138,
     "longitude": 76.5429849,
     "angle": 97,
     "ignition": 1,
     "vehiclestatus": "Idle since  00:00:30",
+=======
+    "latitude": 28.8913816,
+    "longitude": 76.5429766,
+    "angle": 80,
+    "ignition": 1,
+    "vehiclestatus": "Running since N/A",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "e567aae5-cd5e-4259-9f6a-633e609c159e",
     "routename": "PEER BABA WALI GALI, DHNAK WALI GALI, DAIRY MOHALLA",
@@ -3902,9 +4515,15 @@ window.fleetData = [
     "vehicleid": "VID1130",
     "vehicleno": "HR46G0554",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:32",
     "place": null,
     "status": "Idle since- 00:07:00",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:02",
+    "place": null,
+    "status": "Idle since- 00:06:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Good",
@@ -3918,7 +4537,11 @@ window.fleetData = [
     "longitude": 76.5430466,
     "angle": 138,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  00:07:00",
+=======
+    "vehiclestatus": "Idle since  00:06:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "fef082ce-941d-4104-b431-27aad74c8915",
     "routename": "KATH MANDI ME KHATI WALI GALI. GALI -2 NAI YO WALI, NO-3PAVE WALI NO-4KUI WALI,NO-5 NAYAPDAVE,NO-6MC WALI,NO-8 KRISHNA PARK WALI, NO-9MANAV SEWA KE SATH WALI GALI,,NO-10KHANTU SHYAM BABA KE SATH GALI OR PICHHE WALI",
@@ -3934,10 +4557,17 @@ window.fleetData = [
   {
     "vehicleid": "VID1131",
     "vehicleno": "HR 46 G-5484",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:23",
     "place": "Bhiwani Rohtak Rd HR",
     "status": "Stopped since- 01:15:12",
+=======
+    "timerecorded": "28/08/2026 11:35",
+    "timerecorded_sys": "08/28/2026 11:35:23",
+    "place": "Bhiwani Rohtak Rd HR",
+    "status": "Stopped since- 01:10:12",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Stopped",
     "speed": 0,
     "gsm": "Airtel - Good",
@@ -3951,7 +4581,11 @@ window.fleetData = [
     "longitude": 76.5507233,
     "angle": 64,
     "ignition": 0,
+<<<<<<< HEAD
     "vehiclestatus": "Stopped since  01:15:12",
+=======
+    "vehiclestatus": "Stopped since  01:10:12",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "b244802f-e897-482c-8d5f-3a134a43a9e8",
     "routename": "DURGA COLONY , CHAND NAGAR, VIKAS NAGAR",
@@ -4034,6 +4668,7 @@ window.fleetData = [
     "vehicleid": "VID1135",
     "vehicleno": "HR 46 G-8158",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:45",
     "place": "Jind Bye Pass Bus Stop, Outer City Rd, Gopal Colony, Rohtak, Haryana 124001, India",
     "status": "Running since-00:23:42",
@@ -4041,16 +4676,33 @@ window.fleetData = [
     "speed": 18,
     "gsm": "Airtel - Good",
     "gps": 14,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:17",
+    "place": null,
+    "status": "Running since-00:23:14",
+    "vstatus": "Running",
+    "speed": 57,
+    "gsm": "Airtel - Good",
+    "gps": 15,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 13,
     "gpsbattery": 0,
     "drivername": "KRISHAN",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.9155033,
     "longitude": 76.5694966,
     "angle": 232,
     "ignition": 1,
     "vehiclestatus": "Running since 00:23:42",
+=======
+    "latitude": 28.9179983,
+    "longitude": 76.5707733,
+    "angle": 198,
+    "ignition": 1,
+    "vehiclestatus": "Running since 00:23:14",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "69a0eb94-a932-48be-a645-e7f67e2c98b1",
     "routename": "BASANT VIHAR, INDRAPRATH, PANCHBATI COLONY",
@@ -4059,7 +4711,11 @@ window.fleetData = [
     "totalnotcleanedpoints": 0,
     "routecleaned_p": 100,
     "zonename": null,
+<<<<<<< HEAD
     "wardname": "Ward 2",
+=======
+    "wardname": "Ward 5",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vendorname": "Vendor_1",
     "vendortype": "Vendor_2"
   },
@@ -4133,6 +4789,7 @@ window.fleetData = [
     "vehicleid": "VID1139",
     "vehicleno": "HR 46 G-3800",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:33",
     "place": "Plot No. 88, Sainik Colony, Hisar Rd, Rohtak, Haryana 124001, India",
     "status": "Running since-00:13:26.99",
@@ -4140,16 +4797,33 @@ window.fleetData = [
     "speed": 23,
     "gsm": "Airtel - Full",
     "gps": 15,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:12",
+    "place": "Plot No. 88, Sainik Colony, Hisar Rd, Rohtak, Haryana 124001, India",
+    "status": "Running since-00:13:05.99",
+    "vstatus": "Running",
+    "speed": 18,
+    "gsm": "Airtel - Full",
+    "gps": 16,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 14,
     "gpsbattery": 3,
     "drivername": "MOSAM",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.90091,
     "longitude": 76.5545366,
     "angle": 218,
     "ignition": 1,
     "vehiclestatus": "Running since 00:13:26.99",
+=======
+    "latitude": 28.901655,
+    "longitude": 76.5551766,
+    "angle": 218,
+    "ignition": 1,
+    "vehiclestatus": "Running since 00:13:05.99",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "1e10424f-ffc4-45a5-ab5e-b0b0eb6b287a",
     "routename": "MAHAVIR COLONY, KRISHNA COLONY, SANJAY NAGAR, ASHOK NAGAR, SUBASH ROAD, ",
@@ -4158,7 +4832,11 @@ window.fleetData = [
     "totalnotcleanedpoints": 1,
     "routecleaned_p": 83,
     "zonename": null,
+<<<<<<< HEAD
     "wardname": "Ward 2",
+=======
+    "wardname": "Ward 1",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vendorname": "Vendor_1",
     "vendortype": "Vendor_2"
   },
@@ -4166,6 +4844,7 @@ window.fleetData = [
     "vehicleid": "VID1141",
     "vehicleno": "HR 46 G-8457",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:41",
     "place": null,
     "status": "Idle since- 00:01:00",
@@ -4173,16 +4852,33 @@ window.fleetData = [
     "speed": 0,
     "gsm": "Airtel - Full",
     "gps": 12,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:11",
+    "place": null,
+    "status": "Idle since- 00:00:30",
+    "vstatus": "Idle",
+    "speed": 0,
+    "gsm": "Airtel - Full",
+    "gps": 13,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 14,
     "gpsbattery": 0,
     "drivername": "SAWAN",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.8819216,
     "longitude": 76.6904333,
     "angle": 160,
     "ignition": 1,
     "vehiclestatus": "Idle since  00:01:00",
+=======
+    "latitude": 28.88185,
+    "longitude": 76.6904683,
+    "angle": 337,
+    "ignition": 1,
+    "vehiclestatus": "Idle since  00:00:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "f3478120-92f5-4029-8bdd-8cc8ca98befe",
     "routename": "BALIYANA-2",
@@ -4232,6 +4928,7 @@ window.fleetData = [
     "vehicleid": "VID1143",
     "vehicleno": "HR 46 G-2948",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:32",
     "place": "Vardman Enclave, opposite Old Session Court, Delhi Rd, Rohtak, Haryana 124001, India",
     "status": "Idle since- 00:00:30",
@@ -4240,15 +4937,33 @@ window.fleetData = [
     "gsm": "Airtel - Good",
     "gps": 12,
     "vehiclebattery": 13,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:02",
+    "place": "Vardman Enclave, opposite Old Session Court, Delhi Rd, Rohtak, Haryana 124001, India",
+    "status": "Running since-00:00:42",
+    "vstatus": "Running",
+    "speed": 7,
+    "gsm": "Airtel - Good",
+    "gps": 11,
+    "vehiclebattery": 14,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gpsbattery": 0,
     "drivername": "MAHAVIR",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.893825,
     "longitude": 76.6032133,
     "angle": 347,
     "ignition": 1,
     "vehiclestatus": "Idle since  00:00:30",
+=======
+    "latitude": 28.8935966,
+    "longitude": 76.6033066,
+    "angle": 1,
+    "ignition": 1,
+    "vehiclestatus": "Running since 00:00:42",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "959f7d80-9402-4548-b2aa-3674f9f89e63",
     "routename": "MANSAROWAR COLONY, JHANG COLONY, DHOBI MOHALLA, VARDHMAN ENCLAVE",
@@ -4298,21 +5013,36 @@ window.fleetData = [
     "vehicleid": "VID1146",
     "vehicleno": "HR 46 G1471",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:40",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "place": "Rohtak, Haryana, 124001, India",
     "status": "Running since-N/A",
     "vstatus": "Running",
     "speed": 7,
     "gsm": "Airtel - Full",
+<<<<<<< HEAD
     "gps": 12,
     "vehiclebattery": 14,
+=======
+    "gps": 13,
+    "vehiclebattery": 13,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gpsbattery": 0,
     "drivername": "SUMEET",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.915875,
     "longitude": 76.60221,
     "angle": 8,
+=======
+    "latitude": 28.91591,
+    "longitude": 76.602175,
+    "angle": 186,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "ignition": 1,
     "vehiclestatus": "Running since N/A",
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
@@ -4397,6 +5127,7 @@ window.fleetData = [
     "vehicleid": "VID1149",
     "vehicleno": "HR 46 G 3350",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:38",
     "place": "Muthoot Finances, Delhi Rd, Babra Mohalla, Rohtak, Haryana 124001, India",
     "status": "Running since-N/A",
@@ -4404,14 +5135,29 @@ window.fleetData = [
     "speed": 6,
     "gsm": "Airtel - Full",
     "gps": 8,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:09",
+    "place": "Chintamani Parasnath Digamber Jain Mandir Rohtak Haryana",
+    "status": "Running since-N/A",
+    "vstatus": "Running",
+    "speed": 19,
+    "gsm": "Airtel - Good",
+    "gps": 5,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 12,
     "gpsbattery": 0,
     "drivername": "ANIKIT",
     "drivermobile": "",
     "vehicletype": "E RICKSHAW",
+<<<<<<< HEAD
     "latitude": 28.8971699,
     "longitude": 76.579115,
     "angle": 281,
+=======
+    "latitude": 28.8974133,
+    "longitude": 76.5802833,
+    "angle": 279,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "ignition": 1,
     "vehiclestatus": "Running since N/A",
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
@@ -4528,6 +5274,7 @@ window.fleetData = [
   {
     "vehicleid": "VID1153",
     "vehicleno": "HR 46 G 1702",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:28",
     "place": null,
@@ -4536,6 +5283,16 @@ window.fleetData = [
     "speed": 0,
     "gsm": "Airtel - Full",
     "gps": 13,
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:58",
+    "place": null,
+    "status": "Idle since- 00:01:00",
+    "vstatus": "Idle",
+    "speed": 0,
+    "gsm": "Airtel - Full",
+    "gps": 14,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 12,
     "gpsbattery": 0,
     "drivername": "VINIT",
@@ -4545,7 +5302,11 @@ window.fleetData = [
     "longitude": 76.5427466,
     "angle": 328,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  00:01:30",
+=======
+    "vehiclestatus": "Idle since  00:01:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "92787564-6cab-47e9-bc55-e92a2b306558",
     "routename": "OM ALEVE CITY",
@@ -4661,6 +5422,7 @@ window.fleetData = [
     "vehicleid": "VID1157",
     "vehicleno": "HR 46 G-8934",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:39",
     "place": null,
     "status": "Running since-00:04:53",
@@ -4668,16 +5430,33 @@ window.fleetData = [
     "speed": 21,
     "gsm": "Airtel - Full",
     "gps": 17,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:16",
+    "place": null,
+    "status": "Running since-00:04:30",
+    "vstatus": "Running",
+    "speed": 9,
+    "gsm": "Airtel - Good",
+    "gps": 16,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 14,
     "gpsbattery": 0,
     "drivername": "JAI BHAGWAN",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.8928766,
     "longitude": 76.5428266,
     "angle": 152,
     "ignition": 1,
     "vehiclestatus": "Running since 00:04:53",
+=======
+    "latitude": 28.8938066,
+    "longitude": 76.5423099,
+    "angle": 198,
+    "ignition": 1,
+    "vehiclestatus": "Running since 00:04:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "162de9b6-e9ff-4d8b-8b7d-a23004ff22e9",
     "routename": "SALARA MOHALLA, FATEPURI COLONY, ROHTAS NAGAR,BHOM NAGAR,",
@@ -4727,23 +5506,37 @@ window.fleetData = [
     "vehicleid": "VID1159",
     "vehicleno": "HR 46 G 7446",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:27",
     "place": "DLF Colony Rohtak",
     "status": "Running since-00:03:01.99",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:10",
+    "place": "DLF Colony Rohtak",
+    "status": "Running since-00:02:44.99",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Running",
-    "speed": 10,
-    "gsm": "Airtel - Good",
+    "speed": 25,
+    "gsm": "Airtel - Full",
     "gps": 13,
     "vehiclebattery": 14,
     "gpsbattery": 0,
     "drivername": "JOGINDER",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.8888016,
     "longitude": 76.5955733,
     "angle": 121,
     "ignition": 1,
     "vehiclestatus": "Running since 00:03:01.99",
+=======
+    "latitude": 28.8892033,
+    "longitude": 76.5946183,
+    "angle": 115,
+    "ignition": 1,
+    "vehiclestatus": "Running since 00:02:44.99",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "ee89e817-e92a-410c-b1c2-7fc432bc5315",
     "routename": "DLF COLONY, ",
@@ -4760,6 +5553,7 @@ window.fleetData = [
     "vehicleid": "VID1160",
     "vehicleno": "HR 46 G-6787",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:44",
     "place": "unnamed road, Rohtak, Rohtak - 124001, Haryana, India",
     "status": "Running since-01:35:33.99",
@@ -4768,15 +5562,33 @@ window.fleetData = [
     "gsm": "Airtel - Good",
     "gps": 17,
     "vehiclebattery": 13,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:13",
+    "place": "unnamed road, Rohtak, Rohtak - 124001, Haryana, India",
+    "status": "Running since-01:35:02.99",
+    "vstatus": "Running",
+    "speed": 29,
+    "gsm": "Airtel - Full",
+    "gps": 17,
+    "vehiclebattery": 14,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gpsbattery": 4,
     "drivername": "RAVI",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.8617466,
     "longitude": 76.5972733,
     "angle": 255,
     "ignition": 1,
     "vehiclestatus": "Running since 01:35:33.99",
+=======
+    "latitude": 28.8623983,
+    "longitude": 76.6003949,
+    "angle": 258,
+    "ignition": 1,
+    "vehiclestatus": "Running since 01:35:02.99",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "1654c978-1a69-4e2d-87ba-be43563d9120",
     "routename": "KHEDI SADH, SEC-27 , ASTHAL BOHAR",
@@ -4792,6 +5604,7 @@ window.fleetData = [
   {
     "vehicleid": "VID1161",
     "vehicleno": "HR 46 G1966",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:29",
     "place": null,
@@ -4800,6 +5613,16 @@ window.fleetData = [
     "speed": 0,
     "gsm": "Airtel - Good",
     "gps": 17,
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:59",
+    "place": null,
+    "status": "Idle since- 00:19:30",
+    "vstatus": "Idle",
+    "speed": 0,
+    "gsm": "Airtel - Good",
+    "gps": 18,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 12,
     "gpsbattery": 0,
     "drivername": "KAWAR",
@@ -4809,7 +5632,11 @@ window.fleetData = [
     "longitude": 76.5425866,
     "angle": 314,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  00:20:00",
+=======
+    "vehiclestatus": "Idle since  00:19:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "baf3e4d6-c1a5-46d6-85e4-2d1c06f43904",
     "routename": "JAGDISH COLONY , BANK COLONY, PRATAP NAGAR, 60 FEET ROAD",
@@ -4892,6 +5719,7 @@ window.fleetData = [
     "vehicleid": "VID1164",
     "vehicleno": "HR 46 G-0152",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:19",
     "place": "unnamed road, Rohtak, Rohtak - 124001, Haryana, India",
     "status": "Running since-04:54:19",
@@ -4899,16 +5727,33 @@ window.fleetData = [
     "speed": 6,
     "gsm": "Airtel - Good",
     "gps": 13,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:10",
+    "place": null,
+    "status": "Running since-04:54:10",
+    "vstatus": "Running",
+    "speed": 6,
+    "gsm": "Airtel - Good",
+    "gps": 15,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 14,
     "gpsbattery": 4,
     "drivername": "BALVIR",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.9074566,
     "longitude": 76.5541949,
     "angle": 38,
     "ignition": 1,
     "vehiclestatus": "Running since 04:54:19",
+=======
+    "latitude": 28.907445,
+    "longitude": 76.5541466,
+    "angle": 212,
+    "ignition": 1,
+    "vehiclestatus": "Running since 04:54:10",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "f5bfc93e-c058-4453-82bd-cad067406d10",
     "routename": "SHIV COLONY",
@@ -4957,6 +5802,7 @@ window.fleetData = [
   {
     "vehicleid": "VID1166",
     "vehicleno": "HR 46 G-6722",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:23",
     "place": "Dairy Mohalla Rohtak Haryana",
@@ -4965,16 +5811,34 @@ window.fleetData = [
     "speed": 14,
     "gsm": "Airtel - Good",
     "gps": 11,
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:54",
+    "place": "Dairy Mohalla Rohtak Haryana",
+    "status": "Running since-00:07:18",
+    "vstatus": "Running",
+    "speed": 10,
+    "gsm": "Airtel - Good",
+    "gps": 12,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 14,
     "gpsbattery": 0,
     "drivername": "NARESH",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.9042483,
     "longitude": 76.5789333,
     "angle": 247,
     "ignition": 1,
     "vehiclestatus": "Running since 00:07:47",
+=======
+    "latitude": 28.9043449,
+    "longitude": 76.5799783,
+    "angle": 276,
+    "ignition": 1,
+    "vehiclestatus": "Running since 00:07:18",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "5c6f641d-7335-4d3a-858b-cf65a8cc9e73",
     "routename": "CHUNNI PURA , CHAMAN PURA, RICHHPAL COLONY, KIRPAL NGR,SAINI PURA",
@@ -4983,7 +5847,11 @@ window.fleetData = [
     "totalnotcleanedpoints": 0,
     "routecleaned_p": 100,
     "zonename": null,
+<<<<<<< HEAD
     "wardname": "Ward 7",
+=======
+    "wardname": "Ward 5",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vendorname": "Vendor_1",
     "vendortype": "Vendor_2"
   },
@@ -5056,12 +5924,21 @@ window.fleetData = [
   {
     "vehicleid": "VID1169",
     "vehicleno": "HR 46 G 8572",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:20",
     "place": "Sector 3 Rohtak Haryana",
     "status": "Idle since- 00:00:30",
     "vstatus": "Idle",
     "speed": 0,
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:50",
+    "place": "Sector 3 Rohtak Haryana",
+    "status": "Running since-00:00:56",
+    "vstatus": "Running",
+    "speed": 6,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gsm": "Airtel - Good",
     "gps": 11,
     "vehiclebattery": 14,
@@ -5070,10 +5947,17 @@ window.fleetData = [
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
     "latitude": 28.8984783,
+<<<<<<< HEAD
     "longitude": 76.62719,
     "angle": 26,
     "ignition": 1,
     "vehiclestatus": "Idle since  00:00:30",
+=======
+    "longitude": 76.6271716,
+    "angle": 33,
+    "ignition": 1,
+    "vehiclestatus": "Running since 00:00:56",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "b19a55c5-6f7f-4b89-b575-9c929fa6a0b2",
     "routename": "SEC- 3, HOUSING BOARD ",
@@ -5156,6 +6040,7 @@ window.fleetData = [
     "vehicleid": "VID1174",
     "vehicleno": "HR 46 G-5934",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:31",
     "place": null,
     "status": "Running since-02:04:18",
@@ -5163,16 +6048,33 @@ window.fleetData = [
     "speed": 6,
     "gsm": "Airtel - Full",
     "gps": 18,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:03",
+    "place": null,
+    "status": "Running since-02:03:50",
+    "vstatus": "Running",
+    "speed": 6,
+    "gsm": "Airtel - Good",
+    "gps": 17,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 14,
     "gpsbattery": 0,
     "drivername": "SUBASH",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.9189716,
     "longitude": 76.5853033,
     "angle": 137,
     "ignition": 1,
     "vehiclestatus": "Running since 02:04:18",
+=======
+    "latitude": 28.9192966,
+    "longitude": 76.5854033,
+    "angle": 195,
+    "ignition": 1,
+    "vehiclestatus": "Running since 02:03:50",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "f52f25e2-eb80-4f6e-a9d4-0d1f4ccd6af3",
     "routename": "RAJIV NAGAR PURA",
@@ -5189,6 +6091,7 @@ window.fleetData = [
     "vehicleid": "VID1175",
     "vehicleno": "HR 46 G-5052",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:46",
     "place": "Unnamed Road, Rajendra Nagar, Rohtak, Haryana 124001, India",
     "status": "Running since-00:20:06",
@@ -5196,14 +6099,29 @@ window.fleetData = [
     "speed": 9,
     "gsm": "Airtel - Good",
     "gps": 11,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:14",
+    "place": "Unnamed Road, Rajendra Nagar, Rohtak, Haryana 124001, India",
+    "status": "Idle since- 00:00:30",
+    "vstatus": "Idle",
+    "speed": 0,
+    "gsm": "Airtel - Full",
+    "gps": 10,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 13,
     "gpsbattery": 3,
     "drivername": "SANDEEP",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.90682,
     "longitude": 76.6028566,
     "angle": 185,
+=======
+    "latitude": 28.9067999,
+    "longitude": 76.6024533,
+    "angle": 336,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "ignition": 1,
     "vehiclestatus": "Running since 00:20:06",
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
@@ -5255,9 +6173,15 @@ window.fleetData = [
     "vehicleid": "VID1178",
     "vehicleno": "HR 12 AZ 4236",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:38",
     "place": null,
     "status": "Idle since- 00:29:30",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:08",
+    "place": null,
+    "status": "Idle since- 00:29:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Good",
@@ -5271,7 +6195,11 @@ window.fleetData = [
     "longitude": 76.5423116,
     "angle": 55,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  00:29:30",
+=======
+    "vehiclestatus": "Idle since  00:29:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "671b3253-2225-4b71-9b81-58a6ed08dc1b",
     "routename": "WARD-10,11,12",
@@ -5288,11 +6216,19 @@ window.fleetData = [
     "vehicleid": "VID1179",
     "vehicleno": "HR 46 G-5422",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:25",
     "place": "Dariyao Nagar Rohtak Haryana",
     "status": "Running since-N/A",
     "vstatus": "Running",
     "speed": 7,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:07",
+    "place": "Dariyao Nagar Rohtak Haryana",
+    "status": "Idle since- 00:02:30",
+    "vstatus": "Idle",
+    "speed": 0,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gsm": "Airtel - Good",
     "gps": 9,
     "vehiclebattery": 14,
@@ -5300,11 +6236,19 @@ window.fleetData = [
     "drivername": "NAVEEN",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.8866966,
     "longitude": 76.60556,
     "angle": 304,
     "ignition": 1,
     "vehiclestatus": "Running since N/A",
+=======
+    "latitude": 28.88671,
+    "longitude": 76.60565,
+    "angle": 175,
+    "ignition": 1,
+    "vehiclestatus": "Idle since  00:02:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "7ad6052f-3b29-41a6-b00b-425ef462760e",
     "routename": "BHARAt colony CHANAKYA PURI",
@@ -5387,6 +6331,7 @@ window.fleetData = [
     "vehicleid": "VID1182",
     "vehicleno": "HR 46 G-5991",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:43",
     "place": "Near Hindu College, Bhiwani-Rohtak Rd, Rohtak, Haryana 124001, India",
     "status": "Idle since- 00:03:00",
@@ -5394,6 +6339,15 @@ window.fleetData = [
     "speed": 0,
     "gsm": "Airtel - Full",
     "gps": 13,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:13",
+    "place": "Near Hindu College, Bhiwani-Rohtak Rd, Rohtak, Haryana 124001, India",
+    "status": "Idle since- 00:02:30",
+    "vstatus": "Idle",
+    "speed": 0,
+    "gsm": "Airtel - Full",
+    "gps": 12,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 12,
     "gpsbattery": 4,
     "drivername": "AJAY A",
@@ -5403,7 +6357,11 @@ window.fleetData = [
     "longitude": 76.5592166,
     "angle": 287,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  00:03:00",
+=======
+    "vehiclestatus": "Idle since  00:02:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "6f14901b-5c54-49cb-b8b3-0c0bcc5d9a91",
     "routename": "ARYA NAGAR, GHANI PURA, SHIV ENCLAVE,",
@@ -5453,6 +6411,7 @@ window.fleetData = [
     "vehicleid": "VID1184",
     "vehicleno": "HR 46 G-4538",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:40",
     "place": "Dairy Mohalla Rohtak Haryana",
     "status": "Running since-05:05:59",
@@ -5460,16 +6419,33 @@ window.fleetData = [
     "speed": 23,
     "gsm": "Airtel - Good",
     "gps": 13,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:11",
+    "place": "Dairy Mohalla Rohtak Haryana",
+    "status": "Running since-05:05:30",
+    "vstatus": "Running",
+    "speed": 6,
+    "gsm": "Airtel - Good",
+    "gps": 10,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 14,
     "gpsbattery": 0,
     "drivername": "NARENDRA",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.9042583,
     "longitude": 76.5791133,
     "angle": 254,
     "ignition": 1,
     "vehiclestatus": "Running since 05:05:59",
+=======
+    "latitude": 28.9043816,
+    "longitude": 76.5801716,
+    "angle": 276,
+    "ignition": 1,
+    "vehiclestatus": "Running since 05:05:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "8372536a-5b3c-4071-a270-ba52910660e8",
     "routename": "PREM NAGAR, POLICE LINE, JAIL ROAD, ",
@@ -5651,12 +6627,21 @@ window.fleetData = [
     "vehicleid": "VID1190",
     "vehicleno": "HR 46 G-0758",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:35",
     "place": null,
     "status": "Idle since- 00:02:00",
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Full",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:05",
+    "place": null,
+    "status": "Idle since- 00:01:30",
+    "vstatus": "Idle",
+    "speed": 0,
+    "gsm": "Airtel - Good",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gps": 17,
     "vehiclebattery": 12,
     "gpsbattery": 0,
@@ -5667,7 +6652,11 @@ window.fleetData = [
     "longitude": 76.5427116,
     "angle": 99,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  00:02:00",
+=======
+    "vehiclestatus": "Idle since  00:01:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "d4b6d93b-9089-4ce7-b122-ea0112c460b4",
     "routename": "BALMIKI BASTI, PATEL NAGAR, CHINNYOT COLONY, QUARTER RESIDENCE, LABOUR ROAD, SAI BABA MANDIR,RAILWAY LINE",
@@ -5948,9 +6937,15 @@ window.fleetData = [
     "vehicleid": "VID1199",
     "vehicleno": "HR46G8658",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:42",
     "place": null,
     "status": "Idle since- 00:08:30",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:12",
+    "place": null,
+    "status": "Idle since- 00:08:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Full",
@@ -5960,11 +6955,19 @@ window.fleetData = [
     "drivername": "TONI",
     "drivermobile": "",
     "vehicletype": "E RICKSHAW",
+<<<<<<< HEAD
     "latitude": 28.8912166,
     "longitude": 76.5427033,
     "angle": 87,
     "ignition": 1,
     "vehiclestatus": "Idle since  00:08:30",
+=======
+    "latitude": 28.891215,
+    "longitude": 76.5427466,
+    "angle": 89,
+    "ignition": 1,
+    "vehiclestatus": "Idle since  00:08:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "5bb923a8-c74f-473d-8882-3c51f252a35f",
     "routename": "DURGA COLONY , CHAND COLONY,SUBASH NAGAR",
@@ -6080,9 +7083,15 @@ window.fleetData = [
     "vehicleid": "VID1204",
     "vehicleno": "HR 12 AZ 0695",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:30",
     "place": null,
     "status": "Idle since- 02:50:30",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:00",
+    "place": null,
+    "status": "Idle since- 02:50:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Full",
@@ -6096,7 +7105,11 @@ window.fleetData = [
     "longitude": 76.542605,
     "angle": 2,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  02:50:30",
+=======
+    "vehiclestatus": "Idle since  02:50:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "f9a55954-aa4d-49c1-abac-aed5eb13ae9f",
     "routename": "TI ROAD, RAILWAY ROAD , JHAJJAR ROAD,HOODA COMPLEX,REST HOUSE , ZILA VIKAS, COURT, DC OFFICE, SOM MANDIR",
@@ -6145,10 +7158,17 @@ window.fleetData = [
   {
     "vehicleid": "VID1206",
     "vehicleno": "HR 12 AZ 5943",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:21",
     "place": null,
     "status": "Idle since- 01:32:30",
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:51",
+    "place": null,
+    "status": "Idle since- 01:32:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Good",
@@ -6162,7 +7182,11 @@ window.fleetData = [
     "longitude": 76.5423583,
     "angle": 339,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  01:32:30",
+=======
+    "vehiclestatus": "Idle since  01:32:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "5be38eb9-4b27-4ad2-a924-e2186f561681",
     "routename": "DELHI ROAD COMPLETE, SONIPAT STANDGANDHI CAMP, TRIKONA PARK",
@@ -6178,13 +7202,22 @@ window.fleetData = [
   {
     "vehicleid": "VID1207",
     "vehicleno": "HR 46 G 9789",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:20",
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:50",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "place": null,
     "status": "Idle since- N/A",
     "vstatus": "Idle",
     "speed": 0,
+<<<<<<< HEAD
     "gsm": "Airtel - Good",
+=======
+    "gsm": "Airtel - Full",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gps": 14,
     "vehiclebattery": 12,
     "gpsbattery": 0,
@@ -6311,9 +7344,15 @@ window.fleetData = [
     "vehicleid": "VID1211",
     "vehicleno": "HR 12 AY 8605",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:44",
     "place": null,
     "status": "Idle since- 03:32:04",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:14",
+    "place": null,
+    "status": "Idle since- 03:31:34",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Full",
@@ -6327,7 +7366,11 @@ window.fleetData = [
     "longitude": 76.5428166,
     "angle": 226,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  03:32:04",
+=======
+    "vehiclestatus": "Idle since  03:31:34",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "3f9a3faa-29a1-4e83-ba34-8f42d3b44f72",
     "routename": "SUBASH ROAD ,NEW BUS STAND , SUPRA CHAWK, POLICE LINE, TB HOSPITAL",
@@ -6376,6 +7419,7 @@ window.fleetData = [
   {
     "vehicleid": "VID1213",
     "vehicleno": "HR 12 AZ 5740",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:25",
     "place": null,
@@ -6383,6 +7427,15 @@ window.fleetData = [
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Good",
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:55",
+    "place": null,
+    "status": "Idle since- 00:20:30",
+    "vstatus": "Idle",
+    "speed": 0,
+    "gsm": "Airtel - Full",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gps": 14,
     "vehiclebattery": 12,
     "gpsbattery": 4,
@@ -6393,7 +7446,11 @@ window.fleetData = [
     "longitude": 76.5427516,
     "angle": 296,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  00:21:00",
+=======
+    "vehiclestatus": "Idle since  00:20:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "8a042b3f-bf77-4c8a-aeed-c45360e98782",
     "routename": "SUBASH ROAD ,NEW BUS STAND , SUPRA CHAWK, POLICE LINE, TB HOSPITAL",
@@ -6607,12 +7664,21 @@ window.fleetData = [
   {
     "vehicleid": "VID1222",
     "vehicleno": "HR 46 G 5264",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:45",
     "place": null,
     "status": "Running since-N/A",
     "vstatus": "Running",
     "speed": 8,
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:51",
+    "place": null,
+    "status": "Idle since- 00:01:00",
+    "vstatus": "Idle",
+    "speed": 0,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gsm": "Airtel - Full",
     "gps": 14,
     "vehiclebattery": 12,
@@ -6620,11 +7686,19 @@ window.fleetData = [
     "drivername": "BIJENDER",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.8911833,
     "longitude": 76.5425683,
     "angle": 12,
     "ignition": 1,
     "vehiclestatus": "Running since N/A",
+=======
+    "latitude": 28.8912,
+    "longitude": 76.5426033,
+    "angle": 33,
+    "ignition": 1,
+    "vehiclestatus": "Idle since  00:01:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "445820e0-9c05-42e3-804b-0821f17c1243",
     "routename": "\"1. FURNITURE MARKET TO GOHANA  ADDA TO SUKHPURA  CHOWK  TO VITA CHOWK  BOTH SIDE .\"",
@@ -6640,10 +7714,17 @@ window.fleetData = [
   {
     "vehicleid": "VID1223",
     "vehicleno": "HR 12 AZ 5103",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:28",
     "place": null,
     "status": "Idle since- 00:04:30",
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:58",
+    "place": null,
+    "status": "Idle since- 00:04:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Full",
@@ -6657,7 +7738,11 @@ window.fleetData = [
     "longitude": 76.542605,
     "angle": 203,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  00:04:30",
+=======
+    "vehiclestatus": "Idle since  00:04:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "9b532901-ad66-4824-96e2-5d37bc3e1a31",
     "routename": "DELHI ROAD COMPLETE, SONIPAT STANDGANDHI CAMP, TRIKONA PARK",
@@ -6707,9 +7792,15 @@ window.fleetData = [
     "vehicleid": "VID1225",
     "vehicleno": "HR 12 AZ 5462",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:37",
     "place": null,
     "status": "Idle since- 00:02:30",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:07",
+    "place": null,
+    "status": "Idle since- 00:02:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Full",
@@ -6723,7 +7814,11 @@ window.fleetData = [
     "longitude": 76.5425866,
     "angle": 199,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  00:02:30",
+=======
+    "vehiclestatus": "Idle since  00:02:00",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "5515e811-68c7-4bec-9444-f8edccb24beb",
     "routename": "JATBHAWAN , SONIPAT ROAD, ALL SECTOR, OFFICER COLONY",
@@ -6872,9 +7967,15 @@ window.fleetData = [
     "vehicleid": "VID1230",
     "vehicleno": "HR 46 G9300",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:30",
     "place": null,
     "status": "Idle since- 02:06:00",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:00",
+    "place": null,
+    "status": "Idle since- 02:05:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Good",
@@ -6888,7 +7989,11 @@ window.fleetData = [
     "longitude": 76.5429883,
     "angle": 34,
     "ignition": 1,
+<<<<<<< HEAD
     "vehiclestatus": "Idle since  02:06:00",
+=======
+    "vehiclestatus": "Idle since  02:05:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "aa8922f3-e654-4821-a1ab-6cd68fcfdc67",
     "routename": "OLD SABZI MANDI",
@@ -7004,6 +8109,7 @@ window.fleetData = [
     "vehicleid": "VID1234",
     "vehicleno": "HR 46 G 3531",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:37",
     "place": null,
     "status": "Running since-N/A",
@@ -7011,14 +8117,29 @@ window.fleetData = [
     "speed": 22,
     "gsm": "Airtel - Good",
     "gps": 12,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:19",
+    "place": null,
+    "status": "Running since-N/A",
+    "vstatus": "Running",
+    "speed": 24,
+    "gsm": "Airtel - Good",
+    "gps": 13,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 12,
     "gpsbattery": 0,
     "drivername": "RAHUL",
     "drivermobile": "",
     "vehicletype": "E RICKSHAW",
+<<<<<<< HEAD
     "latitude": 28.881245,
     "longitude": 76.5539816,
     "angle": 212,
+=======
+    "latitude": 28.882325,
+    "longitude": 76.55386,
+    "angle": 165,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "ignition": 1,
     "vehiclestatus": "Running since N/A",
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
@@ -7037,11 +8158,19 @@ window.fleetData = [
     "vehicleid": "VID1235",
     "vehicleno": "HR46G3817",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:42",
     "place": "Bhiwani Rohtak Rd HR",
     "status": "Running since-N/A",
     "vstatus": "Running",
     "speed": 20,
+=======
+    "timerecorded_sys": "08/28/2026 11:40:12",
+    "place": "Bhiwani Rohtak Rd HR",
+    "status": "Running since-N/A",
+    "vstatus": "Running",
+    "speed": 6,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gsm": "Airtel - Good",
     "gps": 14,
     "vehiclebattery": 12,
@@ -7049,9 +8178,15 @@ window.fleetData = [
     "drivername": "ISLAM",
     "drivermobile": "",
     "vehicletype": "E RICKSHAW",
+<<<<<<< HEAD
     "latitude": 28.8884666,
     "longitude": 76.5491049,
     "angle": 8,
+=======
+    "latitude": 28.88821,
+    "longitude": 76.5490749,
+    "angle": 350,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "ignition": 1,
     "vehiclestatus": "Running since N/A",
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
@@ -7135,10 +8270,17 @@ window.fleetData = [
   {
     "vehicleid": "VID1238",
     "vehicleno": "HR46G1295",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:35",
     "timerecorded_sys": "08/28/2026 11:35:53",
     "place": null,
     "status": "Stopped since- 01:00:10",
+=======
+    "timerecorded": "28/08/2026 11:30",
+    "timerecorded_sys": "08/28/2026 11:30:53",
+    "place": null,
+    "status": "Stopped since- 00:55:10",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Stopped",
     "speed": 0,
     "gsm": "Airtel - Full",
@@ -7152,7 +8294,11 @@ window.fleetData = [
     "longitude": 76.5429266,
     "angle": 141,
     "ignition": 0,
+<<<<<<< HEAD
     "vehiclestatus": "Stopped since  01:00:10",
+=======
+    "vehiclestatus": "Stopped since  00:55:10",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": null,
     "routename": null,
@@ -7201,6 +8347,7 @@ window.fleetData = [
   {
     "vehicleid": "VID1240",
     "vehicleno": "HR46G0979",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:22",
     "place": "Tau Colony, Garhi Bohar, Rohtak, Haryana, 124021, India",
@@ -7209,16 +8356,34 @@ window.fleetData = [
     "speed": 0,
     "gsm": "Airtel - Good",
     "gps": 13,
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:52",
+    "place": "Tau Colony, Garhi Bohar, Rohtak, Haryana, 124021, India",
+    "status": "Idle since- 00:01:30",
+    "vstatus": "Idle",
+    "speed": 0,
+    "gsm": "Airtel - Good",
+    "gps": 14,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vehiclebattery": 13,
     "gpsbattery": 4,
     "drivername": "ROHIT",
     "drivermobile": "",
     "vehicletype": "Auto Tipper",
+<<<<<<< HEAD
     "latitude": 28.88052,
     "longitude": 76.6455099,
     "angle": 258,
     "ignition": 1,
     "vehiclestatus": "Idle since  00:02:00",
+=======
+    "latitude": 28.8805016,
+    "longitude": 76.6456133,
+    "angle": 330,
+    "ignition": 1,
+    "vehiclestatus": "Idle since  00:01:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "9a8e41bd-ad23-4cdd-894c-840749719717",
     "routename": "SECTOR - 6,ASHIYANA BPL FLATS,BABA GORAKHNATH NAGAR",
@@ -7234,10 +8399,17 @@ window.fleetData = [
   {
     "vehicleid": "VID1242",
     "vehicleno": "HR46G3460",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:27",
     "place": null,
     "status": "Idle since- 00:01:00",
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:57",
+    "place": null,
+    "status": "Idle since- 00:00:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Full",
@@ -7247,11 +8419,19 @@ window.fleetData = [
     "drivername": "VICKY d",
     "drivermobile": "",
     "vehicletype": "E RICKSHAW",
+<<<<<<< HEAD
     "latitude": 28.8911883,
     "longitude": 76.5429933,
     "angle": 80,
     "ignition": 1,
     "vehiclestatus": "Idle since  00:01:00",
+=======
+    "latitude": 28.8911933,
+    "longitude": 76.5430666,
+    "angle": 74,
+    "ignition": 1,
+    "vehiclestatus": "Idle since  00:00:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": "0d6525da-e027-43b1-a3ca-b63d545f0075",
     "routename": "KARTAR PURA, SHASHI BASTI, SARDARO WALI GALI",
@@ -7334,23 +8514,40 @@ window.fleetData = [
     "vehicleid": "VID1246",
     "vehicleno": "HR 46 G3172",
     "timerecorded": "28/08/2026 11:40",
+<<<<<<< HEAD
     "timerecorded_sys": "08/28/2026 11:40:33",
     "place": null,
     "status": "Idle since- 00:00:30",
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Full",
+=======
+    "timerecorded_sys": "08/28/2026 11:40:03",
+    "place": null,
+    "status": "Running since-N/A",
+    "vstatus": "Running",
+    "speed": 7,
+    "gsm": "Airtel - Good",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "gps": 14,
     "vehiclebattery": 12,
     "gpsbattery": 0,
     "drivername": "LAKHAN A",
     "drivermobile": "",
     "vehicletype": "E RICKSHAW",
+<<<<<<< HEAD
     "latitude": 28.8911466,
     "longitude": 76.5428233,
     "angle": 92,
     "ignition": 1,
     "vehiclestatus": "Idle since  00:00:30",
+=======
+    "latitude": 28.8911683,
+    "longitude": 76.5426533,
+    "angle": 90,
+    "ignition": 1,
+    "vehiclestatus": "Running since N/A",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": null,
     "routename": null,
@@ -7531,10 +8728,17 @@ window.fleetData = [
   {
     "vehicleid": "VID1254",
     "vehicleno": "HR46G7944",
+<<<<<<< HEAD
     "timerecorded": "28/08/2026 11:40",
     "timerecorded_sys": "08/28/2026 11:40:24",
     "place": null,
     "status": "Idle since- 00:08:00",
+=======
+    "timerecorded": "28/08/2026 11:39",
+    "timerecorded_sys": "08/28/2026 11:39:54",
+    "place": null,
+    "status": "Idle since- 00:07:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "vstatus": "Idle",
     "speed": 0,
     "gsm": "Airtel - Full",
@@ -7544,11 +8748,19 @@ window.fleetData = [
     "drivername": "",
     "drivermobile": "",
     "vehicletype": "E RICKSHAW",
+<<<<<<< HEAD
     "latitude": 28.8911583,
     "longitude": 76.5427366,
     "angle": 334,
     "ignition": 1,
     "vehiclestatus": "Idle since  00:08:00",
+=======
+    "latitude": 28.8911983,
+    "longitude": 76.5427266,
+    "angle": 333,
+    "ignition": 1,
+    "vehiclestatus": "Idle since  00:07:30",
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
     "syscompanyuuid": "903c35c5-7d7f-485f-a1de-fc1ce6258624",
     "sysrouteuuid": null,
     "routename": null,
@@ -7570,9 +8782,15 @@ window.fleetData = [
 
 window.fleetMeta = {
 
+<<<<<<< HEAD
     generatedAt: "28-Aug-2026 11:40:55 AM",
 
     generatedTimestamp: 1787897455889,
+=======
+    generatedAt: "28-Aug-2026 11:40:31 AM",
+
+    generatedTimestamp: 1787897431128,
+>>>>>>> 82a24cd6c64eaaf9b5314239039dcf7909e40cac
 
     totalVehicles: 229
 

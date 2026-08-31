@@ -1,0 +1,1483 @@
+// ==UserScript==
+// @name         Mobile Rohtak Fleet Data Capture
+// @namespace    http://tampermonkey.net/
+// @version      3.0
+// @description  Capture ReceiveFleetData and automatically download fleet-data.js
+// @match        https://swmrohtak.laayn.in/*
+// @match        https://*.laayn.in/*
+// @run-at       document-start
+// @grant        none
+// ==/UserScript==
+
+(function () {
+
+    "use strict";
+
+    console.log(
+        "%c[TM Fleet] Script loaded",
+        "color:#22c55e;font-weight:bold"
+    );
+
+
+    /* =========================================================
+       SETTINGS
+    ========================================================= */
+
+    const AUTO_DOWNLOAD = false;
+
+    /*
+     * Don't download the same data repeatedly.
+     */
+    let lastDataHash = "";
+
+    /*
+     * Minimum time between automatic downloads.
+     */
+    const DOWNLOAD_INTERVAL = 60 * 1000;
+
+    let lastDownloadTime = 0;
+
+
+    /* =========================================================
+       GLOBAL DATA
+    ========================================================= */
+
+    window.fleetData = [];
+
+    window.fleetMeta = {
+
+        generatedAt: null,
+
+        generatedTimestamp: null,
+
+        totalVehicles: 0
+
+    };
+
+
+    /* =========================================================
+       STATUS PANEL
+    ========================================================= */
+
+    function createPanel() {
+
+        if (
+            document.getElementById(
+                "fleet-capture-panel"
+            )
+        ) {
+            return;
+        }
+
+
+        if (!document.body) {
+            return;
+        }
+
+
+        const panel =
+            document.createElement("div");
+
+
+        panel.id =
+            "fleet-capture-panel";
+
+
+        panel.innerHTML = `
+
+            <div style="
+                font-size:14px;
+                font-weight:700;
+                margin-bottom:8px;
+            ">
+                🚛 Fleet Data Capture
+            </div>
+
+            <div id="fleet-status" style="
+                font-size:12px;
+                color:#cbd5e1;
+                margin-bottom:7px;
+            ">
+                Waiting for WebSocket...
+            </div>
+
+            <div id="fleet-count" style="
+                font-size:12px;
+                color:#94a3b8;
+                margin-bottom:7px;
+            ">
+                Vehicles: 0
+            </div>
+
+            <div id="fleet-time" style="
+                font-size:11px;
+                color:#94a3b8;
+                margin-bottom:10px;
+            ">
+                Last update: —
+            </div>
+
+            <button id="fleet-upload" style="
+    width:100%;
+    padding:9px 10px;
+    border:0;
+    border-radius:6px;
+    background:#16a34a;
+    color:white;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:600;
+    margin-bottom:7px;
+">
+    🚀 UPDATE GITHUB
+</button>
+
+<button id="fleet-download" style="
+    width:100%;
+    padding:7px 10px;
+    border:0;
+    border-radius:6px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:600;
+">
+    Download fleet-data.js
+</button>
+
+        `;
+
+
+        Object.assign(
+            panel.style,
+            {
+
+                position: "fixed",
+
+                right: "14px",
+
+                top: "14px",
+
+                width: "245px",
+
+                padding: "14px",
+
+                background: "#0f172a",
+
+                color: "#fff",
+
+                borderRadius: "10px",
+
+                boxShadow:
+                    "0 10px 30px rgba(0,0,0,.3)",
+
+                zIndex:
+                    "2147483647",
+
+                fontFamily:
+                    "Arial,sans-serif"
+
+            }
+        );
+
+
+        document.body.appendChild(
+            panel
+        );
+
+
+        document
+            .getElementById(
+                "fleet-download"
+            )
+            .addEventListener(
+                "click",
+                function () {
+
+                    if (
+                        window.fleetData &&
+                        window.fleetData.length
+                    ) {
+
+                        downloadFleetData(
+                            window.fleetData
+                        );
+
+                    }
+                    else {
+
+                        updatePanel(
+                            "No fleet data available",
+                            0,
+                            "—"
+                        );
+
+                    }
+
+                }
+            );
+
+        document
+    .getElementById(
+        "fleet-upload"
+    )
+    .addEventListener(
+        "click",
+        async function () {
+
+            if (
+                window.fleetData &&
+                window.fleetData.length
+            ) {
+
+                await uploadFleetDataToGitHub(
+                    window.fleetData
+                );
+
+            }
+            else {
+
+                updatePanel(
+                    "No fleet data available",
+                    0,
+                    "—"
+                );
+
+                alert(
+                    "❌ No fleet data available yet."
+                );
+
+            }
+
+        }
+    );
+
+    }
+
+
+
+    function updatePanel(
+        status,
+        count,
+        time
+    ) {
+
+        const statusElement =
+            document.getElementById(
+                "fleet-status"
+            );
+
+        const countElement =
+            document.getElementById(
+                "fleet-count"
+            );
+
+        const timeElement =
+            document.getElementById(
+                "fleet-time"
+            );
+
+
+        if (statusElement) {
+
+            statusElement.textContent =
+                status;
+
+        }
+
+
+        if (countElement) {
+
+            countElement.textContent =
+                "Vehicles: " + count;
+
+        }
+
+
+        if (timeElement) {
+
+            timeElement.textContent =
+                "Last update: " +
+                (time || "—");
+
+        }
+
+    }
+
+
+    function waitForPanel() {
+
+        if (document.body) {
+
+            createPanel();
+
+        }
+        else {
+
+            setTimeout(
+                waitForPanel,
+                100
+            );
+
+        }
+
+    }
+
+
+    waitForPanel();
+
+
+    /* =========================================================
+       RECEIVE DATA FROM PAGE
+       USING CUSTOM DOM EVENT
+    ========================================================= */
+
+    document.addEventListener(
+        "ROHTAK_FLEET_DATA",
+        function (event) {
+
+            try {
+
+                console.log(
+                    "%c[TM Fleet] Data event received",
+                    "color:#22c55e;font-weight:bold"
+                );
+
+
+                /*
+                 * Data is transferred as JSON text.
+                 */
+
+                const payload =
+                    JSON.parse(
+                        event.detail
+                    );
+
+
+                const fleet =
+                    payload.fleet;
+
+
+                if (
+                    !Array.isArray(fleet)
+                ) {
+
+                    console.error(
+                        "[TM Fleet] Fleet is not an array",
+                        fleet
+                    );
+
+                    return;
+
+                }
+
+
+                if (
+                    fleet.length === 0
+                ) {
+
+                    console.warn(
+                        "[TM Fleet] Empty fleet received"
+                    );
+
+                    return;
+
+                }
+
+
+                /*
+                 * Store globally.
+                 */
+
+                window.fleetData =
+                    fleet;
+
+
+                window.fleetMeta = {
+
+                    generatedAt:
+                        payload.generatedAt,
+
+                    generatedTimestamp:
+                        payload.timestamp,
+
+                    totalVehicles:
+                        fleet.length
+
+                };
+
+
+                console.log(
+                    "%c[TM Fleet] Stored " +
+                    fleet.length +
+                    " vehicles",
+                    "color:#22c55e;font-weight:bold"
+                );
+
+
+                updatePanel(
+
+                    "✓ Fleet data captured",
+
+                    fleet.length,
+
+                    payload.generatedAt
+
+                );
+
+
+                /*
+                 * Generate hash.
+                 */
+
+                const hash =
+                    createHash(
+                        fleet
+                    );
+
+
+                /*
+                 * Same data?
+                 */
+
+                if (
+                    hash === lastDataHash
+                ) {
+
+                    console.log(
+                        "[TM Fleet] Same dataset - download skipped"
+                    );
+
+                    return;
+
+                }
+
+
+                lastDataHash =
+                    hash;
+
+
+                /*
+                 * Automatic download.
+                 */
+
+                if (
+                    AUTO_DOWNLOAD
+                ) {
+
+                    const now =
+                        Date.now();
+
+
+                    if (
+                        now -
+                        lastDownloadTime >=
+                        DOWNLOAD_INTERVAL
+                    ) {
+
+                        lastDownloadTime =
+                            now;
+
+
+                        downloadFleetData(
+                            fleet
+                        );
+
+                    }
+                    else {
+
+                        console.log(
+                            "[TM Fleet] Download interval not reached"
+                        );
+
+                    }
+
+                }
+
+            }
+            catch (error) {
+
+                console.error(
+                    "[TM Fleet] Event processing error:",
+                    error
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       HASH
+    ========================================================= */
+
+    function createHash(
+        data
+    ) {
+
+        const text =
+            JSON.stringify(data);
+
+
+        let hash = 0;
+
+
+        for (
+            let i = 0;
+            i < text.length;
+            i++
+        ) {
+
+            hash =
+                (
+                    (hash << 5)
+                    -
+                    hash
+                    +
+                    text.charCodeAt(i)
+                ) |
+                0;
+
+        }
+
+
+        return String(hash);
+
+    }
+
+
+    /* =========================================================
+       GENERATE fleet-data.js
+    ========================================================= */
+
+    function generateFleetFile(
+        fleet
+    ) {
+
+        const now =
+            new Date();
+
+
+        const generatedAt =
+            formatDateTime(
+                now
+            );
+
+
+        return `// =====================================================
+// FLEET DATA
+// Generated automatically by Tampermonkey
+// =====================================================
+
+window.fleetData = ${JSON.stringify(
+            fleet,
+            null,
+            2
+        )};
+
+
+// =====================================================
+// FLEET METADATA
+// =====================================================
+
+window.fleetMeta = {
+
+    generatedAt: ${JSON.stringify(
+        generatedAt
+    )},
+
+    generatedTimestamp: ${now.getTime()},
+
+    totalVehicles: ${fleet.length}
+
+};
+
+`;
+
+    }
+
+/* =========================================================
+   GITHUB UPLOAD
+========================================================= */
+
+async function uploadFleetDataToGitHub(fleet) {
+
+    if (
+        !Array.isArray(fleet) ||
+        fleet.length === 0
+    ) {
+
+        updatePanel(
+            "No fleet data available",
+            0,
+            "—"
+        );
+
+        return false;
+    }
+
+
+    const WORKER_URL =
+        "https://rohtak-fleet-api.ayushbattersea.workers.dev";
+
+
+    try {
+
+        updatePanel(
+            "⏳ Uploading to GitHub...",
+            fleet.length,
+            formatDateTime(new Date())
+        );
+
+
+        console.log(
+            "%c[TM Fleet] Uploading fleet data to GitHub...",
+            "color:#f59e0b;font-weight:bold"
+        );
+
+
+        /*
+         * Generate the exact same fleet-data.js
+         * that your existing download function creates.
+         */
+
+        const content =
+            generateFleetFile(fleet);
+
+
+        /*
+         * Send file content to Cloudflare Worker.
+         */
+
+        const response =
+            await fetch(
+                WORKER_URL,
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "text/plain"
+                    },
+
+                    body: content
+
+                }
+            );
+
+
+        /*
+         * Read response.
+         */
+
+        const result =
+            await response.json();
+
+
+        console.log(
+            "[TM Fleet] GitHub response:",
+            result
+        );
+
+
+        /*
+         * Check result.
+         */
+
+        if (
+            !response.ok ||
+            !result.success
+        ) {
+
+            throw new Error(
+                result.error ||
+                "GitHub upload failed"
+            );
+
+        }
+
+
+        /*
+         * SUCCESS
+         */
+
+        const currentTime =
+            formatDateTime(
+                new Date()
+            );
+
+
+        updatePanel(
+
+            "✓ GitHub updated",
+
+            fleet.length,
+
+            currentTime
+
+        );
+
+
+        console.log(
+            "%c[TM Fleet] GITHUB UPDATE SUCCESSFUL",
+            "color:#22c55e;font-weight:bold"
+        );
+
+
+        console.log(
+            "[TM Fleet] Vehicles:",
+            fleet.length
+        );
+
+
+        console.log(
+            "[TM Fleet] Time:",
+            currentTime
+        );
+
+
+        alert(
+            "✅ Fleet data successfully updated on GitHub!\n\n" +
+            "Vehicles: " +
+            fleet.length +
+            "\n" +
+            "Time: " +
+            currentTime
+        );
+
+
+        return true;
+
+
+    }
+    catch (error) {
+
+        console.error(
+            "[TM Fleet] GitHub upload error:",
+            error
+        );
+
+
+        updatePanel(
+
+            "❌ GitHub upload failed",
+
+            fleet.length,
+
+            formatDateTime(
+                new Date()
+            )
+
+        );
+
+
+        alert(
+            "❌ Fleet data upload failed\n\n" +
+            error.message
+        );
+
+
+        return false;
+
+    }
+
+}
+    /* =========================================================
+       DOWNLOAD
+    ========================================================= */
+
+    function downloadFleetData(
+        fleet
+    ) {
+
+        if (
+            !Array.isArray(fleet) ||
+            fleet.length === 0
+        ) {
+
+            console.error(
+                "[TM Fleet] Nothing to download"
+            );
+
+            return;
+
+        }
+
+
+        const content =
+            generateFleetFile(
+                fleet
+            );
+
+
+        /*
+         * IMPORTANT:
+         *
+         * We use the normal browser Blob
+         * download instead of GM_download.
+         *
+         * This is much more reliable with Chrome.
+         */
+
+        const blob =
+            new Blob(
+                [
+                    content
+                ],
+                {
+                    type:
+                        "application/javascript"
+                }
+            );
+
+
+        const url =
+            URL.createObjectURL(
+                blob
+            );
+
+
+        const link =
+            document.createElement(
+                "a"
+            );
+
+
+        link.href =
+            url;
+
+
+        link.download =
+            "fleet-data.js";
+
+
+        link.style.display =
+            "none";
+
+
+        document.body.appendChild(
+            link
+        );
+
+
+        /*
+         * Trigger browser download.
+         */
+
+        link.click();
+
+
+        link.remove();
+
+
+        setTimeout(
+            function () {
+
+                URL.revokeObjectURL(
+                    url
+                );
+
+            },
+            3000
+        );
+
+
+        const currentTime =
+            formatDateTime(
+                new Date()
+            );
+
+
+        updatePanel(
+
+            "✓ fleet-data.js downloaded",
+
+            fleet.length,
+
+            currentTime
+
+        );
+
+
+        console.log(
+            "%c[TM Fleet] fleet-data.js DOWNLOAD TRIGGERED",
+            "color:#22c55e;font-weight:bold"
+        );
+
+
+        console.log(
+            "[TM Fleet] Vehicles:",
+            fleet.length
+        );
+
+
+        console.log(
+            "[TM Fleet] Time:",
+            currentTime
+        );
+
+    }
+
+
+    /* =========================================================
+       DATE FORMAT
+    ========================================================= */
+
+    function formatDateTime(
+        date
+    ) {
+
+        const months = [
+
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec"
+
+        ];
+
+
+        let hours =
+            date.getHours();
+
+
+        const ampm =
+            hours >= 12
+                ? "PM"
+                : "AM";
+
+
+        hours =
+            hours % 12;
+
+
+        hours =
+            hours || 12;
+
+
+        return (
+
+            String(
+                date.getDate()
+            ).padStart(2, "0")
+
+            + "-"
+
+            + months[
+                date.getMonth()
+            ]
+
+            + "-"
+
+            + date.getFullYear()
+
+            + " "
+
+            + String(
+                hours
+            ).padStart(2, "0")
+
+            + ":"
+
+            + String(
+                date.getMinutes()
+            ).padStart(2, "0")
+
+            + ":"
+
+            + String(
+                date.getSeconds()
+            ).padStart(2, "0")
+
+            + " "
+
+            + ampm
+
+        );
+
+    }
+
+
+    /* =========================================================
+       PAGE CONTEXT WEBSOCKET INTERCEPTOR
+    ========================================================= */
+
+    const injectedCode = `
+
+    (function () {
+
+        "use strict";
+
+
+        console.log(
+            "%c[Rohtak Fleet] WebSocket interceptor active",
+            "color:#22c55e;font-weight:bold"
+        );
+
+
+        const OriginalWebSocket =
+            window.WebSocket;
+
+
+        function FleetWebSocket(
+            url,
+            protocols
+        ) {
+
+            console.log(
+                "[Rohtak Fleet] WebSocket created:",
+                url
+            );
+
+
+            const socket =
+                protocols !== undefined
+
+                    ? new OriginalWebSocket(
+                        url,
+                        protocols
+                    )
+
+                    : new OriginalWebSocket(
+                        url
+                    );
+
+
+            socket.addEventListener(
+                "message",
+                function (event) {
+
+                    try {
+
+                        const raw =
+                            event.data;
+
+
+                        if (
+                            typeof raw !==
+                            "string"
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        if (
+                            !raw.includes(
+                                "ReceiveFleetData"
+                            )
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        console.log(
+                            "[Rohtak Fleet] ReceiveFleetData detected"
+                        );
+
+
+                        /*
+                         * SignalR uses
+                         * record separator \\x1e.
+                         */
+
+                        const messages =
+                            raw
+                                .split("\\x1e")
+                                .filter(
+                                    x =>
+                                        x.trim()
+                                );
+
+
+                        for (
+                            const text
+                            of messages
+                        ) {
+
+                            let message;
+
+
+                            try {
+
+                                message =
+                                    JSON.parse(
+                                        text
+                                    );
+
+                            }
+                            catch (
+                                error
+                            ) {
+
+                                continue;
+
+                            }
+
+
+                            if (
+                                !message ||
+                                message.target !==
+                                    "ReceiveFleetData"
+                            ) {
+
+                                continue;
+
+                            }
+
+
+                            const args =
+                                message.arguments ||
+                                [];
+
+
+                            if (
+                                !args.length
+                            ) {
+
+                                continue;
+
+                            }
+
+
+                            let fleet =
+                                args[0];
+
+
+                            /*
+                             * YOUR SITE SENDS
+                             * THE FLEET AS A JSON STRING.
+                             */
+
+                            if (
+                                typeof fleet ===
+                                "string"
+                            ) {
+
+                                try {
+
+                                    fleet =
+                                        JSON.parse(
+                                            fleet
+                                        );
+
+                                }
+                                catch (
+                                    error
+                                ) {
+
+                                    console.error(
+                                        "[Rohtak Fleet] Fleet JSON parse failed:",
+                                        error
+                                    );
+
+                                    continue;
+
+                                }
+
+                            }
+
+
+                            /*
+                             * Handle wrappers.
+                             */
+
+                            if (
+                                fleet &&
+                                !Array.isArray(
+                                    fleet
+                                )
+                            ) {
+
+                                if (
+                                    Array.isArray(
+                                        fleet.data
+                                    )
+                                ) {
+
+                                    fleet =
+                                        fleet.data;
+
+                                }
+                                else if (
+                                    Array.isArray(
+                                        fleet.result
+                                    )
+                                ) {
+
+                                    fleet =
+                                        fleet.result;
+
+                                }
+                                else if (
+                                    Array.isArray(
+                                        fleet.fleetData
+                                    )
+                                ) {
+
+                                    fleet =
+                                        fleet.fleetData;
+
+                                }
+
+                            }
+
+
+                            if (
+                                !Array.isArray(
+                                    fleet
+                                )
+                            ) {
+
+                                console.warn(
+                                    "[Rohtak Fleet] Invalid fleet:",
+                                    fleet
+                                );
+
+                                continue;
+
+                            }
+
+
+                            if (
+                                fleet.length === 0
+                            ) {
+
+                                continue;
+
+                            }
+
+
+                            const now =
+                                new Date();
+
+
+                            const generatedAt =
+                                formatDateTimePage(
+                                    now
+                                );
+
+
+                            console.log(
+                                "%c[Rohtak Fleet] RECEIVED " +
+                                fleet.length +
+                                " VEHICLES",
+                                "color:#22c55e;font-weight:bold"
+                            );
+
+
+                            console.log(
+                                "[Rohtak Fleet] Updated:",
+                                generatedAt
+                            );
+
+
+                            /*
+                             * IMPORTANT:
+                             *
+                             * Use CustomEvent instead of
+                             * postMessage.
+                             *
+                             * This reliably crosses the
+                             * Tampermonkey/page boundary.
+                             */
+
+                            const event =
+                                new CustomEvent(
+                                    "ROHTAK_FLEET_DATA",
+                                    {
+                                        detail:
+                                            JSON.stringify({
+
+                                                fleet:
+                                                    fleet,
+
+                                                generatedAt:
+                                                    generatedAt,
+
+                                                timestamp:
+                                                    now.getTime()
+
+                                            })
+                                    }
+                                );
+
+
+                            document.dispatchEvent(
+                                event
+                            );
+
+
+                        }
+
+                    }
+                    catch (error) {
+
+                        console.error(
+                            "[Rohtak Fleet] Message error:",
+                            error
+                        );
+
+                    }
+
+                }
+            );
+
+
+            return socket;
+
+        }
+
+
+        FleetWebSocket.prototype =
+            OriginalWebSocket.prototype;
+
+
+        FleetWebSocket.CONNECTING =
+            OriginalWebSocket.CONNECTING;
+
+
+        FleetWebSocket.OPEN =
+            OriginalWebSocket.OPEN;
+
+
+        FleetWebSocket.CLOSING =
+            OriginalWebSocket.CLOSING;
+
+
+        FleetWebSocket.CLOSED =
+            OriginalWebSocket.CLOSED;
+
+
+        window.WebSocket =
+            FleetWebSocket;
+
+
+        function formatDateTimePage(
+            date
+        ) {
+
+            const months = [
+
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec"
+
+            ];
+
+
+            let hours =
+                date.getHours();
+
+
+            const ampm =
+                hours >= 12
+                    ? "PM"
+                    : "AM";
+
+
+            hours =
+                hours % 12;
+
+
+            hours =
+                hours || 12;
+
+
+            return (
+
+                String(
+                    date.getDate()
+                ).padStart(2, "0")
+
+                + "-"
+
+                + months[
+                    date.getMonth()
+                ]
+
+                + "-"
+
+                + date.getFullYear()
+
+                + " "
+
+                + String(
+                    hours
+                ).padStart(2, "0")
+
+                + ":"
+
+                + String(
+                    date.getMinutes()
+                ).padStart(2, "0")
+
+                + ":"
+
+                + String(
+                    date.getSeconds()
+                ).padStart(2, "0")
+
+                + " "
+
+                + ampm
+
+            );
+
+        }
+
+
+    })();
+
+    `;
+
+
+    /* =========================================================
+       INJECT INTO PAGE
+    ========================================================= */
+
+    const script =
+        document.createElement(
+            "script"
+        );
+
+
+    script.textContent =
+        injectedCode;
+
+
+    (
+        document.documentElement ||
+        document.head
+    ).appendChild(
+        script
+    );
+
+
+    script.remove();
+
+
+})();

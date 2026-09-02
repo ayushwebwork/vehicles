@@ -540,7 +540,7 @@
 
 
     <section class="hero">
-
+<h5 id="current_timestamp" style="color: #ea580c;margin-bottom: 1rem;"></h5>
         <div class="hero-badge">
             FLEET OPERATIONS
         </div>
@@ -754,8 +754,22 @@
 
 
 </main>
+    <script src="./fleet-data.js"></script>
+<script>
+    document.addEventListener(
+            "DOMContentLoaded",
+            function () {
 
+                
+                    setTimeout(
+                        document.getElementById(
+                "current_timestamp"
+            ).textContent =`${window.fleetMeta.generatedAt}`,
+                        100
+                    );
 
+            })
+</script>
 </body>
 
 </html>

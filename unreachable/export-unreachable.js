@@ -26,11 +26,13 @@ function exportUnreachableToCSV() {
         "S.No.",
         "Ward",
         "Vehicle No.",
-        "Vehicle ID",
+        "Key No",
+        "Route Cover",
         "Status",
-        "Time Recorded",
+        
         "Driver",
-        "Location"
+        "Route",
+        "Time Recorded",
     ];
 
 
@@ -45,19 +47,21 @@ function exportUnreachableToCSV() {
 
                 vehicle.vehicleno || "-",
 
-                vehicle.vehicleid || "-",
+                getKeyNo(vehicle.vehicleno),
+                vehicle.routecleaned_p == null ? "" : (vehicle.routecleaned_p)+"%",
 
                 vehicle.vehiclestatus ||
                 vehicle.status ||
                 "Unreachable",
 
-                vehicle.timerecorded ||
-                vehicle.time_recorded ||
-                "-",
+                
 
                 vehicle.drivername || "-",
 
-                vehicle.place || "-"
+                vehicle.routename || "",
+                vehicle.timerecorded ||
+                vehicle.time_recorded ||
+                "-",
             ];
 
         }

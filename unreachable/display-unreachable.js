@@ -327,17 +327,18 @@ function displayUnreachableResults() {
                         <th>Ward</th>
 
                         <th>Vehicle No.</th>
-                        <th>Vehicle Type</th>
+                        <th>Key No</th>
+                        <th style="white-space:nowrap;">Vehicle Type</th>
 
-                        <th>Vehicle ID</th>
+                        <th style="white-space:nowrap;">Route Cover</th>
 
                         <th>Status</th>
 
-                        <th>Time Recorded</th>
+                        <th style="white-space:nowrap;">Time Recorded</th>
 
                         <th>Driver</th>
 
-                        <th>Location</th>
+                        <th>Route</th>
 
                     </tr>
 
@@ -383,33 +384,32 @@ function displayUnreachableResults() {
                             ${index + 1}
                         </td>
 
-                        <td>
+                        <td style="white-space:nowrap;">
                             ${escapeHTML(
                                 vehicle.wardname ||
                                 "-"
                             )}
                         </td>
 
-                        <td class="vehicle-no">
+                        <td class="vehicle-no" style="white-space:nowrap;">
                             ${escapeHTML(
                                 vehicle.vehicleno ||
                                 "-"
                             )}
                         </td>
+                        <td style="white-space:nowrap; text-align:center">
+                        ${getKeyNo(vehicle.vehicleno)}
                         <td>
                         ${
                                 vehicle.vehicletype
                             }
                         </td>
 
-                        <td>
-                            ${escapeHTML(
-                                vehicle.vehicleid ||
-                                "-"
-                            )}
+                        <td style="white-space:nowrap;">
+                            ${vehicle.routecleaned_p == null ? "" : (vehicle.routecleaned_p)+"%"}
                         </td>
 
-                        <td>
+                        <td >
 
                             <span
                                 class="unreachable-badge"
@@ -441,10 +441,7 @@ function displayUnreachableResults() {
                         </td>
 
                         <td>
-                            ${escapeHTML(
-                                vehicle.place ||
-                                "-"
-                            )}
+                            ${vehicle.routename || ""}
                         </td>
 
                     </tr>

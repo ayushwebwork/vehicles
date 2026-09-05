@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Morning Vehicle Report</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            background: #f4f7fb;
+
+            color: #172033;
+
+            padding: 24px;
+
+        }
+
+
+        .container {
+
+            max-width: 1800px;
+
+            margin: auto;
+
+        }
+
+
+        /* HEADER */
+
+        .header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .header h2 {
+
+            font-size: 25px;
+
+            color: #172033;
+
+        }
+
+
+        .header p {
+
+            color: #64748b;
+
+            margin-top: 5px;
+
+            font-size: 13px;
+
+        }
+
+
+        #current_timestamp {
+
+            color: #ea580c;
+
+            font-size: 13px;
+
+            margin-top: 7px;
+
+        }
+
+
+        button {
+
+            border: 0;
+
+            background: #2563eb;
+
+            color: white;
+
+            padding: 10px 18px;
+
+            border-radius: 7px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+        }
+
+
+        button:hover {
+
+            background: #1d4ed8;
+
+        }
+
+
+        /* SUMMARY */
+
+        .summary {
+
+            display: flex;
+
+            gap: 15px;
+
+            margin-bottom: 20px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .card {
+
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 10px;
+
+            padding: 16px 22px;
+
+            min-width: 190px;
+
+            box-shadow:
+                0 2px 8px
+                rgba(15,23,42,.05);
+
+        }
+
+
+        .card.blue {
+
+            border-left:
+                4px solid #2563eb;
+
+        }
+
+
+        .card.red {
+
+            border-left:
+                4px solid #dc2626;
+
+        }
+
+
+        .label {
+
+            font-size: 12px;
+
+            color: #64748b;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .value {
+
+            font-size: 25px;
+
+            font-weight: 700;
+
+        }
+
+
+        /* TABLE */
+
+        .table-wrapper {
+
+            background: white;
+
+            border-radius: 10px;
+
+            overflow: auto;
+
+            border: 1px solid #e2e8f0;
+
+            max-height:
+                calc(100vh - 230px);
+
+        }
+
+
+        table {
+
+            width: max-content;
+
+            min-width: 100%;
+
+            border-collapse: collapse;
+
+            font-size: 11px;
+
+        }
+
+
+        th {
+
+            background: #172033;
+
+            color: white;
+
+            padding: 10px;
+
+            font-size: 11px;
+
+            text-align: left;
+
+            white-space: nowrap;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 5;
+
+        }
+
+
+        td {
+
+            padding: 9px 10px;
+
+            border-bottom:
+                1px solid #edf0f4;
+
+            font-size: 11px;
+
+            white-space: nowrap;
+
+        }
+
+
+        tbody tr:hover {
+
+            background: #f8fafc;
+
+        }
+
+
+        .cleaning {
+
+            background: #fef2f2;
+
+            color: #b91c1c;
+
+            border:
+                1px solid #fecaca;
+
+            padding: 4px 8px;
+
+            border-radius: 15px;
+
+            font-weight: 700;
+
+        }
+
+
+        .vehicle-no {
+
+            font-weight: 700;
+
+            color: #1d4ed8;
+
+        }
+
+
+        .no-data {
+
+            text-align: center;
+
+            padding: 50px;
+
+            color: #64748b;
+
+        }
+
+
+        @media(max-width:700px) {
+
+            body {
+
+                padding: 12px;
+
+            }
+
+
+            .header {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 12px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div>
+
+            <h2>
+                Morning Vehicle Report
+            </h2>
+
+            <div id="current_timestamp"></div>
+
+            <p>
+                Vehicles with Cleaning % between 0 and 90 ·
+                Tractor & Loader excluded · Sorted by Cleaning %
+            </p>
+
+        </div>
+
+
+        <button onclick="exportMorningCSV()">
+
+            Export CSV
+
+        </button>
+
+    </div>
+
+
+    <!-- SUMMARY -->
+
+    <div
+        id="summary"
+        class="summary"
+    ></div>
+
+
+    <!-- TABLE -->
+
+    <div class="table-wrapper">
+
+        <div id="outputdata"></div>
+
+    </div>
+
+
+</div>
+
+
+<!-- DATA -->
+
+<script src="./fleet-data.js"></script>
+
+
+<script>
+
+
+/* =====================================================
+   NORMALIZE VEHICLE NUMBER
+   ===================================================== */
+
+function normalizeVehicleNumber(value) {
+
+    return String(value || "")
+        .replace(/[\s-]/g, "")
+        .toUpperCase();
+
+}
+
+
+/* =====================================================
+   GET MORNING VEHICLES
+   ===================================================== */
+
+function getMorningVehicles() {
+
+    if (
+        !Array.isArray(window.fleetData)
+    ) {
+
+        return [];
+
+    }
+
+
+    const vehicles =
+        window.fleetData
+            .filter(vehicle => {
+
+
+                /* =========================
+                   VEHICLE KEY NUMBER
+                ========================= */
+
+                const key =
+                    String(
+                        vehicle.vehiclekeyno ??
+                        ""
+                    ).trim();
+
+
+                /*
+                 * ONLY pure numbers
+                 *
+                 * 70       ✅
+                 * 71       ✅
+                 * 70 extra ❌
+                 * 70 evening ❌
+                 */
+
+                if (
+                    !/^\d+$/.test(key)
+                ) {
+
+                    return false;
+
+                }
+
+
+                /* =========================
+                   VEHICLE TYPE
+                ========================= */
+
+                const vehicleType =
+                    String(
+                        vehicle.vehicletype ||
+                        ""
+                    )
+                    .trim()
+                    .toLowerCase();
+
+
+                /*
+                 * Exclude Tractor
+                 * and Loader
+                 */
+
+                if (
+                    vehicleType.includes(
+                        "tractor"
+                    ) ||
+                    vehicleType.includes(
+                        "loader"
+                    )
+                ) {
+
+                    return false;
+
+                }
+
+
+                /* =========================
+                   CLEANING %
+                ========================= */
+
+                const cleaning =
+                    Number(
+                        vehicle.routecleaned_p
+                    );
+
+
+                /*
+                 * Must be:
+                 *
+                 * > 0
+                 * < 90
+                 */
+
+                if (
+                    isNaN(cleaning) ||
+                    cleaning <= 0 ||
+                    cleaning >= 90
+                ) {
+
+                    return false;
+
+                }
+
+
+                return true;
+
+            })
+            .map(vehicle => ({
+
+                ...vehicle,
+
+                vehicleno:
+                    normalizeVehicleNumber(
+                        vehicle.vehicleno
+                    )
+
+            }));
+
+
+    /* =================================================
+       SORT CLEANING HIGH → LOW
+       ================================================= */
+
+    vehicles.sort(
+        (a, b) => {
+
+            const cleaningA =
+                Number(
+                    a.routecleaned_p
+                ) || 0;
+
+
+            const cleaningB =
+                Number(
+                    b.routecleaned_p
+                ) || 0;
+
+
+            return (
+                cleaningB -
+                cleaningA
+            );
+
+        }
+    );
+
+
+    return vehicles;
+
+}
+
+
+/* =====================================================
+   DISPLAY
+   ===================================================== */
+
+function displayResults() {
+
+    const vehicles =
+        getMorningVehicles();
+
+
+    const output =
+        document.getElementById(
+            "outputdata"
+        );
+
+
+    /* CURRENT DATA TIME */
+
+    if (
+        window.fleetMeta &&
+        window.fleetMeta.generatedAt
+    ) {
+
+        document.getElementById(
+            "current_timestamp"
+        ).textContent =
+            "Data Updated: " +
+            window.fleetMeta.generatedAt;
+
+    }
+
+
+    /* SUMMARY */
+
+    document.getElementById(
+        "summary"
+    ).innerHTML = `
+
+        <div class="card blue">
+
+            <div class="label">
+                Total Fleet
+            </div>
+
+            <div class="value">
+                ${
+                    Array.isArray(
+                        window.fleetData
+                    )
+                        ? window.fleetData.length
+                        : 0
+                }
+            </div>
+
+        </div>
+
+
+        <div class="card red">
+
+            <div class="label">
+                Morning Vehicles
+            </div>
+
+            <div class="value">
+                ${vehicles.length}
+            </div>
+
+        </div>
+
+    `;
+
+
+    let html = `
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>S.No.</th>
+
+                    <th>Key No.</th>
+
+                    <th>Vehicle No.</th>
+
+                    <th>Cleaning %</th>
+
+                    <th>Vehicle Type</th>
+
+                    <th>Ward</th>
+
+                    <th>Driver</th>
+
+                    <th>Driver Mobile</th>
+
+                    <th>VStatus</th>
+
+                    <th>Status</th>
+
+                    <th>Time Recorded</th>
+
+                    <th>Speed</th>
+
+                    <th>GSM</th>
+
+                    <th>GPS</th>
+
+                    <th>Vehicle Battery</th>
+
+                    <th>GPS Battery</th>
+
+                    <th>Ignition</th>
+
+                    <th>Route</th>
+
+                    <th>Total Points</th>
+
+                    <th>Cleaned Points</th>
+
+                    <th>Not Cleaned Points</th>
+
+                    <th>Latitude</th>
+
+                    <th>Longitude</th>
+
+                    <th>Angle</th>
+
+                    <th>Place</th>
+
+                    <th>Vendor</th>
+
+                    <th>Vendor Type</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+    `;
+
+
+    if (
+        vehicles.length === 0
+    ) {
+
+        html += `
+
+            <tr>
+
+                <td
+                    colspan="27"
+                    class="no-data"
+                >
+
+                    No vehicles found.
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+
+    vehicles.forEach(
+        (vehicle, index) => {
+
+            html += `
+
+                <tr>
+
+                    <td>
+                        ${index + 1}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.vehiclekeyno
+                        )}
+                    </td>
+
+                    <td>
+
+                        <span class="vehicle-no">
+
+                            ${safe(
+                                vehicle.vehicleno
+                            )}
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <span class="cleaning">
+
+                            ${safe(
+                                vehicle.routecleaned_p
+                            )}%
+
+                        </span>
+
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.vehicletype
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.wardname
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.drivername
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.drivermobile
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.vstatus
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.status
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.timerecorded
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.speed
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.gsm
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.gps
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.vehiclebattery
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.gpsbattery
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.ignition
+                        )}
+                    </td>
+
+                    <td
+                        title="${safe(
+                            vehicle.routename
+                        )}"
+                    >
+
+                        ${safe(
+                            vehicle.routename
+                        )}
+
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.totalpoints
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.totalcleanedpoints
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.totalnotcleanedpoints
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.latitude
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.longitude
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.angle
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.place
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.vendorname
+                        )}
+                    </td>
+
+                    <td>
+                        ${safe(
+                            vehicle.vendortype
+                        )}
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+    );
+
+
+    html += `
+
+            </tbody>
+
+        </table>
+
+    `;
+
+
+    output.innerHTML =
+        html;
+
+}
+
+
+/* =====================================================
+   CSV EXPORT
+   ===================================================== */
+
+function exportMorningCSV() {
+
+    const vehicles =
+        getMorningVehicles();
+
+
+    if (
+        vehicles.length === 0
+    ) {
+
+        alert(
+            "No morning vehicles found."
+        );
+
+        return;
+
+    }
+
+
+    const headers = [
+
+        "S.No.",
+        "Key No.",
+        "Vehicle No.",
+        "Cleaning %",
+        "Vehicle Type",
+        "Ward",
+        "Driver",
+        "Driver Mobile",
+        "VStatus",
+        "Status",
+        "Time Recorded",
+        "Speed",
+        "GSM",
+        "GPS",
+        "Vehicle Battery",
+        "GPS Battery",
+        "Ignition",
+        "Route",
+        "Total Points",
+        "Cleaned Points",
+        "Not Cleaned Points",
+        "Latitude",
+        "Longitude",
+        "Angle",
+        "Place",
+        "Vendor",
+        "Vendor Type"
+
+    ];
+
+
+    const rows =
+        vehicles.map(
+            (vehicle, index) => [
+
+                index + 1,
+
+                vehicle.vehiclekeyno,
+
+                normalizeVehicleNumber(
+                    vehicle.vehicleno
+                ),
+
+                vehicle.routecleaned_p,
+
+                vehicle.vehicletype,
+
+                vehicle.wardname,
+
+                vehicle.drivername,
+
+                vehicle.drivermobile,
+
+                vehicle.vstatus,
+
+                vehicle.status,
+
+                vehicle.timerecorded,
+
+                vehicle.speed,
+
+                vehicle.gsm,
+
+                vehicle.gps,
+
+                vehicle.vehiclebattery,
+
+                vehicle.gpsbattery,
+
+                vehicle.ignition,
+
+                vehicle.routename,
+
+                vehicle.totalpoints,
+
+                vehicle.totalcleanedpoints,
+
+                vehicle.totalnotcleanedpoints,
+
+                vehicle.latitude,
+
+                vehicle.longitude,
+
+                vehicle.angle,
+
+                vehicle.place,
+
+                vehicle.vendorname,
+
+                vehicle.vendortype
+
+            ]
+        );
+
+
+    function escapeCSV(value) {
+
+        const text =
+            String(
+                value ?? ""
+            );
+
+
+        return (
+            '"' +
+            text.replace(
+                /"/g,
+                '""'
+            ) +
+            '"'
+        );
+
+    }
+
+
+    const csv = [
+
+        headers,
+
+        ...rows
+
+    ]
+        .map(
+            row =>
+                row
+                    .map(
+                        escapeCSV
+                    )
+                    .join(",")
+        )
+        .join("\r\n");
+
+
+    const blob =
+        new Blob(
+            [
+                "\uFEFF" +
+                csv
+            ],
+            {
+                type:
+                    "text/csv;charset=utf-8;"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(
+            blob
+        );
+
+
+    const link =
+        document.createElement(
+            "a"
+        );
+
+
+    link.href =
+        url;
+
+
+    link.download =
+        "Morning_Vehicle_Report.csv";
+
+
+    document.body.appendChild(
+        link
+    );
+
+
+    link.click();
+
+
+    document.body.removeChild(
+        link
+    );
+
+
+    URL.revokeObjectURL(
+        url
+    );
+
+}
+
+
+/* =====================================================
+   SAFE HTML
+   ===================================================== */
+
+function safe(value) {
+
+    return String(
+        value ?? "-"
+    )
+
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+
+    .replace(
+        /</g,
+        "&lt;"
+    )
+
+    .replace(
+        />/g,
+        "&gt;"
+    )
+
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* =====================================================
+   RUN
+   ===================================================== */
+
+displayResults();
+
+</script>
+
+
+</body>
+
+</html>

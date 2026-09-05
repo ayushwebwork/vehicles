@@ -7570,9 +7570,9 @@ window.fleetData = [
 
 window.fleetMeta = {
 
-    generatedAt: "05-Sep-2026 12:01:22 PM",
+    generatedAt: "05-Sep-2026 12:01:26 PM",
 
-    generatedTimestamp: 1788589882648,
+    generatedTimestamp: 1788589886751,
 
     totalVehicles: 229
 

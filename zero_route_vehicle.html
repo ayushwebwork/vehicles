@@ -712,14 +712,14 @@ function loadReport() {
                 ).toLowerCase();
 
 
-            if (
-                vehicleType.includes("tractor") ||
-                vehicleType.includes("loader")
-            ) {
+            // if (
+            //     vehicleType.includes("tractor") ||
+            //     vehicleType.includes("loader")
+            // ) {
 
-                return false;
+            //     return false;
 
-            }
+            // }
 
 
             /* =================================================
@@ -746,8 +746,9 @@ function loadReport() {
 
 
             if (
-                cleaning <= 0 ||
-                cleaning >= 95
+                cleaning != 0
+                //  ||
+                // cleaning >= 95
             ) {
 
                 return false;
